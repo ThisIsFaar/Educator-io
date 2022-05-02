@@ -1,7 +1,10 @@
 const User = require("../models/user");
+const UserVerification = require("../models/userVerification");
 const { validationResult } = require("express-validator");
 var jwt = require("jsonwebtoken");
 var expressJwt = require("express-jwt");
+const nodemailer = require("nodemailer");
+const { v4: uuidv4 } = require("uuid");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);

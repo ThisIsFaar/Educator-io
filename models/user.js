@@ -19,6 +19,7 @@ const userSchema = new Schema({
     required: true,
   },
   salt: String,
+  verified: Boolen, //account email verification status
   phoneNumber: {
     type: String,
     trim: true,

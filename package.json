@@ -1,0 +1,28 @@
+{
+  "name": "portal",
+  "version": "1.0.0",
+  "description": "Every year through the government exams plenty of teachers are hired and posted in various government schools. The tracking of teachers from recruitment to their entire service duration is done manually which makes it difficult to manage and keep track. Addressing this problem will give government the ease of managing teachers through one single portal which will help in maintaining clear stats of the teachers currently posted.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThisIsFaar/portal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThisIsFaar/portal/issues"
+  },
+  "homepage": "https://github.com/ThisIsFaar/portal#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.0",
+    "mongoose": "^6.3.1"
+  }
+}

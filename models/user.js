@@ -63,7 +63,6 @@ const userSchema = new Schema({
     // 0: not applied yet
     // 1: verify by 1st level
     // 2: verify by 2nd level
-    // 3: verify by 3rd level
     // 4x: rejected by x level
   },
   yearOfSelection: {

@@ -19,8 +19,11 @@ app.use(cookieParser());
 app.use(cors());
 
 const authRoutes = require("./routes/auth");
+const application  = require("./routes/application");
 
 app.use("/api", authRoutes);
+app.use("/api", application);
+
 
 app.listen(port, () => {
   console.log(`app is running at ${port}`);

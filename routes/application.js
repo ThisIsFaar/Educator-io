@@ -1,12 +1,14 @@
 var express = require("express");
 var router = express.Router();
 const { check } = require("express-validator");
-const { apply } = require("../controllers/application");
+const { apply , getUserById} = require("../controllers/application");
 const { isLogin, isAuthenticated, isAuthority } = require("../controllers/auth");
 
 
+//params
+router.param("userId", getUserById);
 
-router.post(
+router.put(
     "/application/:userId",
     isLogin,
     isAuthenticated,

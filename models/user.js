@@ -11,12 +11,10 @@ const userSchema = new Schema({
   email: {
     type: String,
     trim: true,
-    required: true,
     unique: true,
   },
   encry_password: {
     type: String,
-    required: true,
   },
   salt: String,
   verified: {
@@ -24,10 +22,6 @@ const userSchema = new Schema({
     default: false
   }, //account email verification status
   phoneNumber: {
-    type: String,
-    trim: true,
-  },
-  photo: {
     type: String,
     trim: true,
   },
@@ -58,11 +52,12 @@ const userSchema = new Schema({
   applicationVerificationStatus: {
     type: String,
     default: "0",
-    enum: ["0", "1", "2", "3", "41", "42", "43"],
+    enum: ["0", "1", "2", "3", "42", "43"],
     // application verification status: 0,1,2,3, 4x
-    // 0: not applied yet
-    // 1: verify by 1st level
-    // 2: verify by 2nd level
+    // 0: account created, not submitted application form
+    // 1: application submitted to verify by authority 1
+    // 2: verify by 1st level authority, fwd to 2nd level
+    // 3: verify by 2nd level, teacher is verified
     // 4x: rejected by x level
   },
   yearOfSelection: {
@@ -93,6 +88,10 @@ const userSchema = new Schema({
     type: String,
     trim: true,
   },
+  profilePhoto: {
+    data: Buffer,
+    contentType: String
+  }
   //   newSchoolLocationPosting: {
   //     type: String,
   //     trim: true,

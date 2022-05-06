@@ -10,8 +10,8 @@ require("dotenv").config();
 
 mongoose
   .connect("mongodb://localhost/portal")
-  .then(() => console.log("connected..."))
-  .catch((err) => console.log("not connected", err));
+  .then(() => console.log("Database connected ✅"))
+  .catch((err) => console.log("Database connectivity problem occur", err));
 
 //Middlewares
 app.use(bodyParser.json());
@@ -24,7 +24,13 @@ const application  = require("./routes/application");
 app.use("/api", authRoutes);
 app.use("/api", application);
 
+//error handling for express-jwt authentication
+app.use( (err, req, res, next) =>  {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).send('invalid token...');
+  }
+});
 
 app.listen(port, () => {
-  console.log(`app is running at ${port}`);
+  console.log(`Backend is running at port number ${port} ✅`);
 });

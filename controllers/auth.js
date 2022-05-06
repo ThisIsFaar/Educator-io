@@ -26,8 +26,7 @@ transporter.verify((err, success) => {
     console.log('check');
     console.log(err);
   } else {
-    console.log('ready for messages');
-    console.log('success');
+    console.log('NodeMailer Transporter connected ✅');
   }
 })
 
@@ -239,21 +238,21 @@ exports.logout = (req, res) => {
 
 exports.isLogin = expressJwt({
   secret: process.env.SECRET,
-  userProperty: "auth",
+  requestProperty: "auth",
 });
 
 exports.isAuthenticated = (req, res, next) => {
-  let checker = req.profile && req.auth && req.profile._id == req.auth._id;
+  let checker = req.user && req.auth && req.user._id == req.auth._id;
   if (!checker) {
     return res.status(403).json({
-      error: " ACCESS DENIED ",
+      error: "Access denied",
     });
   }
   next();
 };
 
 exports.isAuthority = (req, res, next) => {
-  if (!req.profile.authority) {
+  if (!req.user.authority) {
     return res.status(403).json({
       error: "your are not ADMIN,chal nikal ab",
     });

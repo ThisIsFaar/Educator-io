@@ -32,7 +32,8 @@ exports.apply = (req, res) => {
 
     //handling files
     if (file.profilePhoto) {
-      if (file.profilePhoto.size > 100000) { //100 kb profilePhoto allowed only
+      if (file.profilePhoto.size > 100000) {
+        //100 kb profilePhoto allowed only
         return res.status(400).json({
           error: "File size is too Big, maximum file size is 100kb",
         });
@@ -49,15 +50,15 @@ exports.apply = (req, res) => {
           error: "application failed",
         });
       }
-      user.applicationVerificationStatus = "1"
+      user.applicationVerificationStatus = "1";
       user.save((err, user) => {
         if (err) {
           return res.json({
             error: "application failed",
           });
-        } 
+        }
         res.json(user);
-      })
+      });
     });
   });
-  };  
+};

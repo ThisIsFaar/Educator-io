@@ -1,8 +1,15 @@
 var express = require("express");
 var router = express.Router();
 const { check } = require("express-validator");
-const { logout, register, login, verify, verified } = require("../controllers/auth");
+const {
+  logout,
+  register,
+  login,
+  verify,
+  verified,
+} = require("../controllers/auth");
 
+//Register user
 router.post(
   "/register",
   [
@@ -14,18 +21,7 @@ router.post(
   register
 );
 
-router.get("/logout", logout);
-
-router.get(
-  "/verify/:userId/:uniqueString",
-  verify
-);
-
-router.get(
-  "/verified",
-  verified
-);
-
+//Login user
 router.post(
   "/login",
   [
@@ -34,5 +30,14 @@ router.post(
   ],
   login
 );
+
+//Logout user
+router.get("/logout", logout);
+
+//Verifying user email
+router.get("/verify/:userId/:uniqueString", verify);
+
+//User redirection after verification
+router.get("/verified", verified);
 
 module.exports = router;

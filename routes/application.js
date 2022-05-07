@@ -5,9 +5,10 @@ const { apply , getUserById} = require("../controllers/application");
 const { isLogin, isAuthenticated, isAuthority } = require("../controllers/auth");
 
 
-//params
+//Get User By Id Parameter
 router.param("userId", getUserById);
 
+//Submitting Form, updating user details
 router.put(
     "/application/:userId",
     isLogin,

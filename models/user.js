@@ -91,6 +91,10 @@ const userSchema = new Schema({
   profilePhoto: {
     data: Buffer,
     contentType: String
+  },
+  authority: {
+    type: Boolean,
+    default: false
   }
   //   newSchoolLocationPosting: {
   //     type: String,

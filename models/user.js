@@ -21,6 +21,14 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   }, //account email verification status
+  otp: {
+    type: String,
+    trim: true,
+  },
+  otpExpiry: {
+    type: Date
+  }
+  ,
   phoneNumber: {
     type: String,
     trim: true,

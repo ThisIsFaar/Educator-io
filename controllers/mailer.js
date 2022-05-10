@@ -3,6 +3,8 @@ const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
+const User = require("../models/user");
+const { verified } = require("./auth");
 
 //nodemailer stuff
 let transporter = nodemailer.createTransport({
@@ -15,47 +17,106 @@ let transporter = nodemailer.createTransport({
 
 transporter.verify((err, success) => {
   if (err) {
-    console.log("check");
     console.log(err);
   } else {
     console.log("NodeMailer Transporter connected ✅");
   }
 });
 
-exports.sendVerificationEmail = ({ _id, email }, res) => {
+exports.sendVerificationEmail = ({ _id, email, authority }, res) => {
   const URL = "http://localhost:5000/";
-  const uniqueString = uuidv4() + _id;
+  var mailOptions = {};
+  if (authority) {
+    const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
 
-  const mailOptions = {
-    from: process.env.AUTH_EMAIL,
-    to: email,
-    subject: "verify your email",
-    html: `verify <a href=${
-      URL + "api/verify/" + _id + "/" + uniqueString
-    }>herre</a>`,
-  };
+    mailOptions = {
+      from: process.env.AUTH_EMAIL,
+      to: email,
+      subject: "SIGNIN OTP FOR PORTAL",
+      html: `Hello Authority, Your OTP for signin is ${otp}`,
+    };
 
-  const saltRounds = 0;
-  bcrypt.hash(uniqueString, saltRounds).then((hashUniqueString) => {
-    const newVerification = new UserVerification({
-      userId: _id,
-      uniqueString: hashUniqueString,
-      createdAt: Date.now(),
-      expiresAt: Date.now() + 900,
-    });
+    const saltRounds = 10;
+    bcrypt.hash(otp, saltRounds).then((hashotp) => {
+      //fetching user by email
+      User.findOne({email: email}).exec((err, user) => {
+        if (err || !user) {
+          return res.status(400).json({
+            error: "No user found",
+          });
+        } else {
 
-    newVerification
-      .save()
-      .then(() => {
-        transporter.sendMail(mailOptions);
-        console.log("DONE");
-      })
-      .catch((err) => {
-        console.log(err);
-        res.json({
-          status: "failed",
-          msg: "could not save verification email data",
-        });
+          let otpUser = user;
+          otpUser.otp = hashotp;
+          otpUser.otpExpiry = Date.now() + 20000;
+
+          
+          otpUser.save()
+            .then(() => {
+              transporter.sendMail(mailOptions);
+              res.json({
+                msg: "Otp sent succesfully on mail ✅",
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              res.json({
+                status: "failed",
+                msg: "could not send OTP",
+              });
+            });
+        }
       });
-  });
+    });
+  } else {
+    const uniqueString = uuidv4() + _id;
+    
+
+    if (verified == false) {
+      mailOptions = {
+        from: process.env.AUTH_EMAIL,
+        to: email,
+        subject: "verify your email",
+        html: `verify <a href=${
+          URL + "api/verify/" + _id + "/" + uniqueString
+        }>herre</a>`,
+      };      
+    } else {
+      mailOptions = {
+        from: process.env.AUTH_EMAIL,
+        to: email,
+        subject: "RESET",
+        html: `Reset your password <a href=${
+          URL + "api/resetForm/" + _id + "/" + uniqueString
+        }>herre</a>`,
+      };    
+    }
+
+    const saltRounds = 10;
+    bcrypt.hash(uniqueString, saltRounds).then((hashUniqueString) => {
+      const newVerification = new UserVerification({
+        userId: _id,
+        uniqueString: hashUniqueString,
+        createdAt: Date.now(),
+        expiresAt: Date.now() + 900,
+      });
+
+      newVerification
+        .save()
+        .then(() => {
+          transporter.sendMail(mailOptions);
+          // res.json({
+          //   msg: "Mail sent succesfully ✅",
+          // });
+          console.log("Mail sent succesfully ✅");
+        })
+        .catch((err) => {
+          console.log(err);
+          // res.json({
+          //   status: "failed",
+          //   msg: "could not send verification email",
+          // });
+        });
+    });
+  }
 };

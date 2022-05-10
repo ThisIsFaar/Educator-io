@@ -7,6 +7,10 @@ const {
   login,
   verify,
   verified,
+  verifyOtp,
+  resetPassword,
+  resetForm,
+  resetFormSubmit
 } = require("../controllers/auth");
 
 //Register user
@@ -34,10 +38,22 @@ router.post(
 //Logout user
 router.get("/logout", logout);
 
+router.post("/resetPassword/:email", resetPassword);
+
 //Verifying user email
 router.get("/verify/:userId/:uniqueString", verify);
 
-//User redirection after verification
+//Verifying authority otp
+router.get("/verifyotp/:userId/:otp", verifyOtp);
+
+//Verifying user reset link
+router.get("/resetForm/:userId/:uniqueString", resetForm);
+
+//Resetting user password
+router.get("/resetFormSubmit/:userId/:password/", resetFormSubmit);
+
+
+//User redirection after particular verification status
 router.get("/verified", verified);
 
 module.exports = router;

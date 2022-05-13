@@ -68,10 +68,10 @@ const userSchema = new Schema({
     // 3: verify by 2nd level, teacher is verified
     // 4x: rejected by x level
   },
-  yearOfSelection: {
-    type: String,
-    trim: true,
-  },
+  // yearOfSelection: {
+  //   type: String,
+  //   trim: true,
+  // },
   dateOfJoining: {
     type: String,
     trim: true,

@@ -1,4 +1,4 @@
-import user from "../../../common/images/user.svg";
+import userImg from "../../../common/images/user.svg";
 import { login, authenticate, isAuthenticated } from "../../../auth/helper";
 import { ToastContainer, toast } from "react-toastify";
 import "../../../common/auth.css";
@@ -6,6 +6,8 @@ import footer from "../../../common/images/footer.svg";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faUserShield } from "@fortawesome/free-solid-svg-icons";
 const queryString = require("query-string");
 const Joi = require("joi");
 
@@ -89,7 +91,6 @@ export default function Login() {
   };
 
   const performRedirect = () => {
-    console.log(user + "hell");
     if (didRedirect) {
       // if (user && user.role === 1) {
       //   // return <Redirect to="/admin/dashboard" />;
@@ -121,14 +122,23 @@ export default function Login() {
             pauseOnHover
           />
           <h1 className="heading">Log in</h1>
-          <img alt="" src={user} className="svg--teachers" />
-          <Link to="/auth-login">
-            <img alt="" src={user} className="svg--admin" />
-          </Link>
-          <h3 className="heading--secondary teacher" style={{ color: "blue" }}>
-            Teachers
-          </h3>
-          <h3 className="heading--secondary admin">Admin</h3>
+
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div className="form-login-type" >
+              <Link to="/login">
+                <FontAwesomeIcon icon={faUser} size="9x" color="#224957"/> 
+              </Link>
+              <h3 className="heading--secondary teacher" style={{color:"#224957"}}>Teachers</h3>
+            </div>
+
+            <div className="form-login-type" style={{    background:" linear-gradient(to bottom, #155799, #159957)"}}>
+            <Link to="/auth-login">
+              <FontAwesomeIcon icon={faUserShield} size="9x"  color="white"/>
+              </Link>
+              <h3 className="heading--secondary admin">Admin</h3>
+            </div>
+          </div>
+
           <input
             onChange={handleChange("email")}
             value={email}

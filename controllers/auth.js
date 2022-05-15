@@ -79,7 +79,12 @@ exports.login = (req, res) => {
 
         //send response to front end
 
-        return res.json({ token, user: { _id, email }, authority: authority, status: 200 });
+        return res.json({
+          token,
+          user: { _id, email },
+          authority: authority,
+          status: 200,
+        });
       }
     }
   });
@@ -161,22 +166,22 @@ exports.verify = (req, resp) => {
     });
 };
 
-exports.verifyOtp = (req, resp) => {
+exports.verifyOtp = (req, res) => {
   let { userId, otp } = req.params;
-
+  console.log(userId);
   User.findOne({ _id: userId })
-    .then((res) => {
-      if (res) {
-        const { otpExpiry } = res;
-        const hashotp = res.otp;
+    .then((user) => {
+      if (user) {
+        const { otpExpiry } = user;
+        const hashotp = user.otp;
         if (hashotp == "0") {
-          return resp.json({
+          return res.json({
             msg: "otp invalid or already used",
           });
         }
         if (otpExpiry < Date.now()) {
           let message = "OTP is expired, resend and verify";
-          resp.json({
+          res.json({
             msg: message,
           });
         } else {
@@ -185,28 +190,28 @@ exports.verifyOtp = (req, resp) => {
           bcrypt.compare(otp, hashotp).then((status) => {
             if (status) {
               //turning otp to 0
-              User.findOne({ _id: res.id }).then((updateOtpToNull) => {
+              User.findOne({ _id: user.id }).then((updateOtpToNull) => {
                 updateOtpToNull.otp = "0";
                 updateOtpToNull.save();
               });
-
+              console.log(user);
               //create token
-              const token = jwt.sign({ _id: res.id }, process.env.SECRET);
+              const token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
               //put token in cookie
-              resp.cookie("token", token, { expire: new Date() + 9999 });
+              res.cookie("token", token, { expire: new Date() + 9999 });
 
               //send response to front end
 
-              return resp.json({
+              return res.json({
                 token,
-                user: { id: res.id, email: res.email },
-                authority: res.authority,
+                user: { id: user.id, email: user.email },
+                authority: user.authority,
               });
             } else {
               let message = "Invalid OTP ";
-              // resp.redirect(`/api/verified/error=true&message=${message}`);
-              resp.json({
+              // res.redirect(`/api/verified/error=true&message=${message}`);
+              res.json({
                 msg: message,
               });
             }
@@ -218,7 +223,7 @@ exports.verifyOtp = (req, resp) => {
       console.log(err);
       let message = "no record found with your provided details";
       // res.redirect(`/api/verified/error=true&message=${message}`);
-      resp.json({
+      res.json({
         msg: message,
       });
     });

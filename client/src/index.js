@@ -36,9 +36,17 @@ root.render(
       <Route path="/user/dashboard" element={<PrivateOutlet />}>
         <Route path="" element={<UserDashboard />} />
       </Route>
+      <Route path="/authority/dashboard" element={<AuthorityOutlet />}>
+        <Route path="" element={<UserDashboard />} />
+      </Route>
     </Routes>
   </BrowserRouter>
 );
 function PrivateOutlet() {
   return isAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
+}
+
+
+function AuthorityOutlet() {
+  return  isAuthenticated() && isAuthenticated().authority === true ? <Outlet /> : <Navigate to="/auth-login" />;
 }

@@ -48,7 +48,7 @@ exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
 
           let otpUser = user;
           otpUser.otp = hashotp;
-          otpUser.otpExpiry = Date.now() + 20000;
+          otpUser.otpExpiry = Date.now() + 300000;
 
           
           otpUser.save()
@@ -56,12 +56,14 @@ exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
               transporter.sendMail(mailOptions);
               res.json({
                 msg: "Otp sent succesfully on mail ✅",
+                status: 200,
+                userId: otpUser._id
               });
             })
             .catch((err) => {
               console.log(err);
               res.json({
-                status: "failed",
+                status: 500,
                 msg: "could not send OTP",
               });
             });

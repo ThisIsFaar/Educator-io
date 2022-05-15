@@ -44,7 +44,7 @@ router.post("/resetPassword/:email", resetPassword);
 router.get("/verify/:userId/:uniqueString", verify);
 
 //Verifying authority otp
-router.get("/verifyotp/:userId/:otp", verifyOtp);
+router.post("/verifyotp/:userId/:otp", verifyOtp);
 
 //Verifying user reset link
 router.get("/resetForm/:userId/:uniqueString", resetForm);

@@ -89,7 +89,7 @@ export default function Login() {
   };
 
   const performRedirect = () => {
-    console.log(user+"hell");
+    console.log(user + "hell");
     if (didRedirect) {
       // if (user && user.role === 1) {
       //   // return <Redirect to="/admin/dashboard" />;

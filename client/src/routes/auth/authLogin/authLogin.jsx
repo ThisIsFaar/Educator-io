@@ -9,8 +9,8 @@ export default function authlogin() {
       <div className="container">
         <div className="form">
           <h1 className="heading">Log in Auth</h1>
-          {/* <img src={user} className="svg--teachers" /> */}
-          <img src={user} className="svg--admin" />
+          {/* <img alt="" src={user} className="svg--teachers" /> */}
+          <img alt="" src={user} className="svg--admin" />
           {/* <h3 className="heading--secondary teacher">Teachers</h3> */}
           <h3 className="heading--secondary admin">Admin</h3>
           <input type="email" placeholder="Email" className="input email" />
@@ -30,7 +30,7 @@ export default function authlogin() {
           </button>
         </div>
       </div>
-      <img src={footer} className="img--footer" />
+      <img alt="" src={footer} className="img--footer" />
     </div>
   );
 }

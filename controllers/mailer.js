@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
-const { verified } = require("./auth");
+const confirmEmail = require("./helpers/confirmEmail.js")
 
 //nodemailer stuff
 let transporter = nodemailer.createTransport({
@@ -23,7 +23,7 @@ transporter.verify((err, success) => {
   }
 });
 
-exports.sendVerificationEmail = ({ _id, email, authority }, res) => {
+exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
   const URL = "http://localhost:5000/";
   var mailOptions = {};
   if (authority) {
@@ -72,14 +72,16 @@ exports.sendVerificationEmail = ({ _id, email, authority }, res) => {
     const uniqueString = uuidv4() + _id;
     
 
-    if (verified == false) {
+    if (verified === false) {
+      let verurl =  `${URL + "api/verify/" + _id + "/" + uniqueString}`;
       mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: email,
-        subject: "verify your email",
-        html: `verify <a href=${
-          URL + "api/verify/" + _id + "/" + uniqueString
-        }>herre</a>`,
+        subject: "[Educator.Org] Verify Your Email Now",
+        // html: `verify <a href=${
+        //   URL + "api/verify/" + _id + "/" + uniqueString
+        // }>herre</a>`,
+        html: confirmEmail(verurl)
       };      
     } else {
       mailOptions = {

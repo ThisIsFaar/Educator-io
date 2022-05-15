@@ -17,7 +17,7 @@ exports.register = (req, res) => {
   }
   const user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
   });
   user.save((err, user) => {
     if (err) {
@@ -30,7 +30,9 @@ exports.register = (req, res) => {
 
     res.json({
       email: user.email,
-      encry_password: user.encry_password
+      encry_password: user.encry_password,
+      status: 200,
+      message: "Successfully send verification email",
     });
   });
 };
@@ -64,23 +66,21 @@ exports.login = (req, res) => {
         error: "email and password is no matched",
       });
     } else {
+      const { _id, email, authority } = user;
 
-      const { _id, email, authority } = user;      
-      
       if (authority) {
         sendVerificationEmail(user, res);
       } else {
-              //create token
-      const token = jwt.sign({ _id: user._id }, process.env.SECRET);
-      
-      //put token in cookie
-      res.cookie("token", token, { expire: new Date() + 9999 });
-      
-      //send response to front end
+        //create token
+        const token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
-      return res.json({ token, user: { _id, email }, authority: authority });
+        //put token in cookie
+        res.cookie("token", token, { expire: new Date() + 9999 });
+
+        //send response to front end
+
+        return res.json({ token, user: { _id, email }, authority: authority, status: 200 });
       }
-
     }
   });
 };
@@ -92,7 +92,7 @@ exports.logout = (req, res) => {
   });
 };
 
-exports.verify = (req, res) => {
+exports.verify = (req, resp) => {
   let { userId, uniqueString } = req.params;
 
   UserVerification.find({ userId })
@@ -128,7 +128,13 @@ exports.verify = (req, res) => {
                 User.updateOne({ _id: userId }, { verified: true })
                   .then(() => {
                     UserVerification.deleteOne({ userId }).then(() => {
-                      console.log("SUCCESSFULLY VERIFIED");
+                      // console.log("SUCCESSFULLY VERIFIED");
+                      // resp.json({
+                      //   message: 'SUCCESSFULLY VERIFIED'
+                      // })
+                      resp.redirect(
+                        `http://localhost:3000/login?status=verified`
+                      );
                     });
                   })
                   .catch((err) => {
@@ -136,7 +142,7 @@ exports.verify = (req, res) => {
                   });
               } else {
                 let message = "Invalid details ";
-                res.redirect(`/api/verified/error=true&message=${message}`);
+                resp.redirect(`http://localhost:3000/login?status=error`);
               }
             })
             .catch((err) => {
@@ -144,68 +150,67 @@ exports.verify = (req, res) => {
             });
         }
       } else {
-        let message =
-          "details does not exist or already verified";
-        res.redirect(`/api/verified/error=true&message=${message}`);
+        let message = "details does not exist or already verified";
+        resp.redirect(`http://localhost:3000/login?status=error`);
       }
     })
     .catch((err) => {
       console.log(err);
       let message = "no record found with your provided details";
-      res.redirect(`/api/verified/error=true&message=${message}`);
+      res.redirect(`http://localhost:3000/login?status=error`);
     });
 };
 
 exports.verifyOtp = (req, resp) => {
   let { userId, otp } = req.params;
 
-  User.findOne({ _id:  userId })
+  User.findOne({ _id: userId })
     .then((res) => {
       if (res) {
         const { otpExpiry } = res;
         const hashotp = res.otp;
         if (hashotp == "0") {
           return resp.json({
-            msg:"otp invalid or already used"
-          })
+            msg: "otp invalid or already used",
+          });
         }
         if (otpExpiry < Date.now()) {
           let message = "OTP is expired, resend and verify";
           resp.json({
-            msg: message
-          })
+            msg: message,
+          });
         } else {
           //valid result record? validating it
           //first compare the hashed string
-          bcrypt
-          .compare(otp, hashotp)
-          .then((status) => {
+          bcrypt.compare(otp, hashotp).then((status) => {
             if (status) {
-
               //turning otp to 0
-              User.findOne({_id: res.id}).then(updateOtpToNull=>{
+              User.findOne({ _id: res.id }).then((updateOtpToNull) => {
                 updateOtpToNull.otp = "0";
-                updateOtpToNull.save()
-              })
+                updateOtpToNull.save();
+              });
 
               //create token
               const token = jwt.sign({ _id: res.id }, process.env.SECRET);
-              
+
               //put token in cookie
               resp.cookie("token", token, { expire: new Date() + 9999 });
-              
-              //send response to front end
-              
-              return resp.json({ token, user: { id: res.id, email : res.email}, authority: res.authority });
 
-              } else {
-                let message = "Invalid OTP ";
-                // resp.redirect(`/api/verified/error=true&message=${message}`);
-                resp.json({
-                  msg: message
-                })
-              }
-            })
+              //send response to front end
+
+              return resp.json({
+                token,
+                user: { id: res.id, email: res.email },
+                authority: res.authority,
+              });
+            } else {
+              let message = "Invalid OTP ";
+              // resp.redirect(`/api/verified/error=true&message=${message}`);
+              resp.json({
+                msg: message,
+              });
+            }
+          });
         }
       }
     })
@@ -214,8 +219,8 @@ exports.verifyOtp = (req, resp) => {
       let message = "no record found with your provided details";
       // res.redirect(`/api/verified/error=true&message=${message}`);
       resp.json({
-        msg: message
-      })
+        msg: message,
+      });
     });
 };
 
@@ -223,7 +228,7 @@ exports.verified = (req, res) => {
   res.send({
     status: "success",
     mesg: "done",
-    paramDetails: req.params
+    paramDetails: req.params,
   });
 };
 
@@ -251,20 +256,19 @@ exports.isAuthority = (req, res, next) => {
   next();
 };
 
-exports.resetPassword = (req,res) => {
+exports.resetPassword = (req, res) => {
   const { email } = req.params;
-  User.findOne({email: email})
-  .then(user => {
+  User.findOne({ email: email }).then((user) => {
     if (user && user.verified) {
-      res.json({user});
-      sendVerificationEmail(user, res)
+      res.json({ user });
+      sendVerificationEmail(user, res);
     } else {
       res.json({
-        msg:"no user found"
-      })
+        msg: "no user found",
+      });
     }
-  })
-}
+  });
+};
 
 exports.resetForm = (req, res) => {
   let { userId, uniqueString } = req.params;
@@ -303,7 +307,6 @@ exports.resetForm = (req, res) => {
                   .then(() => {
                     UserVerification.deleteOne({ userId }).then(() => {
                       console.log("OPEN FORM");
-
                     });
                   })
                   .catch((err) => {
@@ -319,8 +322,7 @@ exports.resetForm = (req, res) => {
             });
         }
       } else {
-        let message =
-          "details does not exist or already verified";
+        let message = "details does not exist or already verified";
         res.redirect(`/api/verified/error=true&message=${message}`);
       }
     })
@@ -331,6 +333,6 @@ exports.resetForm = (req, res) => {
     });
 };
 
-exports.resetFormSubmit = ((req,res) => {
+exports.resetFormSubmit = (req, res) => {
   console.log("ter happy bdday manayege");
-})
+};

@@ -9,8 +9,8 @@ export default function authloginOtp() {
       <div className="container">
         <div className="form">
           <h1 className="heading">Enter OTP</h1>
-          {/* <img src={user} className="svg--teachers" /> */}
-          <img src={user} className="svg--admin" />
+          {/* <img src={user} alt="" className="svg--teachers" /> */}
+          <img src={user} alt="" className="svg--admin" />
           {/* <h3 className="heading--secondary teacher">Teachers</h3> */}
           <h3 className="heading--secondary admin">Admin</h3>
           <input type="email" placeholder="Otp" className="input email" />
@@ -30,7 +30,7 @@ export default function authloginOtp() {
           </button>
         </div>
       </div>
-      <img src={footer} className="img--footer" />
+      <img src={footer} alt="" className="img--footer" />
     </div>
   );
 }

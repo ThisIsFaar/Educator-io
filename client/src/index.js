@@ -1,13 +1,19 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import App from "./App";
 import Register from "./routes/auth/register/register";
 import Login from "./routes/auth/login/login";
 import Reset from "./routes/auth/resetPassword/reset";
 import AuthLogin from "./routes/auth/authLogin/authLogin";
 import AuthloginOtp from "./routes/auth/authLoginOtp/authLoginOtp";
-import PrivateRoute from "./auth/helper/PrivateRoutes";
 import UserDashboard from "./routes/user/dashboard";
+import { isAuthenticated } from "./auth/helper";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,9 +33,12 @@ root.render(
           </main>
         }
       />
-      <Route path="/user" element={<PrivateRoute />}>
-        <Route  path="user/dashboard" element={<UserDashboard />} />
+      <Route path="/user/dashboard" element={<PrivateOutlet />}>
+        <Route path="" element={<UserDashboard />} />
       </Route>
     </Routes>
   </BrowserRouter>
 );
+function PrivateOutlet() {
+  return isAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
+}

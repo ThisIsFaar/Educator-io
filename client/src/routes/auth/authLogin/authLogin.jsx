@@ -71,9 +71,11 @@ export default function Authlogin() {
     <div>
       <div className="container">
         <div className="form">
-          <h1 className="heading" style={{fontSize:"4rem"}}>Authority</h1>
+          <h1 className="heading" style={{ fontSize: "4rem" }}>
+            Authority
+          </h1>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <Link to="/login" style={{textDecoration:"none"}}>
+            <Link to="/login" style={{ textDecoration: "none" }}>
               <div className="form-login-type">
                 <FontAwesomeIcon icon={faUser} size="9x" color="#224957" />
                 <h3
@@ -126,7 +128,7 @@ export default function Authlogin() {
           </button>
         </div>
       </div>
-      <div class="custom-shape-divider-bottom-1652652790">
+      {/*  <div class="custom-shape-divider-bottom-1652652790">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +173,7 @@ export default function Authlogin() {
             class="shape-fill"
           ></path>
         </svg>
-      </div>
+          </div>*/}
     </div>
   );
 }

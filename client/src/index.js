@@ -10,11 +10,13 @@ import App from "./App";
 import Register from "./routes/auth/register/register";
 import Login from "./routes/auth/login/login";
 import Reset from "./routes/auth/resetPassword/reset";
+
 import AuthLogin from "./routes/auth/authLogin/authLogin";
 import AuthloginOtp from "./routes/auth/authLoginOtp/authLoginOtp";
 import UserDashboard from "./routes/user/dashboard";
 import AuthorityDashboard from "./routes/authority/dashboard";
 import { isAuthenticated } from "./auth/helper";
+import ResetPassword from "./routes/auth/resetPassword/resetPassword";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +28,8 @@ root.render(
       <Route path="reset" element={<Reset />} />
       <Route path="auth-login" element={<AuthLogin />} />
       <Route path="auth-login-otp" element={<AuthloginOtp />} />
+      <Route path="reset-password-form" element={<ResetPassword />} />
+
       <Route
         path="*"
         element={

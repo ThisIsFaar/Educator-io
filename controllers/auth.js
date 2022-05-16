@@ -6,6 +6,8 @@ var expressJwt = require("express-jwt");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const { sendVerificationEmail } = require("./mailer");
+const crypto = require("crypto");
+const { v4: uuidv4 } = require("uuid");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -22,7 +24,8 @@ exports.register = (req, res) => {
   user.save((err, user) => {
     if (err) {
       return res.status(400).json({
-        err: "NOT able to save user in DB",
+        message: "User Already Exist",
+        status: 400,
       });
     }
 
@@ -63,7 +66,8 @@ exports.login = (req, res) => {
 
     if (!user.authenticate(password)) {
       res.status(401).json({
-        error: "email and password is no matched",
+        message: "email, password does not matched",
+        status: 400,
       });
     } else {
       const { _id, email, authority } = user;
@@ -168,21 +172,21 @@ exports.verify = (req, resp) => {
 
 exports.verifyOtp = (req, res) => {
   let { userId, otp } = req.params;
-  console.log(userId);
   User.findOne({ _id: userId })
     .then((user) => {
       if (user) {
         const { otpExpiry } = user;
         const hashotp = user.otp;
         if (hashotp == "0") {
-          return res.json({
-            msg: "otp invalid or already used",
+           res.json({
+            message: "Otp Invalid Or Already Used",
+            status: 400
           });
         }
         if (otpExpiry < Date.now()) {
-          let message = "OTP is expired, resend and verify";
           res.json({
-            msg: message,
+            message: "OTP Is Expired, Login Again",
+            status: 400
           });
         } else {
           //valid result record? validating it
@@ -194,7 +198,6 @@ exports.verifyOtp = (req, res) => {
                 updateOtpToNull.otp = "0";
                 updateOtpToNull.save();
               });
-              console.log(user);
               //create token
               const token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
@@ -207,12 +210,12 @@ exports.verifyOtp = (req, res) => {
                 token,
                 user: { id: user.id, email: user.email },
                 authority: user.authority,
+                status: 200
               });
             } else {
-              let message = "Invalid OTP ";
-              // res.redirect(`/api/verified/error=true&message=${message}`);
               res.json({
-                msg: message,
+                message: "Invalid OTP",
+                status: 400
               });
             }
           });
@@ -265,11 +268,15 @@ exports.resetPassword = (req, res) => {
   const { email } = req.params;
   User.findOne({ email: email }).then((user) => {
     if (user && user.verified) {
-      res.json({ user });
       sendVerificationEmail(user, res);
+      res.json({
+        message: "Reset Password Mail sent succesfully",
+        status: 200,
+      });
     } else {
       res.json({
-        msg: "no user found",
+        message: "no user found with with email",
+        status: 400,
       });
     }
   });
@@ -277,17 +284,16 @@ exports.resetPassword = (req, res) => {
 
 exports.resetForm = (req, res) => {
   let { userId, uniqueString } = req.params;
-
   UserVerification.find({ userId })
-    .then((res) => {
-      if (res.length > 0) {
-        const { expiresAt } = res[0];
-        const hashUniqueString = res[0].uniqueString;
+    .then((user) => {
+      if (user.length > 0) {
+        const { expiresAt } = user[0];
+        const hashUniqueString = user[0].uniqueString;
 
         if (expiresAt < Date.now) {
           UserVerification({ userId })
-            .then((res) => {
-              User.deleteOne({ _id: user_id })
+            .then(() => {
+              User.deleteMany({ _id: user_id })
                 .then(() => {
                   let message = "Link has expired please sign again";
                   res.redirect(`/api/verified/error=true&message=${message}`);
@@ -306,18 +312,21 @@ exports.resetForm = (req, res) => {
           //first compare the hashed string
           bcrypt
             .compare(uniqueString, hashUniqueString)
-            .then((res) => {
-              if (res) {
+            .then((data) => {
+              if (data) {
                 User.updateOne({ _id: userId }, { verified: true })
                   .then(() => {
-                    UserVerification.deleteOne({ userId }).then(() => {
-                      console.log("OPEN FORM");
+                    UserVerification.deleteMany({ userId }).then(() => {
+                      res.redirect(
+                        `http://localhost:3000/reset-password-form/?id=${userId}`
+                      );
                     });
                   })
                   .catch((err) => {
                     console.log(err);
                   });
               } else {
+                User.deleteMany({ _id: user_id });
                 let message = "Invalid details ";
                 res.redirect(`/api/verified/error=true&message=${message}`);
               }
@@ -339,5 +348,23 @@ exports.resetForm = (req, res) => {
 };
 
 exports.resetFormSubmit = (req, res) => {
-  console.log("ter happy bdday manayege");
+  const { userId, password } = req.params;
+
+  User.findOne({ _id: userId }).then((user) => {
+    user.encry_password = user.securePassword(password);
+    user
+      .save()
+      .then(() => {
+        res.json({
+          message: "Your Password Succesfully Updated",
+          status: 200,
+        });
+      })
+      .catch((err) => {
+        res.json({
+          message: "Can't Update Your Password",
+          status: 400,
+        });
+      });
+  });
 };

@@ -46,6 +46,37 @@ export const login = (user) => {
     .catch((err) => console.log(err));
 };
 
+export const reset = (email) => {
+  console.log(email);
+  return fetch(`${API}/resetPassword/${email}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    // body: JSON.stringify(user),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const resetPassword = (id, password) => {
+  return fetch(`${API}/resetFormSubmit/${id}/${password}/`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    // body: JSON.stringify(user),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
 export const authenticate = (data, next) => {
   if (typeof window !== "undefined") {
     localStorage.setItem("jwt", JSON.stringify(data));

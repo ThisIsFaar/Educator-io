@@ -1,72 +1,37 @@
-import userImg from "../../../common/images/user.svg";
-import { login, authenticate, isAuthenticated } from "../../../auth/helper";
 import { ToastContainer, toast } from "react-toastify";
-import "../../../common/auth.css";
-import footer from "../../../common/images/footer.svg";
-import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import "../../../common/auth.css";
+import { resetPassword } from "../../../auth/helper";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faUserShield } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router-dom";
 const queryString = require("query-string");
+
 const Joi = require("joi");
 
-{
-  let status = queryString.parse(window.location.search);
-  if (status.status === "verified") {
-    toast.success("Successully Verified Email, Login Now", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }
-  if (status.status === "error") {
-    toast.error("Error in your verification", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  }
-}
-
-export default function Login() {
+export default function ResetPassword() {
   let navigate = useNavigate();
 
   const [values, setValues] = useState({
-    email: "",
     password: "",
-    error: "",
-    didRedirect: false,
   });
+  const { password } = values;
 
-  const { email, password, error, didRedirect } = values;
-  const { user } = isAuthenticated();
+  const schema = Joi.object({
+    password: Joi.string().min(6).max(20).required(),
+  });
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };
-  const schema = Joi.object({
-    email: Joi.string()
-      .email({ tlds: { allow: false } })
-      .required(),
-    password: Joi.string().min(6).max(20).required(),
-  });
 
   const onSubmit = (event) => {
     event.preventDefault();
-
-    const { error } = schema.validate({ email, password });
+    const { error } = schema.validate({ password });
 
     if (error) {
-      toast.error(`${error.message}`, {
+      toast.error(error.message, {
         position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -76,22 +41,13 @@ export default function Login() {
         progress: undefined,
       });
       setValues({ ...values, error: error });
+     
     } else {
-      console.log("success");
-      setValues({ error: {}, success: true });
-      // setValues({ email: "", password: "", error: {}, success: true });
+      setValues({ password: "", error: {}, success: true });
 
-      login({ email, password })
+      resetPassword(id, password)
         .then((data) => {
-          console.log(data);
-          if (data.status === 200) {
-            authenticate(data, () => {
-              setValues({
-                ...values,
-                didRedirect: true,
-              });
-            });
-          } else if( data.status === 400){
+          if (data.status === 400) {
             toast.error(data.message, {
               position: "bottom-center",
               autoClose: 5000,
@@ -101,33 +57,34 @@ export default function Login() {
               draggable: true,
               progress: undefined,
             });
+          } else if (data.status === 200){
+            toast.success(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(()=>{
+          navigate("/login");
+
+            },1500)
           }
         })
         .catch((err) => console.log(err));
     }
-  };
 
-  const performRedirect = () => {
-    if (didRedirect) {
-      // if (user && user.role === 1) {
-      //   // return <Redirect to="/admin/dashboard" />;
-      //   return navigate("/");
-      // } else {
-      //   // return <Redirect to="/user/dashboard" />;
-      //   return navigate("/");
-      // }
-    }
-    if (isAuthenticated()) {
-      // return <Redirect to="/" />;
-      return navigate("/user/dashboard");
-    }
   };
-
+  const status = queryString.parse(window.location.search);
+  let { id } = status;
+console.log(id);
   return (
     <div>
       <div className="container">
         <form className="form">
-          <ToastContainer
+        <ToastContainer
             position="top-center"
             autoClose={5000}
             hideProgressBar={false}
@@ -138,14 +95,13 @@ export default function Login() {
             draggable
             pauseOnHover
           />
-          <h1 className="heading">Log in</h1>
+          <h1 className="heading">Reset Password</h1>
 
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <div
               className="form-login-type"
               style={{
                 background: " linear-gradient(to bottom, #155799, #159957)",
-                padding: "2rem 3rem"
               }}
             >
               <FontAwesomeIcon icon={faUser} size="9x" color="white" />
@@ -168,37 +124,27 @@ export default function Login() {
               </div>
             </Link>
           </div>
-
           <input
-            onChange={handleChange("email")}
-            value={email}
-            type="email"
-            placeholder="Email"
-            className="input email"
-          />
-          <input
+            type="password"
+            placeholder="Your New Password"
+            className="input password"
             onChange={handleChange("password")}
             value={password}
-            type="password"
-            placeholder="Password"
-            className="input password"
           />
+
           <span className="box--check">
-            <Link to="/register" className="check--label">
-              New User? Join now!
+            <Link to="/login" className="check--label">
+              Already account? Login now!
             </Link>
           </span>
-          <Link to="/reset" className="forgot--pass">
-            Forgot password?
-          </Link>
-          {performRedirect()}
+          <br />
           <button
             type="submit"
             name="Login"
             className="btn--login"
             onClick={onSubmit}
           >
-            Login
+            Register
           </button>
         </form>
       </div>
@@ -247,7 +193,7 @@ export default function Login() {
             className="shape-fill"
           ></path>
         </svg>
-            </div>*/}
+      </div>{" "}
     </div>
   );
 }

@@ -1,0 +1,33 @@
+:root {
+  --color--accent: #bff5da;
+  --color--font--primary: #a4a6b3;
+  --color--primary: #224957;
+  --color--secondary: #20df7f;
+  --font--accent: "Mulish", sans-serif;
+  --color--heading--title: #252733;
+}
+body {
+  height: 100vh;
+  background-color: var(--color--accent);
+}
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.container .sidebar {
+  flex: 0.15;
+}
+.container .right {
+  display: flex;
+  flex: 0.85;
+  flex-direction: column;
+}
+
+.right .heading {
+  flex: 0.15;
+}
+.right .main {
+  flex: 0.85;
+
+  padding: 1rem;
+}

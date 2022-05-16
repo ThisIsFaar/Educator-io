@@ -91,7 +91,7 @@ export default function Login() {
                 didRedirect: true,
               });
             });
-          } else if( data.status === 400){
+          } else if (data.status === 400) {
             toast.error(data.message, {
               position: "bottom-center",
               autoClose: 5000,
@@ -145,7 +145,7 @@ export default function Login() {
               className="form-login-type"
               style={{
                 background: " linear-gradient(to bottom, #155799, #159957)",
-                padding: "2rem 3rem"
+                padding: "2rem 3rem",
               }}
             >
               <FontAwesomeIcon icon={faUser} size="9x" color="white" />
@@ -247,7 +247,7 @@ export default function Login() {
             className="shape-fill"
           ></path>
         </svg>
-            </div>*/}
+      </div>
     </div>
   );
 }

@@ -1,125 +1,107 @@
-import { reset, isAuthenticated } from "../../../auth/helper";
 import { ToastContainer, toast } from "react-toastify";
-import "../../../common/auth.css";
-import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import "../../../common/auth.css";
+import { Link } from "react-router-dom";
+import { resetPassword } from "../../../auth/helper";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faUserShield } from "@fortawesome/free-solid-svg-icons";
-
 const queryString = require("query-string");
+
 const Joi = require("joi");
 
-export default function Reset() {
-
-
-  let navigate = useNavigate();
-
+export default function ResetPassword() {
   const [values, setValues] = useState({
-    email: "",
-    error: "",
-    didRedirect: false,
+    password: "",
   });
+  const { password } = values;
 
-  const { email, error, didRedirect } = values;
-  const { user } = isAuthenticated();
+  const schema = Joi.object({
+    password: Joi.string().min(6).max(20).required(),
+  });
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };
-  const schema = Joi.object({
-    email: Joi.string()
-      .email({ tlds: { allow: false } })
-      .required(),
-  });
 
   const onSubmit = (event) => {
     event.preventDefault();
-
-    const { error } = schema.validate({ email });
+    const { error } = schema.validate({ password });
 
     if (error) {
       console.log("error");
       setValues({ ...values, error: error });
+     
     } else {
-      console.log("success");
-      setValues({ error: {}, success: true });
-      // setValues({ email: "", password: "", error: {}, success: true });
+      setValues({ password: "", error: {}, success: true });
 
-      reset( email )
+      resetPassword(id, password)
         .then((data) => {
-          if (data.status === 200) {
-            console.log(data);
-            navigate(`/auth-login-otp/?status=sent&id=${data.userId}`);
-
-            // authenticate(data, () => {
-            //   setValues({
-            //     ...values,
-            //     didRedirect: true,
-            //   });
-            // });
-          }
+          console.log(data);
         })
         .catch((err) => console.log(err));
     }
+
   };
-
-
+  const status = queryString.parse(window.location.search);
+  let { id } = status;
+console.log(id);
   return (
     <div>
       <div className="container">
-        <div className="form">
-          <h1 className="heading">Reset</h1>
+        <form className="form">
+          <h1 className="heading">Reset Password</h1>
+
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <div className="form-login-type"
+            <div
+              className="form-login-type"
               style={{
                 background: " linear-gradient(to bottom, #155799, #159957)",
-                padding: "2rem 3rem"
               }}
-              >
-                <FontAwesomeIcon icon={faUser} size="9x" color="white" />
-                <h3
-                  className="heading--secondary"
-                >
-                  Teachers
-                </h3>
-              </div>
+            >
+              <FontAwesomeIcon icon={faUser} size="9x" color="white" />
+              <h3 className="heading--secondary">Teachers</h3>
+            </div>
 
-            <Link to="/auth-login" style={{textDecoration:"none"}}>
-              <div
-                className="form-login-type"
-                
-              >
-                <FontAwesomeIcon icon={faUserShield} size="9x"  color="#224957" />
-                <h3 className="heading--secondary " 
+            <Link to="/auth-login" style={{ textDecoration: "none" }}>
+              <div className="form-login-type">
+                <FontAwesomeIcon
+                  icon={faUserShield}
+                  size="9x"
+                  color="#224957"
+                />
+                <h3
+                  className="heading--secondary "
                   style={{ color: "#224957" }}
-                
-                >Admin</h3>
+                >
+                  Admin
+                </h3>
               </div>
             </Link>
           </div>
-
-
           <input
-            onChange={handleChange("email")}
-            value={email}
-            type="email"
-            placeholder="Enter Your Email"
+            type="password"
+            placeholder="Password"
             className="input password"
+            onChange={handleChange("password")}
+            value={password}
           />
 
           <span className="box--check">
-            <Link to="/register" className="check--label">
-              New User? Join now!
+            <Link to="/login" className="check--label">
+              Already account? Login now!
             </Link>
           </span>
-          <Link to="/login" className="forgot--pass">
-            Login
-          </Link>
-          <button type="submit" name="Reset" className="btn--login" onClick={onSubmit}>
-            Send Reset Password Email
+          <br />
+          <button
+            type="submit"
+            name="Login"
+            className="btn--login"
+            onClick={onSubmit}
+          >
+            Register
           </button>
-        </div>
+        </form>
       </div>
       <div className="custom-shape-divider-bottom-1652652790">
         <svg
@@ -166,7 +148,7 @@ export default function Reset() {
             className="shape-fill"
           ></path>
         </svg>
-      </div>
+      </div>{" "}
     </div>
   );
 }

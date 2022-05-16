@@ -38,13 +38,14 @@ router.post(
 //Logout user
 router.get("/logout", logout);
 
-router.post("/resetPassword/:email", resetPassword);
 
 //Verifying user email
 router.get("/verify/:userId/:uniqueString", verify);
 
 //Verifying authority otp
 router.post("/verifyotp/:userId/:otp", verifyOtp);
+
+router.post("/resetPassword/:email", resetPassword);
 
 //Verifying user reset link
 router.get("/resetForm/:userId/:uniqueString", resetForm);

@@ -6,6 +6,8 @@ var expressJwt = require("express-jwt");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const { sendVerificationEmail } = require("./mailer");
+const crypto = require("crypto");
+const { v4: uuidv4 } = require("uuid");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -168,7 +170,6 @@ exports.verify = (req, resp) => {
 
 exports.verifyOtp = (req, res) => {
   let { userId, otp } = req.params;
-  console.log(userId);
   User.findOne({ _id: userId })
     .then((user) => {
       if (user) {
@@ -194,7 +195,6 @@ exports.verifyOtp = (req, res) => {
                 updateOtpToNull.otp = "0";
                 updateOtpToNull.save();
               });
-              console.log(user);
               //create token
               const token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
@@ -277,16 +277,15 @@ exports.resetPassword = (req, res) => {
 
 exports.resetForm = (req, res) => {
   let { userId, uniqueString } = req.params;
-
   UserVerification.find({ userId })
-    .then((res) => {
-      if (res.length > 0) {
-        const { expiresAt } = res[0];
-        const hashUniqueString = res[0].uniqueString;
+    .then((user) => {
+      if (user.length > 0) {
+        const { expiresAt } = user[0];
+        const hashUniqueString = user[0].uniqueString;
 
         if (expiresAt < Date.now) {
           UserVerification({ userId })
-            .then((res) => {
+            .then(() => {
               User.deleteOne({ _id: user_id })
                 .then(() => {
                   let message = "Link has expired please sign again";
@@ -306,12 +305,13 @@ exports.resetForm = (req, res) => {
           //first compare the hashed string
           bcrypt
             .compare(uniqueString, hashUniqueString)
-            .then((res) => {
-              if (res) {
+            .then((data) => {
+              if (data) {
                 User.updateOne({ _id: userId }, { verified: true })
                   .then(() => {
                     UserVerification.deleteOne({ userId }).then(() => {
-                      console.log("OPEN FORM");
+                      res.redirect(`http://localhost:3000/reset-password-form/?id=${userId}`);
+
                     });
                   })
                   .catch((err) => {
@@ -339,5 +339,21 @@ exports.resetForm = (req, res) => {
 };
 
 exports.resetFormSubmit = (req, res) => {
-  console.log("ter happy bdday manayege");
+  const { userId, password } = req.params;
+  
+  console.log(userId+" "+password);
+  User.findOne({_id: userId}).then((user)=>{
+    console.log(user);
+    // let new_encry = this.securePassword(password);
+
+    console.log("YE HE "+ user.securePassword(password));
+
+    user.encry_password = user.securePassword(password);
+    user.save().then(()=>{
+        console.log("updated");
+      }
+    )
+  }
+    
+  )
 };

@@ -53,11 +53,13 @@ exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
           
           otpUser.save()
             .then(() => {
+              
               transporter.sendMail(mailOptions);
               res.json({
                 msg: "Otp sent succesfully on mail ✅",
                 status: 200,
-                userId: otpUser._id
+                userId: otpUser._id,
+                authority: otpUser.authority
               });
             })
             .catch((err) => {

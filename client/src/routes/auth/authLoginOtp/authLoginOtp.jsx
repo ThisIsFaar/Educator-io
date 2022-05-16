@@ -15,7 +15,7 @@ const Joi = require("joi");
 let status = queryString.parse(window.location.search);
 const { id } = status;
 if (status.status === "sent") {
-  toast.success("Successully Send OTP On Mail", {
+  toast.success("Successully Sent OTP On Mail", {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -45,7 +45,7 @@ export default function AuthloginOtp() {
     setValues({ ...values, [name]: event.target.value });
   };
   const schema = Joi.object({
-    otp: Joi.string().max(4).max(4).required(),
+    otp: Joi.string().min(4).max(4).required(),
   });
 
   const onSubmit = (event) => {
@@ -53,17 +53,38 @@ export default function AuthloginOtp() {
 
     const { error } = schema.validate({ otp });
     if (error) {
-      console.log("error");
+      toast.error(error.message, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });  
       setValues({ ...values, error: error });
     } else {
       // setValues({ error: {}, otp: "" ,success: true });
       // setValues({ email: "", password: "", error: {}, success: true });
       verifyOtp(otp, id)
         .then((data) => {
-          console.log("response");
           if (data) {
             console.log(data);
-            navigate("/authority/dashboard");
+            if (data.status === 200) {
+              setTimeout(() => {
+                navigate("/authority/dashboard");
+              }, 1500);
+            } else if( data.status === 400 ){
+              toast.error(data.message, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });  
+            }
 
             // authenticate(data, () => {
             //   setValues({

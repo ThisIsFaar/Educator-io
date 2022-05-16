@@ -66,7 +66,15 @@ export default function Login() {
     const { error } = schema.validate({ email, password });
 
     if (error) {
-      console.log("error");
+      toast.error(`${error.message}`, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setValues({ ...values, error: error });
     } else {
       console.log("success");
@@ -77,12 +85,21 @@ export default function Login() {
         .then((data) => {
           console.log(data);
           if (data.status === 200) {
-            console.log(data.message);
             authenticate(data, () => {
               setValues({
                 ...values,
                 didRedirect: true,
               });
+            });
+          } else if( data.status === 400){
+            toast.error(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
             });
           }
         })

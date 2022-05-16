@@ -11,8 +11,6 @@ const queryString = require("query-string");
 const Joi = require("joi");
 
 export default function Reset() {
-
-
   let navigate = useNavigate();
 
   const [values, setValues] = useState({
@@ -39,66 +37,95 @@ export default function Reset() {
     const { error } = schema.validate({ email });
 
     if (error) {
-      console.log("error");
+      toast.error(error.message, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.log(error);
       setValues({ ...values, error: error });
     } else {
-      console.log("success");
       setValues({ error: {}, success: true });
       // setValues({ email: "", password: "", error: {}, success: true });
 
-      reset( email )
+      reset(email)
         .then((data) => {
           if (data.status === 200) {
-            console.log(data);
-            navigate(`/auth-login-otp/?status=sent&id=${data.userId}`);
+            toast.success(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+        setValues({ email: "", password: "", error: {}, success: true });
 
-            // authenticate(data, () => {
-            //   setValues({
-            //     ...values,
-            //     didRedirect: true,
-            //   });
-            // });
+          } else if (data.status === 400) {
+            toast.error(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           }
         })
         .catch((err) => console.log(err));
     }
   };
 
-
   return (
     <div>
       <div className="container">
         <div className="form">
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <h1 className="heading">Reset</h1>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <div className="form-login-type"
+            <div
+              className="form-login-type"
               style={{
                 background: " linear-gradient(to bottom, #155799, #159957)",
-                padding: "2rem 3rem"
+                padding: "2rem 3rem",
               }}
-              >
-                <FontAwesomeIcon icon={faUser} size="9x" color="white" />
-                <h3
-                  className="heading--secondary"
-                >
-                  Teachers
-                </h3>
-              </div>
+            >
+              <FontAwesomeIcon icon={faUser} size="9x" color="white" />
+              <h3 className="heading--secondary">Teachers</h3>
+            </div>
 
-            <Link to="/auth-login" style={{textDecoration:"none"}}>
-              <div
-                className="form-login-type"
-                
-              >
-                <FontAwesomeIcon icon={faUserShield} size="9x"  color="#224957" />
-                <h3 className="heading--secondary " 
+            <Link to="/auth-login" style={{ textDecoration: "none" }}>
+              <div className="form-login-type">
+                <FontAwesomeIcon
+                  icon={faUserShield}
+                  size="9x"
+                  color="#224957"
+                />
+                <h3
+                  className="heading--secondary "
                   style={{ color: "#224957" }}
-                
-                >Admin</h3>
+                >
+                  Admin
+                </h3>
               </div>
             </Link>
           </div>
-
 
           <input
             onChange={handleChange("email")}
@@ -116,7 +143,12 @@ export default function Reset() {
           <Link to="/login" className="forgot--pass">
             Login
           </Link>
-          <button type="submit" name="Reset" className="btn--login" onClick={onSubmit}>
+          <button
+            type="submit"
+            name="Reset"
+            className="btn--login"
+            onClick={onSubmit}
+          >
             Send Reset Password Email
           </button>
         </div>

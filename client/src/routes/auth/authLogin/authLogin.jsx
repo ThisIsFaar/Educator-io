@@ -41,26 +41,46 @@ export default function Authlogin() {
     const { error } = schema.validate({ email, password });
 
     if (error) {
-      console.log("error");
+      toast.error(error.message, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setValues({ ...values, error: error });
     } else {
-      console.log("success");
       setValues({ error: {}, success: true });
       // setValues({ email: "", password: "", error: {}, success: true });
 
       login({ email, password })
         .then((data) => {
-          console.log(data);
           if (data.status === 200) {
-            console.log(data);
-            navigate(`/auth-login-otp/?status=sent&id=${data.userId}`);
-
-            // authenticate(data, () => {
-            //   setValues({
-            //     ...values,
-            //     didRedirect: true,
-            //   });
-            // });
+            if (data.authority) {
+              navigate(`/auth-login-otp/?status=sent&id=${data.userId}`);
+            } else {
+              toast.error("You Are Not Authorized Person", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });  
+            }
+          } else if(data.status === 400){
+            toast.error(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           }
         })
         .catch((err) => console.log(err));
@@ -71,6 +91,17 @@ export default function Authlogin() {
     <div>
       <div className="container">
         <div className="form">
+        <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <h1 className="heading" style={{fontSize:"4rem"}}>Authority</h1>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
             <Link to="/login" style={{textDecoration:"none"}}>

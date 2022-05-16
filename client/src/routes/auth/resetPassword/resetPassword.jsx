@@ -1,16 +1,18 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../common/auth.css";
-import { Link } from "react-router-dom";
 import { resetPassword } from "../../../auth/helper";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faUserShield } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router-dom";
 const queryString = require("query-string");
 
 const Joi = require("joi");
 
 export default function ResetPassword() {
+  let navigate = useNavigate();
+
   const [values, setValues] = useState({
     password: "",
   });
@@ -29,7 +31,15 @@ export default function ResetPassword() {
     const { error } = schema.validate({ password });
 
     if (error) {
-      console.log("error");
+      toast.error(error.message, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setValues({ ...values, error: error });
      
     } else {
@@ -37,7 +47,31 @@ export default function ResetPassword() {
 
       resetPassword(id, password)
         .then((data) => {
-          console.log(data);
+          if (data.status === 400) {
+            toast.error(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else if (data.status === 200){
+            toast.success(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(()=>{
+          navigate("/login");
+
+            },1500)
+          }
         })
         .catch((err) => console.log(err));
     }
@@ -50,6 +84,17 @@ console.log(id);
     <div>
       <div className="container">
         <form className="form">
+        <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <h1 className="heading">Reset Password</h1>
 
           <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -81,7 +126,7 @@ console.log(id);
           </div>
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Your New Password"
             className="input password"
             onChange={handleChange("password")}
             value={password}

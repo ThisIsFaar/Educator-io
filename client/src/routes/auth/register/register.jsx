@@ -41,24 +41,21 @@ export default function Register() {
 
     if (error) {
       console.log("error");
+      toast.error(error.message, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setValues({ ...values, error: error });
-      // eslint-disable-next-line
-      {
-        toast.error(`${error.message}`, {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
     } else {
-      setValues({ email: "", password: "", error: {}, success: true });
-
+      
       register({ email, password })
-        .then((data) => {
+      .then((data) => {
+          setValues({ email: "", password: "", error: {}, success: true });
           if (data.status === 200) {
             console.log(data.message);
             toast.success(data.message, {
@@ -70,56 +67,38 @@ export default function Register() {
               draggable: true,
               progress: undefined,
             });
+          } else if (data.status === 400) {
+            toast.error(data.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+
           }
         })
         .catch((err) => console.log(err));
     }
-
-    // if (error) {
-    //   setValues({error});
-    // } else {
-    //   setValues({error: ""})
-    // }
-    // console.log(error);
-  };
-
-  const successMessage = () => {
-    // return (
-    //   <div
-    //     className="alert alert-success"
-    //     style={{ display: success ? "" : "none" }}
-    //   >
-    //     Email sent
-    //     <Link to="/login">Login Here</Link>
-    //   </div>
-    // );
-  };
-
-  const errorMessage = () => {
-    return (
-      <div
-        className="alert alert-danger"
-        style={{ display: error.message !== "" ? "block" : "none" }}
-      >
-        <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </div>
-    );
   };
 
   return (
     <div>
       <div className="container">
         <form className="form">
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <h1 className="heading">Register</h1>
 
           <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -127,7 +106,7 @@ export default function Register() {
               className="form-login-type"
               style={{
                 background: " linear-gradient(to bottom, #155799, #159957)",
-                padding: "2rem 3rem"
+                padding: "2rem 3rem",
               }}
             >
               <FontAwesomeIcon icon={faUser} size="9x" color="white" />
@@ -150,8 +129,6 @@ export default function Register() {
               </div>
             </Link>
           </div>
-          {successMessage()}
-          {errorMessage()}
           <input
             type="email"
             onChange={handleChange("email")}

@@ -14,6 +14,7 @@ import Reset from "./routes/auth/resetPassword/reset";
 import AuthLogin from "./routes/auth/authLogin/authLogin";
 import AuthloginOtp from "./routes/auth/authLoginOtp/authLoginOtp";
 import UserDashboard from "./routes/user/dashboard";
+import AuthorityDashboard from "./routes/authority/dashboard";
 import { isAuthenticated } from "./auth/helper";
 import ResetPassword from "./routes/auth/resetPassword/resetPassword";
 
@@ -41,7 +42,7 @@ root.render(
         <Route path="" element={<UserDashboard />} />
       </Route>
       <Route path="/authority/dashboard" element={<AuthorityOutlet />}>
-        <Route path="" element={<UserDashboard />} />
+        <Route path="" element={<AuthorityDashboard />} />
       </Route>
     </Routes>
   </BrowserRouter>
@@ -50,7 +51,10 @@ function PrivateOutlet() {
   return isAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
 }
 
-
 function AuthorityOutlet() {
-  return  isAuthenticated() && isAuthenticated().authority === true ? <Outlet /> : <Navigate to="/auth-login" />;
+  return isAuthenticated() && isAuthenticated().authority === true ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/auth-login" />
+  );
 }

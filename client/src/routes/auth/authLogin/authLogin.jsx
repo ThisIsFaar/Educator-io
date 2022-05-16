@@ -197,7 +197,7 @@ export default function Authlogin() {
             className="shape-fill"
           ></path>
         </svg>
-      </div>
+          </div>*/}
     </div>
   );
 }

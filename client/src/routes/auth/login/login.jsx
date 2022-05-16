@@ -247,7 +247,7 @@ export default function Login() {
             className="shape-fill"
           ></path>
         </svg>
-      </div>
+            </div>*/}
     </div>
   );
 }

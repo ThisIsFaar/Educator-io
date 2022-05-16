@@ -1,5 +1,5 @@
 import userImg from "../../../common/images/user.svg";
-import { verifyOtp, isAuthenticated } from "../../../auth/helper";
+import { verifyOtp, isAuthenticated, authenticate } from "../../../auth/helper";
 import { ToastContainer, toast } from "react-toastify";
 import "../../../common/auth.css";
 import footer from "../../../common/images/footer.svg";
@@ -65,12 +65,12 @@ export default function AuthloginOtp() {
             console.log(data);
             navigate("/authority/dashboard");
 
-            // authenticate(data, () => {
-            //   setValues({
-            //     ...values,
-            //     didRedirect: true,
-            //   });
-            // });
+            authenticate(data, () => {
+              setValues({
+                ...values,
+                didRedirect: true,
+              });
+            });
           }
         })
         .catch((err) => console.log(err));

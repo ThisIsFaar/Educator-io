@@ -14,6 +14,7 @@ import {
   faCalendarCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
+import logo from "../../common/images/Logo.png";
 
 export default function UserDashboard() {
   const [page, setpage] = useState("Records");
@@ -21,22 +22,33 @@ export default function UserDashboard() {
     <div className="container">
       <div className="sidebar">
         <div class="sidebar" id="sideBar">
-          <img src="images/logo.svg" class="logo" />
-          <h2 class="logo--text">Logo</h2>
+          <div className="Logo">
+            <img src={logo} class="logo" />
+          </div>
           <ul class="sidebar--list">
             <li
               class={page === "Records" ? "options active" : " options"}
               onClick={() => setpage("Records")}
               style={{}}
             >
-              <FontAwesomeIcon icon={faUsers} color="#a4a6b3" size="1.5x" />
+              <FontAwesomeIcon
+                className="icons"
+                icon={faUsers}
+                color="#a4a6b3"
+                size="2x"
+              />
               <span class="list--text">Teachers Records</span>
             </li>
             <li
               class={page === "Verify" ? "options active" : " options"}
               onClick={() => setpage("Verify")}
             >
-              <FontAwesomeIcon icon={faIdBadge} color="#a4a6b3" size="1.5x" />
+              <FontAwesomeIcon
+                className="icons"
+                icon={faIdBadge}
+                color="#a4a6b3"
+                size="2x"
+              />
               <span class="list--text">Verify Teacher</span>
             </li>
             <li
@@ -44,9 +56,10 @@ export default function UserDashboard() {
               onClick={() => setpage("Update")}
             >
               <FontAwesomeIcon
+                className="icons"
                 icon={faCalendarCheck}
                 color="#a4a6b3"
-                size="1.5x"
+                size="2x"
               />
               <span class="list--text">Update Requests</span>
             </li>

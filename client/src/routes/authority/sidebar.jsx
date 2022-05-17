@@ -2,6 +2,7 @@ import React from "react";
 import "./sidebarStyle.css";
 import "../../normalize.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faUsers,
   faIdBadge,
@@ -12,7 +13,7 @@ import {} from "@fortawesome/free-regular-svg-icons";
 export default function sidebar() {
   return (
     <div class="sidebar" id="sideBar">
-      <img src="images/logo.svg" class="logo" />
+      <img src="" class="logo" />
       <h2 class="logo--text">Logo</h2>
       <ul class="sidebar--list">
         <li class="options">

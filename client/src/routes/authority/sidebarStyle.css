@@ -13,7 +13,7 @@ ul {
   flex-direction: column;
   gap: 5rem;
   margin: 0;
-  padding: 2rem;
+  padding-inline-start: 0;
 }
 .sidebar {
   background: var(--color--primary);
@@ -43,5 +43,25 @@ ul {
 }
 
 .active {
-  background-color: #20df7f;
+  background-color: #2c505e;
+  border-left: 6px solid rgb(239, 239, 239);
+}
+
+.Logo {
+  margin: 2rem 0rem 5rem 0;
+}
+.Logo img {
+  width: 75%;
+  padding: 2rem 3rem 0rem 3rem;
+}
+
+li .icons {
+  padding-left: 2rem;
+}
+.options {
+  height: 4rem;
+}
+li {
+  display: flex;
+  align-items: center;
 }

@@ -30,7 +30,7 @@ export default function Records() {
               />
             </span>
             <span class="upperbar--sortBy--box">
-              <FontAwesomeIcon icon={faArrowUpWideShort} />
+              <FontAwesomeIcon icon={faArrowUpWideShort} size="2x" />
               <select class="upperBar--sortBy">
                 <option class="sortby--options" selected>
                   Sort By
@@ -47,7 +47,7 @@ export default function Records() {
               </select>
             </span>
             <span class="upper--bar--filter">
-              <FontAwesomeIcon icon={faFilter} />
+              <FontAwesomeIcon icon={faFilter} size="2x" />
               <button class="upperBar--subtitle" id="toggle">
                 Filter
               </button>

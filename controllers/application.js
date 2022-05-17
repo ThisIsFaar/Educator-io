@@ -22,7 +22,8 @@ exports.apply = (req, res) => {
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({
-        error: "Failed to apply...",
+        message: "Application Failed!",
+        status: 400,
       });
     }
 
@@ -35,7 +36,8 @@ exports.apply = (req, res) => {
       if (file.profilePhoto.size > 100000) {
         //100 kb profilePhoto allowed only
         return res.status(400).json({
-          error: "File size is too Big, maximum file size is 100kb",
+          message: "File size is too Big, maximum file size is 100kb",
+          status: 400,
         });
       }
       console.log(file.profilePhoto.type);
@@ -47,17 +49,22 @@ exports.apply = (req, res) => {
     user.save((err, user) => {
       if (err) {
         return res.json({
-          error: "application failed",
+          message: "Application Failed!",
+          status: 400,
         });
       }
       user.applicationVerificationStatus = "1";
       user.save((err, user) => {
         if (err) {
           return res.json({
-            error: "application failed",
+            message: "Application Failed!",
+            status: 400,
           });
         }
-        res.json(user);
+        res.json({
+          message: "Successully Submitted Application",
+          status: 200,
+        });
       });
     });
   });

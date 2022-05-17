@@ -52,6 +52,7 @@ export default function Login() {
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
+    console.log(values);
   };
   const schema = Joi.object({
     email: Joi.string()
@@ -75,12 +76,12 @@ export default function Login() {
         draggable: true,
         progress: undefined,
       });
-      setValues({ ...values, error: error });
+      // setValues({ ...values, error: error });
     } else {
       console.log("success");
-      setValues({ error: {}, success: true });
+      // setValues({ error: {}, success: true });
       // setValues({ email: "", password: "", error: {}, success: true });
-
+      console.log(email + " " + password);
       login({ email, password })
         .then((data) => {
           console.log(data);

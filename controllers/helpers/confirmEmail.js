@@ -1,5 +1,5 @@
-module.exports  = confirmEmail = (verurl) => {              
-    return `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+module.exports = confirmEmail = (verurl) => {
+  return `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     
     <head>
@@ -170,7 +170,7 @@ module.exports  = confirmEmail = (verurl) => {
                                     <tr>
                                       <td style="padding-right: 0px;padding-left: 0px;" align="center">
     
-                                        <img align="center" border="0" src="https://examedai.sirv.com/Images/sample_logo.jfif" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 70%;" />
+                                        <img align="center" border="0" src="https://examedai.sirv.com/Images/sample_logo.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 70%;" />
     
                                       </td>
                                     </tr>
@@ -324,7 +324,7 @@ module.exports  = confirmEmail = (verurl) => {
     
                                   <div style="line-height: 160%; text-align: center; word-wrap: break-word;">
                                     <p style="line-height: 160%; font-size: 14px;"><span style="font-size: 18px; line-height: 28.8px;">Thanks,</span></p>
-                                    <p style="line-height: 160%; font-size: 14px;"><span style="font-size: 18px; line-height: 28.8px;">Educator.org Team</span></p>
+                                    <p style="line-height: 160%; font-size: 14px;"><span style="font-size: 18px; line-height: 28.8px;">Educator.io Team</span></p>
                                   </div>
     
                                 </td>
@@ -406,7 +406,7 @@ module.exports  = confirmEmail = (verurl) => {
                                 <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Cabin',sans-serif;" align="left">
     
                                   <div style="color: #fafafa; line-height: 180%; text-align: center; word-wrap: break-word;">
-                                    <p style="font-size: 14px; line-height: 180%;"><span style="font-size: 16px; line-height: 28.8px;">Copyrights &copy; Educator.Org All Rights Reserved</span></p>
+                                    <p style="font-size: 14px; line-height: 180%;"><span style="font-size: 16px; line-height: 28.8px;">Copyrights &copy; Educator.io All Rights Reserved</span></p>
                                   </div>
     
                                 </td>
@@ -436,4 +436,4 @@ module.exports  = confirmEmail = (verurl) => {
     </body>
     
     </html>`;
-}
+};

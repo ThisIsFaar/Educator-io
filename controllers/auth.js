@@ -35,7 +35,7 @@ exports.register = (req, res) => {
       email: user.email,
       encry_password: user.encry_password,
       status: 200,
-      message: "Successfully send verification email",
+      message: "Successfully Sent Verification Email",
     });
   });
 };
@@ -54,19 +54,21 @@ exports.login = (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "user with this email does not exists",
+        message: "User With This Email Does Not Exists",
+        status: 400
       });
     }
 
     if (!user.verified) {
       res.status(401).json({
-        error: "user email is not verified",
+        error: "User Email Is Not Verified",
+        status: 400
       });
     }
 
     if (!user.authenticate(password)) {
       res.status(401).json({
-        message: "email, password does not matched",
+        message: "Email, Password Does Not Matched",
         status: 400,
       });
     } else {
@@ -97,7 +99,7 @@ exports.login = (req, res) => {
 exports.logout = (req, res) => {
   res.clearCookie("token");
   res.json({
-    message: "User logout succesfully",
+    message: "User Logout Succesfully",
   });
 };
 

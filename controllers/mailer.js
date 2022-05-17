@@ -5,6 +5,10 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const confirmEmail = require("./helpers/confirmEmail.js")
+const resetEmail = require("./helpers/resetPass.js")
+const otpEmail = require("./helpers/otpAuth")
+
+
 
 //nodemailer stuff
 let transporter = nodemailer.createTransport({
@@ -32,8 +36,8 @@ exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
     mailOptions = {
       from: process.env.AUTH_EMAIL,
       to: email,
-      subject: "SIGNIN OTP FOR PORTAL",
-      html: `Hello Authority, Your OTP for signin is ${otp}`,
+      subject: "[Educator.io] AUTHORITY OTP FOR LOGIN",
+      html: otpEmail(otp)
     };
 
     const saltRounds = 10;
@@ -81,20 +85,16 @@ exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
       mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: email,
-        subject: "[Educator.Org] Verify Your Email Now",
-        // html: `verify <a href=${
-        //   URL + "api/verify/" + _id + "/" + uniqueString
-        // }>herre</a>`,
+        subject: "[Educator.io] Verify Your Email Now",
         html: confirmEmail(verurl)
       };      
     } else {
+      let resurl = `${URL + "api/resetForm/" + _id + "/" + uniqueString}`;
       mailOptions = {
         from: process.env.AUTH_EMAIL,
         to: email,
-        subject: "RESET",
-        html: `Reset your password <a href=${
-          URL + "api/resetForm/" + _id + "/" + uniqueString
-        }>herre</a>`,
+        subject: "[Educator.io] Reset Your Password Now",
+        html: resetEmail(resurl)
       };    
     }
 

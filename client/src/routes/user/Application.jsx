@@ -15,6 +15,7 @@ const { user, token } = isAuthenticated();
 const Application = () => {
   const [values, setValues] = useState({
     name: "",
+    profilePhoto: "",
     phoneNumber: "",
     gender: "",
     fatherName: "",
@@ -44,6 +45,7 @@ const Application = () => {
     postedDesignation,
     postedSchoolLocation,
     address,
+    profilePhoto,
     disabled,
   } = values;
   const schema = Joi.object({
@@ -62,7 +64,10 @@ const Application = () => {
   });
 
   const handleChange = (name) => (event) => {
-    setValues({ ...values, [name]: event.target.value });
+    console.log(event);
+    const value =
+      name === "profilePhoto" ?   event.target.files[0] : event.target.value;
+    setValues({ ...values, [name]: value });
     // formData.set(name, event.target.value);
   };
 
@@ -109,7 +114,9 @@ const Application = () => {
       formData.append("postedDesignation", postedDesignation);
       formData.append("postedSchoolLocation", postedSchoolLocation);
       formData.append("address", address);
-      application(user.id, token, formData)
+      formData.append("profilePhoto", profilePhoto);
+      console.log(profilePhoto);
+      application(user._id, token, formData)
         .then((data) => {
           console.log(data);
           if (data.status === 200) {
@@ -158,7 +165,7 @@ const Application = () => {
   };
   const form = () => {
     return (
-      <form className="container--box">
+      <form  encType="multipart/form-data" className="container--box">
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -180,6 +187,16 @@ const Application = () => {
                   onChange={handleChange("name")}
                   value={name}
                   type="text"
+                />
+              </div>
+              <div className="input-box">
+                <label className="form--label">Choose A Profile Photo</label>
+                <input
+                  onChange={handleChange("profilePhoto")}
+                  type="file"
+                  name="profilePhoto"
+                  accept="image"
+                  className=""
                 />
               </div>
               {/* <div className="input-box">

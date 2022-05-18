@@ -18,7 +18,7 @@ exports.getUserById = (req, res, next, id) => {
 exports.apply = (req, res) => {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
-
+  
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({
@@ -26,12 +26,13 @@ exports.apply = (req, res) => {
         status: 400,
       });
     }
-
+    
     //updation code
     let user = req.user;
     user = _.extend(user, fields);
-
+    
     //handling files
+    console.log(file);
     if (file.profilePhoto) {
       if (file.profilePhoto.size > 100000) {
         //100 kb profilePhoto allowed only
@@ -40,16 +41,15 @@ exports.apply = (req, res) => {
           status: 400,
         });
       }
-      console.log(file.profilePhoto.type);
       user.profilePhoto.data = fs.readFileSync(file.profilePhoto.filepath);
       user.profilePhoto.contentType = file.profilePhoto.mimetype;
     }
-
+    
     //save to db
     user.save((err, user) => {
       if (err) {
         return res.json({
-          message: "Application Failed!",
+          message: "Failed to saved in DB!",
           status: 400,
         });
       }

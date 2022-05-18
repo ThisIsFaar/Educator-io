@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
+const path = require('path')
 
 mongoose
   .connect("mongodb+srv://farhan:0987@cluster0.satq4.mongodb.net/?retryWrites=true&w=majority")
@@ -17,12 +18,12 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
-app.use(express.static(`client/build`));
-app.get(`*`, (req, res) => {
-res.sendFile(path.join(__dirname + `/client/build/index.html`));
-});
-// if (process.env.NODE_ENV === `production` || process.env.NODE_ENV === `staging`) {
-//  }
+// app.use(express.static(`client/build`));
+// app.get(`*`, (req, res) => {
+// res.sendFile(path.join(__dirname + `/client/build/index.html`));
+// });
+app.use('/', express.static(path.join(__dirname, '/client/build')));
+
 
 const authRoutes = require("./routes/auth");
 const application  = require("./routes/application");

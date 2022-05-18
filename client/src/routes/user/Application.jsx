@@ -134,6 +134,7 @@ const Application = () => {
               postedSchoolLocation: "",
               address: "",
               formData: "",
+              profilePhoto: null,
               disabled: true,
               error: {},
               success: true,

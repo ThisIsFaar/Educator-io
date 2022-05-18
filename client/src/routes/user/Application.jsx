@@ -66,7 +66,7 @@ const Application = () => {
   const handleChange = (name) => (event) => {
     console.log(event);
     const value =
-      name === "profilePhoto" ?   event.target.files[0] : event.target.value;
+      name === "profilePhoto" ? event.target.files[0] : event.target.value;
     setValues({ ...values, [name]: value });
     // formData.set(name, event.target.value);
   };
@@ -166,7 +166,7 @@ const Application = () => {
   };
   const form = () => {
     return (
-      <form  encType="multipart/form-data" className="container--box">
+      <form encType="multipart/form-data" className="container--box">
         <ToastContainer
           position="top-center"
           autoClose={5000}

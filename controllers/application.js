@@ -14,11 +14,21 @@ exports.getUserById = (req, res, next, id) => {
     next();
   });
 };
-
+exports.getUser = (req, res) => {
+  //req.product.photo = undefined;
+  return res.json(req.user);
+};
+exports.photo = (req, res, next) => {
+  if (req.user.profilePhoto.data) {
+    res.set("Content-Type", req.user.profilePhoto.contentType);
+    return res.send(req.user.profilePhoto.data);
+  }
+  next();
+};
 exports.apply = (req, res) => {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
-  
+
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({
@@ -26,11 +36,11 @@ exports.apply = (req, res) => {
         status: 400,
       });
     }
-    
+
     //updation code
     let user = req.user;
     user = _.extend(user, fields);
-    
+
     //handling files
     console.log(file);
     if (file.profilePhoto) {
@@ -44,7 +54,7 @@ exports.apply = (req, res) => {
       user.profilePhoto.data = fs.readFileSync(file.profilePhoto.filepath);
       user.profilePhoto.contentType = file.profilePhoto.mimetype;
     }
-    
+
     //save to db
     user.save((err, user) => {
       if (err) {

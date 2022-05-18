@@ -17,7 +17,7 @@ import UserDashboard from "./routes/user/dashboard";
 import AuthorityDashboard from "./routes/authority/dashboard";
 import { isAuthenticated } from "./auth/helper";
 import ResetPassword from "./routes/auth/resetPassword/resetPassword";
-
+//testing
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>

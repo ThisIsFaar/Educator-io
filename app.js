@@ -8,7 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 mongoose
-  .connect(process.env.DB)
+  .connect("mongodb+srv://farhan:0987@cluster0.satq4.mongodb.net/?retryWrites=true&w=majority")
   .then(() => console.log("Database connected ✅"))
   .catch((err) => console.log("Database connectivity problem occur", err));
 

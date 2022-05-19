@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const { sendVerificationEmail } = require("./mailer");
 const crypto = require("crypto");
 const { v4: uuidv4 } = require("uuid");
+const user = require("../models/user");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -55,14 +56,14 @@ exports.login = (req, res) => {
     if (err || !user) {
       return res.status(400).json({
         message: "User With This Email Does Not Exists",
-        status: 400
+        status: 400,
       });
     }
 
     if (!user.verified) {
       res.status(401).json({
         error: "User Email Is Not Verified",
-        status: 400
+        status: 400,
       });
     }
 
@@ -153,7 +154,9 @@ exports.verify = (req, resp) => {
                   });
               } else {
                 let message = "Invalid details ";
-                resp.redirect(`https://educator-io.herokuapp.com/login?status=error`);
+                resp.redirect(
+                  `https://educator-io.herokuapp.com/login?status=error`
+                );
               }
             })
             .catch((err) => {
@@ -180,15 +183,15 @@ exports.verifyOtp = (req, res) => {
         const { otpExpiry } = user;
         const hashotp = user.otp;
         if (hashotp == "0") {
-           res.json({
+          res.json({
             message: "Otp Invalid Or Already Used",
-            status: 400
+            status: 400,
           });
         }
         if (otpExpiry < Date.now()) {
           res.json({
             message: "OTP Is Expired, Login Again",
-            status: 400
+            status: 400,
           });
         } else {
           //valid result record? validating it
@@ -212,12 +215,12 @@ exports.verifyOtp = (req, res) => {
                 token,
                 user: { id: user.id, email: user.email },
                 authority: user.authority,
-                status: 200
+                status: 200,
               });
             } else {
               res.json({
                 message: "Invalid OTP",
-                status: 400
+                status: 400,
               });
             }
           });
@@ -369,4 +372,26 @@ exports.resetFormSubmit = (req, res) => {
         });
       });
   });
+};
+
+exports.getAllRecords = (req, res) => {
+  user
+    .find({
+      authority: "false",
+      applicationVerificationStatus: "1",
+      verified: "true",
+    })
+    .then(function (users) {
+      res.send(users);
+    });
+};
+exports.getRecordForVerify = (req, res) => {
+  user
+    .find({
+      authority: "false",
+      applicationVerificationStatus: "0",
+    })
+    .then(function (users) {
+      res.send(users);
+    });
 };

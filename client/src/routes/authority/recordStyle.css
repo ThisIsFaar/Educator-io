@@ -505,6 +505,11 @@
   color: var(--color--heading--title);
   border-bottom: 1px solid #dfe0eb;
 }
+.tableData img {
+  width: 25%;
+  height: 75%;
+  padding: 1rem;
+}
 
 /* mobile view */
 

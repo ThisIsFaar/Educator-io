@@ -19,16 +19,15 @@ const userSchema = new Schema({
   salt: String,
   verified: {
     type: Boolean,
-    default: false
+    default: false,
   }, //account email verification status
   otp: {
     type: String,
     trim: true,
   },
   otpExpiry: {
-    type: Date
-  }
-  ,
+    type: Date,
+  },
   phoneNumber: {
     type: String,
     trim: true,
@@ -98,12 +97,12 @@ const userSchema = new Schema({
   },
   profilePhoto: {
     data: Buffer,
-    contentType: String
+    contentType: String,
   },
   authority: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
   //   newSchoolLocationPosting: {
   //     type: String,
   //     trim: true,

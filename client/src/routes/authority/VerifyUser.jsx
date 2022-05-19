@@ -1,12 +1,23 @@
-import {
-  faArrowUpWideShort,
-  faFilter,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ImageHelper from "../user/helper/ImageHelper";
+import { verificationRecords } from "./helper";
+
 import "./verifyStyle.css";
 
 export default function VerifyUser() {
+  const [users, setusers] = useState([]);
+  const loadAllRecords = () => {
+    verificationRecords().then((data) => {
+      if (data.error) {
+      } else {
+        console.log(data);
+        setusers(data);
+      }
+    });
+  };
+  useEffect(() => {
+    loadAllRecords();
+  }, []);
   return (
     <div>
       <div class="right--outer--layer">
@@ -24,47 +35,23 @@ export default function VerifyUser() {
                 </thead>
 
                 <tbody class="table--body">
-                  <tr class="table--row">
-                    <td class="tableData td--name">
-                      <img src="images/user_dark.svg" class="table--svg" />
-                      Jatin Rathore
-                    </td>
-                    <td class="tableData td--phone">7011361886</td>
-                    <td class="tableData td--email">
-                      rathorejatin168@gmail.com
-                    </td>
-                    <td class="tableData td--detail">
-                      <button class="table--btn">Detail and Verify</button>
-                    </td>
-                  </tr>
-
-                  <tr class="table--row">
-                    <td class="tableData td--name">
-                      <img src="images/user_dark.svg" class="table--svg" />
-                      Jatin Rathore
-                    </td>
-                    <td class="tableData td--phone">7011361886</td>
-                    <td class="tableData td--email">
-                      rathorejatin168@gmail.com
-                    </td>
-                    <td class="tableData td--detail">
-                      <button class="table--btn">Detail and Verify</button>
-                    </td>
-                  </tr>
-
-                  <tr class="table--row">
-                    <td class="tableData td--name">
-                      <img src="images/user_dark.svg" class="table--svg" />
-                      Jatin Rathore
-                    </td>
-                    <td class="tableData td--phone">7011361886</td>
-                    <td class="tableData td--email">
-                      rathorejatin168@gmail.com
-                    </td>
-                    <td class="tableData td--detail">
-                      <button class="table--btn">Detail and Verify</button>
-                    </td>
-                  </tr>
+                  {users.map((user, i) => {
+                    return (
+                      <tr class="table--row">
+                        <td class="tableData td--name">
+                          <ImageHelper user={user} />
+                          Sumit Rawat
+                        </td>
+                        <td class="tableData td--post">SDE</td>
+                        <td class="tableData td--gender">{user.gender}</td>
+                        <td class="tableData td--phone">{user.phoneNumber}</td>
+                        <td class="tableData td--email">{user.email}</td>
+                        <td class="tableData td--detail">
+                          <button class="table--btn">Detail</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

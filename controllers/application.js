@@ -93,7 +93,11 @@ exports.updateReq = (req, res )=> {
   //   // data: req.user,
   //   userData: req.body,
   // })
-  Update.remove({});
+  Update.deleteMany({userId: req.user._id}).then((done)=>{
+    console.log(done);
+  }).catch((err)=>{
+    console.log(err);
+  })
 
   const update = new Update({
     userId: req.user._id,

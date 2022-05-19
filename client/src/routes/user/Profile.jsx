@@ -10,6 +10,7 @@ import "./Profile.css";
 const Profile = () => {
   const [values, setValues] = useState({
     name: "",
+    email: "",
     profilePhoto: "",
     phoneNumber: "",
     gender: "",
@@ -26,6 +27,7 @@ const Profile = () => {
   const {
     name,
     phoneNumber,
+    email,
     gender,
     fatherName,
     motherName,
@@ -47,13 +49,17 @@ const Profile = () => {
       .then((data) => {
         console.log("DATA WE GET IS: ", data);
         setValues({
-          name: data.name,
+          name: data.Name,
+<<<<<<< HEAD
+=======
+          email:data.email,
+>>>>>>> 5a44d826a2b5b38e0bd7800ab8d4a5109fbea777
           phoneNumber: data.phoneNumber,
           gender: data.gender,
           fatherName: data.fatherName,
           motherName: data.motherName,
           spouse: data.spouse,
-          dateOfBirth: data.dataOfBirth,
+          dateOfBirth: data.DOB,
           dateOfJoining: data.dateOfJoining,
           postedSchoolName: data.postedSchoolName,
           postedDesignation: data.postedDesignation,
@@ -67,115 +73,16 @@ const Profile = () => {
 
   return (
     <div className="wrapper">
-      {/*<form encType="multipart/form-data" className="container--box">
-        <div className="form--innerBox">
-          <div className="formBoxOne">
-            <div className="FormOne">
-              <div className="input-box">
-                <label className="form--label">Name</label>
-                <input className="form--input" value={name} type="text" />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Choose A Profile Photo</label>
-                <ImageHelper user={user} />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Phone</label>
-                <input
-                  className="form--input"
-                  value={phoneNumber}
-                  type="text"
-                />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Gender</label>
-                <input className="form--input" value={gender} type="text" />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Father's Name</label>
-                <input className="form--input" value={fatherName} type="text" />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Mother's Name</label>
-                <input className="form--input" value={motherName} type="text" />
-              </div>
-            </div>
-          </div>
-          <div className="formBoxTwo">
-            <div className="FormTwo">
-              <div className="input-box">
-                <label className="form--label">Spouse</label>
-                <input className="form--input" value={spouse} type="text" />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Date of Birth</label>
-                <input
-                  className="form--input"
-                  value={dateOfBirth}
-                  type="text"
-                />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Date of Joining</label>
-                <input
-                  className="form--input"
-                  value={dateOfJoining}
-                  type="text"
-                />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Posted School Name</label>
-                <input
-                  className="form--input"
-                  value={postedSchoolName}
-                  type="text"
-                />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Posted Designation</label>
-                <input
-                  className="form--input"
-                  value={postedDesignation}
-                  type="text"
-                />
-              </div>
-              <div className="input-box">
-                <label className="form--label">Posted School Location</label>
-                <input
-                  className="form--input"
-                  value={postedSchoolLocation}
-                  type="text"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="formBoxThree">
-          <div className="formThree">
-            <div className="input--box inputBoxTwo">
-              <label className="form--label three">Address</label>
-              <textarea
-                className="form--textarea"
-                value={address}
-                cols="10"
-                rows="1"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-  </form>*/}
       <div className="left-container">
         <div className="profile-image">
-          {/*<ImageHelper user={user} />*/}
-          <img src={Dp} alt="" />
+           <ImageHelper user={user} />
         </div>
         <div className="info">
-          <p className="name">Akhilesh Das</p>
+          <p className="name">{name}</p>
 
           <p className="email">
             <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon> &nbsp;
-            Akhilesh@gmail.com
+            {email}
           </p>
           <div className="phone">
             <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>&nbsp; 1234567890
@@ -188,19 +95,19 @@ const Profile = () => {
           <div className="p-info">
             <div>
               <label>Date Of Birth: </label>
-              <span>21/08/1990</span>
+              <span>{dateOfBirth}</span>
             </div>
             <div>
               <label>Mother's Name: </label>
-              <span>Jane</span>
+              <span>{motherName}</span>
             </div>
             <div>
               <label>Father's Name: </label>
-              <span>John</span>
+              <span>{fatherName}</span>
             </div>
             <div>
               <label>Address: </label>
-              <span>Kamla Nagar</span>
+              <span>{address}</span>
             </div>
           </div>
         </div>
@@ -209,19 +116,19 @@ const Profile = () => {
           <div className="p-info">
             <div>
               <label>Designation: </label>
-              <span>Teacher</span>
+              <span>{postedDesignation}</span>
             </div>
             <div>
               <label>Posted School: </label>
-              <span>KV</span>
+              <span>{postedSchoolName}</span>
             </div>
             <div>
               <label>Posted School Location: </label>
-              <span>Delhi</span>
+              <span>{postedSchoolLocation}</span>
             </div>
             <div>
               <label>Date Of Joining: </label>
-              <span>21/08/2010</span>
+              <span>{dateOfJoining}</span>
             </div>
           </div>
         </div>

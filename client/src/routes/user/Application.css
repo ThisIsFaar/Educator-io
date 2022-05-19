@@ -150,3 +150,7 @@
   width: 100%;
   display: inline-block;
 }
+
+.input-disable:hover {
+  cursor: not-allowed;
+}

@@ -7,18 +7,21 @@ import React, { useEffect, useState } from "react";
 import { records } from "./helper";
 import "./recordStyle.css";
 import ImageHelper from "../user/helper/ImageHelper";
+import RecordsModal from "./RecordsModal";
 
 export default function Records() {
   const [users, setusers] = useState([]);
+  const [modal, setmodal] = useState(false);
+  const [muser, setmusers] = useState({});
   const loadAllRecords = () => {
     records().then((data) => {
       if (data.error) {
       } else {
-        console.log(data);
         setusers(data);
       }
     });
   };
+
   useEffect(() => {
     loadAllRecords();
   }, []);
@@ -140,7 +143,15 @@ export default function Records() {
                         <td class="tableData td--phone">{user.phoneNumber}</td>
                         <td class="tableData td--email">{user.email}</td>
                         <td class="tableData td--detail">
-                          <button class="table--btn">Detail</button>
+                          <button
+                            class="table--btn"
+                            onClick={() => {
+                              setmodal(true);
+                              setmusers(user);
+                            }}
+                          >
+                            Detail
+                          </button>
                         </td>
                       </tr>
                     );
@@ -149,6 +160,12 @@ export default function Records() {
               </table>
             </div>
           </div>
+          <RecordsModal
+            onClose={() => setmodal(false)}
+            user={muser}
+            modal={modal}
+            setmodal={setmodal}
+          />
         </div>
       </div>
     </div>

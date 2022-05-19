@@ -48,6 +48,8 @@ router.post("/verifyotp/:userId/:otp", verifyOtp);
 
 router.post("/resetPassword/:email", resetPassword);
 
+
+
 //Verifying user reset link
 router.get("/resetForm/:userId/:uniqueString", resetForm);
 

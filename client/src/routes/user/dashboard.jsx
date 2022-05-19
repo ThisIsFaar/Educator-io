@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import logo from "../../common/images/Logo.png";
+import UpdateRequestForm from "./UpdateRequestForm";
 
 export default function UserDashboard() {
   const [page, setpage] = useState("Application");
@@ -60,6 +61,18 @@ export default function UserDashboard() {
               />
               <span className="list--text">Update Requests</span>
             </li>
+            {/* <li
+              class={page === "UpdateRequestForm" ? "options active" : " options"}
+              onClick={() => setpage("UpdateRequestForm")}
+            >
+              <FontAwesomeIcon
+                className="icons"
+                icon={faCalendarCheck}
+                color="#a4a6b3"
+                size="2x"
+              />
+              <span className="list--text">Update Requests form</span>
+            </li> */}
           </ul>
         </div>
       </div>
@@ -69,6 +82,8 @@ export default function UserDashboard() {
           {page === "Application" && <Application />}
           {page === "Profile" && <Profile />}
           {page === "Updaterequest" && <UpdateRequest />}
+          {/* {page === "UpdateRequestForm" && <UpdateRequestForm />} */}
+
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const ImageHelper = ({ user }) => {
   return <img src={imageUrl} style={{ borderRadius: "50%" }} />;
 =======
   return (
-    <img src={imageUrl} alt="photo" className="rounded-circle w-100 h-100"  style={{borderRadius: "15rem"}}/>
+    <img src={imageUrl} alt="photo" className="rounded-circle w-100 h-100" />
   );
 >>>>>>> 5a44d826a2b5b38e0bd7800ab8d4a5109fbea777
 };

@@ -64,7 +64,7 @@ export default function UserDashboard() {
         </div>
       </div>
       <div className="right">
-        <div className="heading">Admin DashBoard</div>
+        <div className="heading">User DashBoard</div>
         <div className="main">
           {page === "Application" && <Application />}
           {page === "Profile" && <Profile />}

@@ -1,7 +1,11 @@
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../../auth/helper";
 import { profile } from "./helper";
+import Dp from "../../common/images/sampledp.png";
 import ImageHelper from "./helper/ImageHelper";
+import "./Profile.css";
 
 const Profile = () => {
   const [values, setValues] = useState({
@@ -62,8 +66,8 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <form encType="multipart/form-data" className="container--box">
+    <div className="wrapper">
+      {/*<form encType="multipart/form-data" className="container--box">
         <div className="form--innerBox">
           <div className="formBoxOne">
             <div className="FormOne">
@@ -160,7 +164,68 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </form>
+  </form>*/}
+      <div className="left-container">
+        <div className="profile-image">
+          {/*<ImageHelper user={user} />*/}
+          <img src={Dp} alt="" />
+        </div>
+        <div className="info">
+          <p className="name">Akhilesh Das</p>
+
+          <p className="email">
+            <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon> &nbsp;
+            Akhilesh@gmail.com
+          </p>
+          <div className="phone">
+            <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>&nbsp; 1234567890
+          </div>
+        </div>
+      </div>
+      <div className="right-container">
+        <div className="personal">
+          <div className="head">Personal</div>
+          <div className="p-info">
+            <div>
+              <label>Date Of Birth: </label>
+              <span>21/08/1990</span>
+            </div>
+            <div>
+              <label>Mother's Name: </label>
+              <span>Jane</span>
+            </div>
+            <div>
+              <label>Father's Name: </label>
+              <span>John</span>
+            </div>
+            <div>
+              <label>Address: </label>
+              <span>Kamla Nagar</span>
+            </div>
+          </div>
+        </div>
+        <div className="school">
+          <div className="head">School</div>
+          <div className="p-info">
+            <div>
+              <label>Designation: </label>
+              <span>Teacher</span>
+            </div>
+            <div>
+              <label>Posted School: </label>
+              <span>KV</span>
+            </div>
+            <div>
+              <label>Posted School Location: </label>
+              <span>Delhi</span>
+            </div>
+            <div>
+              <label>Date Of Joining: </label>
+              <span>21/08/2010</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

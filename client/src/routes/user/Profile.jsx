@@ -47,7 +47,7 @@ const Profile = () => {
       .then((data) => {
         console.log("DATA WE GET IS: ", data);
         setValues({
-          name: data.name,
+          name: data.Name,
           phoneNumber: data.phoneNumber,
           gender: data.gender,
           fatherName: data.fatherName,

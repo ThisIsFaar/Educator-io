@@ -159,32 +159,18 @@ exports.acceptUpdateReq = (req, res )=> {
 
 exports.rejectUpdateReq = (req, res )=> {
 
-  Update.deleteMany({userId: req.user}).then((done)=>{
-    console.log(done);
-  }).catch((err)=>{
-    console.log(err);
-  })
 
-  const update = new Update({
-    user: req.user,
-    phoneNumber: req.body.phoneNumber,
-    dateOfJoining: req.body.dateOfJoining,
-    postedSchoolName: req.body.postedSchoolName,
-    postedDesignationName: req.body.postedDesignationName,
-    postedSchoolLocation: req.body.postedSchoolLocation,
-    message: req.body.message,
-  });
-
-  update
-  .save()
-  .then(() => {
+  Update.deleteMany({userId: req.body.userId}, (err, done)=> {
+    if (err) {
+      res.json({
+        status: 400,
+        message: "Failed to Reject"
+      })
+    }
     res.json({
-      message: "Update request submitted!",
       status: 200,
-    });
-
+      message: "Successfully Rejected"
+    })
   })
-  .catch((err) => {
-     console.log("ERROR");
-  });
+
 };

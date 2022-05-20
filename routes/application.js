@@ -33,10 +33,9 @@ router.post(
 
 );
 router.post(
-  "/update-req/reject/",
+  "/update-req/reject/:userId",
   isLogin,
   isAuthenticated,
-  isAuthority,
   rejectUpdateReq
 );
 

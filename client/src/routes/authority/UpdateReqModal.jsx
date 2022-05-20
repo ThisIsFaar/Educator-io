@@ -66,12 +66,29 @@ export default function UpdateReqModal({
       .catch((err) => console.log(err));
   };
 
-  const onReject = (user) => {
-    rejectUpdateReq(user, data)
+  const onReject = () => {
+    rejectUpdateReq(user, token, muser, data)
       .then((data) => {
         if (data.status === 200) {
-          console.log(data.message);
+          toast.success(data.message, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         } else if (data.status === 400) {
+          toast.error(data.message, {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         }
       })
       .catch((err) => console.log(err));

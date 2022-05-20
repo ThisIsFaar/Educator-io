@@ -50,10 +50,6 @@ const Profile = () => {
         console.log("DATA WE GET IS: ", data);
         setValues({
           name: data.Name,
-<<<<<<< HEAD
-=======
-          email:data.email,
->>>>>>> 5a44d826a2b5b38e0bd7800ab8d4a5109fbea777
           phoneNumber: data.phoneNumber,
           gender: data.gender,
           fatherName: data.fatherName,

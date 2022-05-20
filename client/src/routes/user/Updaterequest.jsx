@@ -37,12 +37,12 @@ const UpdateRequest = () => {
   } = values;
 
   const handleChange = (name) => (event) => {
+
     setValues({ ...values, [name]: event.target.value });
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-
     updateReq({
       phoneNumber,
       address,
@@ -51,6 +51,7 @@ const UpdateRequest = () => {
       postedDesignation,
       postedSchoolLocation,
       user,
+      message,
       token,
     })
       .then((data) => {
@@ -66,6 +67,7 @@ const UpdateRequest = () => {
             disabled: true,
             error: {},
             success: true,
+            message: ""
           });
           toast.success(data.message, {
             position: "bottom-center",

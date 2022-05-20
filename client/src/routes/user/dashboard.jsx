@@ -9,15 +9,23 @@ import {
   faUsers,
   faIdBadge,
   faCalendarCheck,
+  faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import logo from "../../common/images/Logo.png";
-import UpdateRequestForm from "./UpdateRequestForm";
 
 export default function UserDashboard() {
   const [page, setpage] = useState("Application");
   return (
     <div className="container">
+      <button style={{ position: "absolute", right: "1rem", top: "1rem" }}>
+        <FontAwesomeIcon
+          className="icons"
+          icon={faSignOut}
+          color="#a4a6b3"
+          size="2x"
+        />
+      </button>
       <div className="sidebar">
         <div className="sidebar" id="sideBar">
           <div className="Logo">
@@ -83,7 +91,6 @@ export default function UserDashboard() {
           {page === "Profile" && <Profile />}
           {page === "Updaterequest" && <UpdateRequest />}
           {/* {page === "UpdateRequestForm" && <UpdateRequestForm />} */}
-
         </div>
       </div>
     </div>

@@ -84,15 +84,7 @@ exports.apply = (req, res) => {
 
 const Update = require("../models/update");
 exports.updateReq = (req, res )=> {
-  console.log(Update);
-  
-  console.log(req.user._id);
-  // res.json({
-    //   status: 200,
-  //   // message: "Sucess",
-  //   // data: req.user,
-  //   userData: req.body,
-  // })
+
   Update.deleteMany({userId: req.user._id}).then((done)=>{
     console.log(done);
   }).catch((err)=>{
@@ -100,13 +92,87 @@ exports.updateReq = (req, res )=> {
   })
 
   const update = new Update({
+    user: req.user,
     userId: req.user._id,
     phoneNumber: req.body.phoneNumber,
     dateOfJoining: req.body.dateOfJoining,
     postedSchoolName: req.body.postedSchoolName,
     postedDesignationName: req.body.postedDesignationName,
     postedSchoolLocation: req.body.postedSchoolLocation,
-    message: req.body.message
+    message: req.body.message,
+  });
+
+  update
+  .save()
+  .then(() => {
+    res.json({
+      message: "Update request submitted!",
+      status: 200,
+    });
+
+  })
+  .catch((err) => {
+     console.log("ERROR");
+  });
+};
+
+
+exports.acceptUpdateReq = (req, res )=> {
+
+  let user = {}
+  if (req.body.phoneNumber !== undefined ) {
+    user.phoneNumber = req.body.phoneNumber
+  }
+  if (req.body.dateOfJoining !== undefined ) {
+    user.dateOfJoining = req.body.dateOfJoining
+  }
+  if (req.body.postedDesignation !== undefined ) {
+    user.postedDesignation = req.body.postedDesignation
+  }
+  if (req.body.postedSchoolLocation !== undefined ) {
+    user.postedSchoolLocation = req.body.postedSchoolLocation
+  }
+  if (req.body.postedSchoolName !== undefined ) {
+    user.postedSchoolName = req.body.postedSchoolName
+  }
+  if (req.body.address !== undefined ) {
+    user.address = req.body.address
+  }
+
+
+  User.findOneAndUpdate({_id: req.body.userId}, user, {new: true}, ( err, done) => {
+    Update.deleteMany({userId: req.body.userId}, (err, done)=> {
+      if (err) {
+        res.json({
+          status: 400,
+          message: "Failed to Update"
+        })
+      }
+      res.json({
+        status: 200,
+        message: "Successfully Accepted Updated"
+      })
+    })
+  } )
+};
+
+
+exports.rejectUpdateReq = (req, res )=> {
+
+  Update.deleteMany({userId: req.user}).then((done)=>{
+    console.log(done);
+  }).catch((err)=>{
+    console.log(err);
+  })
+
+  const update = new Update({
+    user: req.user,
+    phoneNumber: req.body.phoneNumber,
+    dateOfJoining: req.body.dateOfJoining,
+    postedSchoolName: req.body.postedSchoolName,
+    postedDesignationName: req.body.postedDesignationName,
+    postedSchoolLocation: req.body.postedSchoolLocation,
+    message: req.body.message,
   });
 
   update

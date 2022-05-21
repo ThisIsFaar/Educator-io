@@ -9,6 +9,7 @@ const { sendVerificationEmail } = require("./mailer");
 const crypto = require("crypto");
 const { v4: uuidv4 } = require("uuid");
 const user = require("../models/user");
+const update = require("../models/update");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -263,7 +264,7 @@ exports.isAuthenticated = (req, res, next) => {
 exports.isAuthority = (req, res, next) => {
   if (!req.user.authority) {
     return res.status(403).json({
-      error: "your are not ADMIN,chal nikal ab",
+      error: "your are not authority",
     });
   }
   next();
@@ -385,6 +386,14 @@ exports.getAllRecords = (req, res) => {
       res.send(users);
     });
 };
+exports.getAllupdateRequest = (req, res) => {
+  update
+    .find({ verifyStatus: false })
+    .then(function (users) {
+      res.send(users);
+    });
+};
+
 exports.getRecordForVerify = (req, res) => {
   user
     .find({

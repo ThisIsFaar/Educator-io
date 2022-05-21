@@ -17,7 +17,6 @@ import UserDashboard from "./routes/user/dashboard";
 import AuthorityDashboard from "./routes/authority/dashboard";
 import { isAuthenticated } from "./auth/helper";
 import ResetPassword from "./routes/auth/resetPassword/resetPassword";
-import UpdateRequestForm from "./routes/user/UpdateRequestForm";
 //testing
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -30,8 +29,6 @@ root.render(
       <Route path="auth-login" element={<AuthLogin />} />
       <Route path="auth-login-otp" element={<AuthloginOtp />} />
       <Route path="reset-password-form" element={<ResetPassword />} />
-      
-      <Route path="update-request-form" element={UpdateRequestForm} />
 
       <Route
         path="*"

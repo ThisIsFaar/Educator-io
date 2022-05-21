@@ -24,6 +24,17 @@ const Joi = require("joi");
       progress: undefined,
     });
   }
+  if (status.status === "signout") {
+      toast.info("Successully Signout", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+  }
   if (status.status === "error") {
     toast.error("Error in your verification", {
       position: "top-center",

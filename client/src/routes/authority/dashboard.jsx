@@ -26,18 +26,21 @@ export default function UserDashboard() {
   return (
     <div className="container">
       <button
-      onClick={()=>{
-        logout();
-        navigate('/login/?status=signout');
-      }}
+        onClick={() => {
+          logout();
+          navigate("/login/?status=signout");
+        }}
         style={{
           position: "absolute",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           right: "1rem",
           top: "1rem",
-          padding: "1rem",
+          padding: "2rem",
           borderRadius: "1rem",
           backgroundColor: "#224957",
-          cursor: "pointer"
+          cursor: "pointer",
         }}
       >
         <FontAwesomeIcon
@@ -47,7 +50,7 @@ export default function UserDashboard() {
           size="2x"
         />
       </button>
-        <div className="sidebar">
+      <div className="sidebar">
         <div class="sidebar" id="sideBar">
           <div className="Logo">
             <img src={logo} class="logo" />

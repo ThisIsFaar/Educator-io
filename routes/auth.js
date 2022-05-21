@@ -13,6 +13,13 @@ const {
   resetFormSubmit,
   getAllRecords,
   getRecordForVerify,
+<<<<<<< HEAD
+  updateUserVerification,
+  getUserById,
+  rejectUserVerification,
+=======
+  getAllupdateRequest
+>>>>>>> 90e5d6fa75f9c074a07ef3e006aad8d3f31723ef
 } = require("../controllers/auth");
 
 //Register user
@@ -36,7 +43,7 @@ router.post(
   ],
   login
 );
-
+router.param("userId", getUserById);
 //Logout user
 router.get("/logout", logout);
 
@@ -48,8 +55,6 @@ router.post("/verifyotp/:userId/:otp", verifyOtp);
 
 router.post("/resetPassword/:email", resetPassword);
 
-
-
 //Verifying user reset link
 router.get("/resetForm/:userId/:uniqueString", resetForm);
 
@@ -60,6 +65,13 @@ router.get("/resetFormSubmit/:userId/:password/", resetFormSubmit);
 router.get("/verified", verified);
 
 router.get("/authority/records", getAllRecords);
+router.get("/authority/updateRequest", getAllupdateRequest);
 router.get("/authority/verify", getRecordForVerify);
+
+<<<<<<< HEAD
+router.put("/authority/verifyUser/:userId", updateUserVerification);
+router.put("/authority/rejectUser/:userId", rejectUserVerification);
+=======
+>>>>>>> 90e5d6fa75f9c074a07ef3e006aad8d3f31723ef
 
 module.exports = router;

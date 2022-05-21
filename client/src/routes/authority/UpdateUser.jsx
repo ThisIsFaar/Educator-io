@@ -1,6 +1,35 @@
-import React from "react";
+import {
+  faArrowUpWideShort,
+  faFilter,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import { updateRecords } from "./helper";
+import "./recordStyle.css";
+import ImageHelper from "../user/helper/ImageHelper";
+import RecordsModal from "./RecordsModal";
+import UpdateReqModal from "./UpdateReqModal";
+
 
 export default function UpdateUser() {
+  const [users, setusers] = useState([]);
+  const [modal, setmodal] = useState(false);
+  const [muser, setmusers] = useState({});
+  const [udata, setudata] = useState({});
+  const loadAllRecords = () => {
+    updateRecords().then((data) => {
+      if (data.error) {
+      } else {
+        console.log(data);
+        setusers(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadAllRecords();
+  }, []);
+
   return (
     <div>
       <div class="right--outer--layer">
@@ -11,7 +40,6 @@ export default function UpdateUser() {
                 <thead class="table--header">
                   <tr class="table--row">
                     <th class="table--title th--name">Name</th>
-                    <th class="table--title th--phone">Phone</th>
                     <th class="table--title th--email">Email</th>
                     <th class="table--title th--Remark">Remark</th>
                     <th class="table--title th--detail">Detail</th>
@@ -19,54 +47,42 @@ export default function UpdateUser() {
                 </thead>
 
                 <tbody class="table--body">
-                  <tr class="table--row">
-                    <td class="tableData td--name">
-                      <img src="images/user_dark.svg" class="table--svg" />
-                      Jatin Rathore
-                    </td>
-                    <td class="tableData td--phone">7011361886</td>
-                    <td class="tableData td--email">
-                      rathorejatin168@gmail.com
-                    </td>
-                    <td class="tableData td--remark">remark</td>
-                    <td class="tableData td--detail">
-                      <button class="table--btn">Detail and Verify</button>
-                    </td>
-                  </tr>
+                  {
+                    users.map( (user, i) => {
+                      return (
+                      <tr class="table--row">
+                        <td class="tableData td--name">
+                          <ImageHelper user={user.user} />
+                          {user.user.Name}
+                        </td>
+                        <td class="tableData td--email">
+                          {user.user.email}
+                        </td>
+                        <td class="tableData td--remark">{user.message}</td>
+                        <td class="tableData td--detail">
+                          <button class="table--btn"   onClick={() => {
+                              setmodal(true);
+                              setmusers(user.user);
+                              setudata(user);
+                              
+                            }} >Detail and Verify</button>
+                        </td>
+                      </tr>
+                      )
+                    } )
+                  }
 
-                  <tr class="table--row">
-                    <td class="tableData td--name">
-                      <img src="images/user_dark.svg" class="table--svg" />
-                      Jatin Rathore
-                    </td>
-                    <td class="tableData td--phone">7011361886</td>
-                    <td class="tableData td--email">
-                      rathorejatin168@gmail.com
-                    </td>
-                    <td class="tableData td--remark">remark</td>
-                    <td class="tableData td--detail">
-                      <button class="table--btn">Detail and Verify</button>
-                    </td>
-                  </tr>
-
-                  <tr class="table--row">
-                    <td class="tableData td--name">
-                      <img src="images/user_dark.svg" class="table--svg" />
-                      Jatin Rathore
-                    </td>
-                    <td class="tableData td--phone">7011361886</td>
-                    <td class="tableData td--email">
-                      rathorejatin168@gmail.com
-                    </td>
-                    <td class="tableData td--remark">remark</td>
-                    <td class="tableData td--detail">
-                      <button class="table--btn">Detail and Verify</button>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
+          <UpdateReqModal
+            onClose={() => setmodal(false)}
+            muser={muser}
+            modal={modal}
+            setmodal={setmodal}
+            updateData={udata}
+            />
         </div>
       </div>
     </div>

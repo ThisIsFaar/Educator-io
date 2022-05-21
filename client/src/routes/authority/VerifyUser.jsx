@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ImageHelper from "../user/helper/ImageHelper";
 import { verificationRecords } from "./helper";
-
-import "./verifyStyle.css";
+import VerifyModal from "./VerifyModal";
+import "./recordModal.css";
 
 export default function VerifyUser() {
   const [users, setusers] = useState([]);
+  const [modal, setmodal] = useState(false);
+  const [muser, setmusers] = useState({});
+  const [reload, setReload] = useState(false);
+  function refresh() {
+    setReload(!reload);
+  }
   const loadAllRecords = () => {
     verificationRecords().then((data) => {
       if (data.error) {
@@ -16,7 +22,8 @@ export default function VerifyUser() {
   };
   useEffect(() => {
     loadAllRecords();
-  }, []);
+    console.log(reload);
+  }, [reload]);
   return (
     <div>
       <div class="right--outer--layer">
@@ -39,14 +46,25 @@ export default function VerifyUser() {
                       <tr class="table--row">
                         <td class="tableData td--name">
                           <ImageHelper user={user} />
-                          Sumit Rawat
+                          {user.Name}
                         </td>
-                        <td class="tableData td--post">SDE</td>
+                        <td class="tableData td--post">
+                          {user.postedDesignationName}
+                        </td>
                         <td class="tableData td--gender">{user.gender}</td>
                         <td class="tableData td--phone">{user.phoneNumber}</td>
                         <td class="tableData td--email">{user.email}</td>
                         <td class="tableData td--detail">
-                          <button class="table--btn">Detail</button>
+                          {" "}
+                          <button
+                            class="table--btn"
+                            onClick={() => {
+                              setmodal(true);
+                              setmusers(user);
+                            }}
+                          >
+                            Detail
+                          </button>
                         </td>
                       </tr>
                     );
@@ -55,6 +73,13 @@ export default function VerifyUser() {
               </table>
             </div>
           </div>
+          <VerifyModal
+            onClose={() => setmodal(false)}
+            user={muser}
+            modal={modal}
+            setmodal={setmodal}
+            refresh={refresh}
+          />
         </div>
       </div>
     </div>

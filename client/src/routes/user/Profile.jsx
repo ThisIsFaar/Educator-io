@@ -20,7 +20,7 @@ const Profile = () => {
     dateOfBirth: "",
     dateOfJoining: "",
     postedSchoolName: "",
-    postedDesignation: "",
+    postedDesignationName: "",
     postedSchoolLocation: "",
     address: "",
   });
@@ -35,7 +35,7 @@ const Profile = () => {
     dateOfBirth,
     dateOfJoining,
     postedSchoolName,
-    postedDesignation,
+    postedDesignationName,
     postedSchoolLocation,
     address,
     profilePhoto,
@@ -50,10 +50,7 @@ const Profile = () => {
         console.log("DATA WE GET IS: ", data);
         setValues({
           name: data.Name,
-<<<<<<< HEAD
-=======
-          email:data.email,
->>>>>>> 5a44d826a2b5b38e0bd7800ab8d4a5109fbea777
+          email: data.email,
           phoneNumber: data.phoneNumber,
           gender: data.gender,
           fatherName: data.fatherName,
@@ -62,7 +59,7 @@ const Profile = () => {
           dateOfBirth: data.DOB,
           dateOfJoining: data.dateOfJoining,
           postedSchoolName: data.postedSchoolName,
-          postedDesignation: data.postedDesignation,
+          postedDesignationName: data.postedDesignationName,
           postedSchoolLocation: data.postedSchoolLocation,
           address: data.address,
           profilePhoto: data.profilePhoto,
@@ -75,7 +72,7 @@ const Profile = () => {
     <div className="wrapper">
       <div className="left-container">
         <div className="profile-image">
-           <ImageHelper user={user} />
+          <ImageHelper user={user} />
         </div>
         <div className="info">
           <p className="name">{name}</p>
@@ -85,7 +82,8 @@ const Profile = () => {
             {email}
           </p>
           <div className="phone">
-            <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>&nbsp; 1234567890
+            <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>&nbsp;{" "}
+            {phoneNumber}
           </div>
         </div>
       </div>
@@ -116,7 +114,7 @@ const Profile = () => {
           <div className="p-info">
             <div>
               <label>Designation: </label>
-              <span>{postedDesignation}</span>
+              <span>{postedDesignationName}</span>
             </div>
             <div>
               <label>Posted School: </label>

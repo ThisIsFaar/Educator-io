@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userUpdate = new Schema({
-  userId: {
+  user: {
+    type: Object,
+    trim: true,
+  },
+  userId:{
     type: String,
     trim: true,
   },

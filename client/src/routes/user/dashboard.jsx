@@ -9,15 +9,43 @@ import {
   faUsers,
   faIdBadge,
   faCalendarCheck,
+  faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import logo from "../../common/images/Logo.png";
-import UpdateRequestForm from "./UpdateRequestForm";
+import { logout } from "../../auth/helper";
+import {  useNavigate } from "react-router-dom";
+
+
 
 export default function UserDashboard() {
+  let navigate = useNavigate();
+
   const [page, setpage] = useState("Application");
   return (
     <div className="container">
+      <button
+      onClick={()=>{
+        logout();
+        navigate('/login/?status=signout');
+      }}
+        style={{
+          position: "absolute",
+          right: "1rem",
+          top: "1rem",
+          padding: "1rem",
+          borderRadius: "1rem",
+          backgroundColor: "#224957",
+          cursor: "pointer"
+        }}
+      >
+        <FontAwesomeIcon
+          className="icons"
+          icon={faSignOut}
+          color="white"
+          size="2x"
+        />
+      </button>
       <div className="sidebar">
         <div className="sidebar" id="sideBar">
           <div className="Logo">
@@ -83,7 +111,6 @@ export default function UserDashboard() {
           {page === "Profile" && <Profile />}
           {page === "Updaterequest" && <UpdateRequest />}
           {/* {page === "UpdateRequestForm" && <UpdateRequestForm />} */}
-
         </div>
       </div>
     </div>

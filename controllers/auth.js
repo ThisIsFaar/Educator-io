@@ -9,6 +9,7 @@ const { sendVerificationEmail } = require("./mailer");
 const crypto = require("crypto");
 const { v4: uuidv4 } = require("uuid");
 const user = require("../models/user");
+const update = require("../models/update");
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -263,7 +264,7 @@ exports.isAuthenticated = (req, res, next) => {
 exports.isAuthority = (req, res, next) => {
   if (!req.user.authority) {
     return res.status(403).json({
-      error: "your are not ADMIN,chal nikal ab",
+      error: "your are not authority",
     });
   }
   next();
@@ -385,6 +386,14 @@ exports.getAllRecords = (req, res) => {
       res.send(users);
     });
 };
+exports.getAllupdateRequest = (req, res) => {
+  update
+    .find({ verifyStatus: false })
+    .then(function (users) {
+      res.send(users);
+    });
+};
+
 exports.getRecordForVerify = (req, res) => {
   user
     .find({
@@ -394,4 +403,46 @@ exports.getRecordForVerify = (req, res) => {
     .then(function (users) {
       res.send(users);
     });
+};
+
+exports.updateUserVerification = (req, res) => {
+  console.log(req.user._id);
+  User.findByIdAndUpdate(
+    { _id: req.user._id },
+    { $set: { applicationVerificationStatus: "1" } },
+    (err, user) => {
+      if (err) {
+        return res.status(400).json({
+          error: "you r not auth. to update",
+        });
+      }
+      res.json(user);
+    }
+  );
+};
+exports.rejectUserVerification = (req, res) => {
+  console.log(req.user._id);
+  User.findByIdAndUpdate(
+    { _id: req.user._id },
+    { $set: { applicationVerificationStatus: "4" } },
+    (err, user) => {
+      if (err) {
+        return res.status(400).json({
+          error: "you r not auth. to update",
+        });
+      }
+      res.json(user);
+    }
+  );
+};
+exports.getUserById = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "No user found",
+      });
+    }
+    req.user = user;
+    next();
+  });
 };

@@ -14,9 +14,7 @@ import {
 import {} from "@fortawesome/free-regular-svg-icons";
 import logo from "../../common/images/Logo.png";
 import { logout } from "../../auth/helper";
-import {  useNavigate } from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom";
 
 export default function UserDashboard() {
   let navigate = useNavigate();
@@ -25,18 +23,21 @@ export default function UserDashboard() {
   return (
     <div className="container">
       <button
-      onClick={()=>{
-        logout();
-        navigate('/login/?status=signout');
-      }}
+        onClick={() => {
+          logout();
+          navigate("/login/?status=signout");
+        }}
         style={{
           position: "absolute",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           right: "1rem",
           top: "1rem",
-          padding: "1rem",
+          padding: "2rem",
           borderRadius: "1rem",
           backgroundColor: "#224957",
-          cursor: "pointer"
+          cursor: "pointer",
         }}
       >
         <FontAwesomeIcon

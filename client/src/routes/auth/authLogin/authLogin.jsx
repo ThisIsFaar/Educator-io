@@ -69,9 +69,9 @@ export default function Authlogin() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-              });  
+              });
             }
-          } else if(data.status === 400){
+          } else if (data.status === 400) {
             toast.error(data.message, {
               position: "bottom-center",
               autoClose: 5000,
@@ -91,7 +91,7 @@ export default function Authlogin() {
     <div>
       <div className="container">
         <div className="form">
-        <ToastContainer
+          <ToastContainer
             position="top-center"
             autoClose={5000}
             hideProgressBar={false}
@@ -102,10 +102,12 @@ export default function Authlogin() {
             draggable
             pauseOnHover
           />
-          <h1 className="heading" style={{fontSize:"4rem"}}>Authority</h1>
+          <h1 className="heading" style={{ fontSize: "4rem" }}>
+            Authority
+          </h1>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <Link to="/login" style={{textDecoration:"none"}}>
-              <div className="form-login-type" style={{padding: "2rem 3rem"}}>
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <div className="form-login-type" style={{ padding: "2rem 3rem" }}>
                 <FontAwesomeIcon icon={faUser} size="9x" color="#224957" />
                 <h3
                   className="heading--secondary teacher"
@@ -197,7 +199,7 @@ export default function Authlogin() {
             className="shape-fill"
           ></path>
         </svg>
-          </div>*/}
+      </div>
     </div>
   );
 }

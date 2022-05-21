@@ -59,7 +59,7 @@ const userSchema = new Schema({
   applicationVerificationStatus: {
     type: String,
     default: "0",
-    enum: ["0", "1", "2", "3", "42", "43"],
+    enum: ["0", "1", "2", "3", "4", "43"],
     // application verification status: 0,1,2,3, 4x
     // 0: account created, not submitted application form
     // 1: application submitted to verify by authority 1

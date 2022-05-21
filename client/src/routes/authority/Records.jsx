@@ -13,6 +13,9 @@ export default function Records() {
   const [users, setusers] = useState([]);
   const [modal, setmodal] = useState(false);
   const [muser, setmusers] = useState({});
+  const [search, setsearch] = useState("");
+  const keys = ["email", "currentDesignationPost"];
+  console.log(users.filter((user) => user.email.includes("A")));
   const loadAllRecords = () => {
     records().then((data) => {
       if (data.error) {
@@ -28,15 +31,6 @@ export default function Records() {
   return (
     <div>
       <div class="right--outer--layer">
-        {/*<div class="header">
-          <img src="images/back-button.svg" class="header--back--btn" />
-          <p class="header--title">Admin Dashboard</p>
-          <p class="header--sub--title">Dr. Neeraj Garg</p>
-          <img src="images/user_dark.svg" class="header--logo" />
-          <button class="sidebar--btn" id="toggleBtn">
-            <img src="images/sidebar-button.svg" />
-          </button>
-  </div>*/}
         <div class="container--box">
           <div class="upper--bar">
             <span class="upper--bar--title">Teacher's Records</span>
@@ -45,6 +39,9 @@ export default function Records() {
                 type="text"
                 class="upper--bar--searchBox"
                 placeholder="Search"
+                onChange={(event) => {
+                  setsearch(event.target.value);
+                }}
               />
             </span>
             <span class="upperbar--sortBy--box">
@@ -129,33 +126,37 @@ export default function Records() {
                 </thead>
 
                 <tbody class="table--body">
-                  {users.map((user, i) => {
-                    return (
-                      <tr class="table--row">
-                        <td class="tableData td--name">
-                          <ImageHelper user={user} />
-                          {user.Name}
-                        </td>
-                        <td class="tableData td--post">
-                          {user.currentDesignationPost}
-                        </td>
-                        <td class="tableData td--gender">{user.gender}</td>
-                        <td class="tableData td--phone">{user.phoneNumber}</td>
-                        <td class="tableData td--email">{user.email}</td>
-                        <td class="tableData td--detail">
-                          <button
-                            class="table--btn"
-                            onClick={() => {
-                              setmodal(true);
-                              setmusers(user);
-                            }}
-                          >
-                            Detail
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {users
+                    .filter((user) => user.email.toLowerCase().includes(search))
+                    .map((user) => {
+                      return (
+                        <tr class="table--row" key={user._id}>
+                          <td class="tableData td--name">
+                            <ImageHelper user={user} />
+                            {user.Name}
+                          </td>
+                          <td class="tableData td--post">
+                            {user.currentDesignationPost}
+                          </td>
+                          <td class="tableData td--gender">{user.gender}</td>
+                          <td class="tableData td--phone">
+                            {user.phoneNumber}
+                          </td>
+                          <td class="tableData td--email">{user.email}</td>
+                          <td class="tableData td--detail">
+                            <button
+                              class="table--btn"
+                              onClick={() => {
+                                setmodal(true);
+                                setmusers(user);
+                              }}
+                            >
+                              Detail
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
             </div>

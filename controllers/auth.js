@@ -395,3 +395,45 @@ exports.getRecordForVerify = (req, res) => {
       res.send(users);
     });
 };
+
+exports.updateUserVerification = (req, res) => {
+  console.log(req.user._id);
+  User.findByIdAndUpdate(
+    { _id: req.user._id },
+    { $set: { applicationVerificationStatus: "1" } },
+    (err, user) => {
+      if (err) {
+        return res.status(400).json({
+          error: "you r not auth. to update",
+        });
+      }
+      res.json(user);
+    }
+  );
+};
+exports.rejectUserVerification = (req, res) => {
+  console.log(req.user._id);
+  User.findByIdAndUpdate(
+    { _id: req.user._id },
+    { $set: { applicationVerificationStatus: "4" } },
+    (err, user) => {
+      if (err) {
+        return res.status(400).json({
+          error: "you r not auth. to update",
+        });
+      }
+      res.json(user);
+    }
+  );
+};
+exports.getUserById = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "No user found",
+      });
+    }
+    req.user = user;
+    next();
+  });
+};

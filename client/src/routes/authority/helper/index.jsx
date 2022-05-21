@@ -17,3 +17,29 @@ export const verificationRecords = () => {
     })
     .catch((err) => console.log(err));
 };
+
+export const verifyUser = (userId) => {
+  return fetch(`${API}/authority/verifyUser/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const rejectUser = (userId) => {
+  return fetch(`${API}/authority/rejectUser/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};

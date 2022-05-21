@@ -1,17 +1,27 @@
 import React from "react";
-import "./recordModal.css";
+import "./Verifymodal.css";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ImageHelper from "../user/helper/ImageHelper";
+import { verifyUser, rejectUser } from "./helper";
 
-export default function RecordsModal({ user, modal, setmodal }) {
+export default function VerifyModal({ user, modal, setmodal, refresh }) {
+  const onAccept = () => {
+    verifyUser(user._id).then((data) => {
+      console.log(data);
+    });
+  };
+
+  const onReject = () => {
+    rejectUser(user._id).then((data) => {
+      console.log(data);
+    });
+  };
+
   return (
-    <div
-      className={"Recordsmodal " + (modal && "active")}
-      onClick={() => setmodal(!modal)}
-    >
-      <div className="Recordswrapper">
-        <div className="Record-left">
+    <div className={"verifymodal " + (modal && "active")}>
+      <div className="Verifywrapper" onClick={() => setmodal(!modal)}>
+        <div className="Verify-left">
           <div className="profile-image">
             <ImageHelper user={user} />
           </div>
@@ -28,7 +38,7 @@ export default function RecordsModal({ user, modal, setmodal }) {
             </div>
           </div>
         </div>
-        <div className="Record-right">
+        <div className="Verify-right">
           <div className="personal">
             <div className="head">Personal</div>
             <div className="p-info">
@@ -74,6 +84,26 @@ export default function RecordsModal({ user, modal, setmodal }) {
                 <span>{user.dateOfJoining}</span>
               </div>
             </div>
+          </div>
+          <div className="buttons">
+            <button
+              className="Accept"
+              onClick={() => {
+                onAccept();
+                refresh();
+              }}
+            >
+              Accept
+            </button>
+            <button
+              className="Reject"
+              onClick={() => {
+                onReject();
+                refresh();
+              }}
+            >
+              Reject
+            </button>
           </div>
         </div>
       </div>

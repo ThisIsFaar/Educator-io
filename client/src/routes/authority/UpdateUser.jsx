@@ -10,7 +10,6 @@ import ImageHelper from "../user/helper/ImageHelper";
 import RecordsModal from "./RecordsModal";
 import UpdateReqModal from "./UpdateReqModal";
 
-
 export default function UpdateUser() {
   const [users, setusers] = useState([]);
   const [modal, setmodal] = useState(false);
@@ -47,31 +46,31 @@ export default function UpdateUser() {
                 </thead>
 
                 <tbody class="table--body">
-                  {
-                    users.map( (user, i) => {
-                      return (
+                  {users.map((user, i) => {
+                    return (
                       <tr class="table--row">
                         <td class="tableData td--name">
                           <ImageHelper user={user.user} />
                           {user.user.Name}
                         </td>
-                        <td class="tableData td--email">
-                          {user.user.email}
-                        </td>
+                        <td class="tableData td--email">{user.user.email}</td>
                         <td class="tableData td--remark">{user.message}</td>
                         <td class="tableData td--detail">
-                          <button class="table--btn"   onClick={() => {
+                          <button
+                            class="table--btn"
+                            onClick={() => {
                               setmodal(true);
                               setmusers(user.user);
                               setudata(user);
-                              
-                            }} >Detail and Verify</button>
+                            }}
+                            style={{ width: "13.6rem" }}
+                          >
+                            Detail and Verify
+                          </button>
                         </td>
                       </tr>
-                      )
-                    } )
-                  }
-
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -82,7 +81,7 @@ export default function UpdateUser() {
             modal={modal}
             setmodal={setmodal}
             updateData={udata}
-            />
+          />
         </div>
       </div>
     </div>

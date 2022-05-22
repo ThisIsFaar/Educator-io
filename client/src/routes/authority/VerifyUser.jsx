@@ -62,8 +62,9 @@ export default function VerifyUser() {
                               setmodal(true);
                               setmusers(user);
                             }}
+                            style={{ width: "13.6rem" }}
                           >
-                            Detail
+                            Detail And Verify
                           </button>
                         </td>
                       </tr>

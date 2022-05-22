@@ -86,13 +86,13 @@ const Update = require("../models/update");
 
 exports.updateReq = (req, res )=> {
 
-  console.log(req.body);
-
   Update.deleteMany({userId: req.user._id}).then((done)=>{
     console.log(done);
   }).catch((err)=>{
     console.log(err);
   })
+
+
 
   const update = new Update({
     user: req.user,
@@ -130,8 +130,8 @@ exports.acceptUpdateReq = (req, res )=> {
   if (req.body.dateOfJoining !== undefined ) {
     user.dateOfJoining = req.body.dateOfJoining
   }
-  if (req.body.postedDesignation !== undefined ) {
-    user.postedDesignation = req.body.postedDesignation
+  if (req.body.postedDesignationName !== undefined ) {
+    user.postedDesignationName = req.body.postedDesignationName
   }
   if (req.body.postedSchoolLocation !== undefined ) {
     user.postedSchoolLocation = req.body.postedSchoolLocation
@@ -142,6 +142,7 @@ exports.acceptUpdateReq = (req, res )=> {
   if (req.body.address !== undefined ) {
     user.address = req.body.address
   }
+  console.log(req.body);
 
 
   User.findOneAndUpdate({_id: req.body.userId}, user, {new: true}, ( err, done) => {

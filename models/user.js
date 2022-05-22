@@ -59,13 +59,12 @@ const userSchema = new Schema({
   applicationVerificationStatus: {
     type: String,
     default: "0",
-    enum: ["0", "1", "2", "3", "4", "43"],
+    enum: ["0", "1", "2", "4"],
     // application verification status: 0,1,2,3, 4x
     // 0: account created, not submitted application form
-    // 1: application submitted to verify by authority 1
-    // 2: verify by 1st level authority, fwd to 2nd level
-    // 3: verify by 2nd level, teacher is verified
-    // 4x: rejected by x level
+    // 1: application submitted for verification
+    // 2: application verify
+    // 4: application rejected
   },
   // yearOfSelection: {
   //   type: String,

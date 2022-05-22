@@ -31,12 +31,12 @@ const application  = require("./routes/application");
 app.use("/api", authRoutes);
 app.use("/api", application);
 
-//error handling for express-jwt authentication
-app.use( (err, req, res, next) =>  {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401).send('invalid token...');
-  }
-});
+// error handling for express-jwt authentication
+// app.use( (err, req, res, next) =>  {
+//   if (err.name === 'UnauthorizedError') {
+//     res.status(401).send('invalid token...');
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`Backend is running at port number ${port} ✅`);

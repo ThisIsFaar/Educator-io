@@ -14,7 +14,7 @@ const Joi = require("joi");
 const { user, token } = isAuthenticated();
 const Application = () => {
   const [values, setValues] = useState({
-    name: "",
+    Name: "",
     profilePhoto: "",
     phoneNumber: "",
     gender: "",
@@ -33,7 +33,7 @@ const Application = () => {
   });
   const {
     error,
-    name,
+    Name,
     phoneNumber,
     gender,
     fatherName,
@@ -49,18 +49,18 @@ const Application = () => {
     disabled,
   } = values;
   const schema = Joi.object({
-    name: Joi.string().min(4).max(20).required(),
+    Name: Joi.string().min(4).max(20).required(),
     phoneNumber: Joi.string().min(10).max(20).required(),
     gender: Joi.string().min(4).max(20).required(),
     fatherName: Joi.string().min(4).max(20).required(),
     motherName: Joi.string().min(4).max(20).required(),
     spouse: Joi.string().min(4).max(20).required(),
-    dateOfBirth: Joi.string().min(6).max(70).required(),
-    dateOfJoining: Joi.string().min(6).max(70).required(),
-    postedSchoolName: Joi.string().min(6).max(70).required(),
-    postedDesignation: Joi.string().min(6).max(70).required(),
-    postedSchoolLocation: Joi.string().min(6).max(70).required(),
-    address: Joi.string().min(15).max(150).required(),
+    dateOfBirth: Joi.string().min(4).max(70).required(),
+    dateOfJoining: Joi.string().min(4).max(70).required(),
+    postedSchoolName: Joi.string().min(4).max(70).required(),
+    postedDesignation: Joi.string().min(4).max(70).required(),
+    postedSchoolLocation: Joi.string().min(4).max(70).required(),
+    address: Joi.string().min(4).max(150).required(),
   });
 
   const handleChange = (name) => (event) => {
@@ -74,7 +74,7 @@ const Application = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     const { error } = schema.validate({
-      name,
+      Name,
       phoneNumber,
       gender,
       fatherName,
@@ -102,26 +102,26 @@ const Application = () => {
       setValues({ ...values, error: error });
     } else {
       const formData = new FormData();
-      formData.append("name", name);
+      formData.append("Name", Name);
       formData.append("phoneNumber", phoneNumber);
       formData.append("gender", gender);
       formData.append("fatherName", fatherName);
       formData.append("motherName", motherName);
       formData.append("spouse", spouse);
-      formData.append("dateOfBirth", dateOfBirth);
+      formData.append("DOB", dateOfBirth);
       formData.append("dateOfJoining", dateOfJoining);
       formData.append("postedSchoolName", postedSchoolName);
-      formData.append("postedDesignation", postedDesignation);
+      formData.append("postedDesignationName", postedDesignation);
       formData.append("postedSchoolLocation", postedSchoolLocation);
       formData.append("address", address);
       formData.append("profilePhoto", profilePhoto);
-      console.log(profilePhoto);
+      console.log(user);
       application(user._id, token, formData)
         .then((data) => {
           console.log(data);
           if (data.status === 200) {
             setValues({
-              name: "",
+              Name: "",
               phoneNumber: "",
               gender: "",
               fatherName: "",
@@ -185,8 +185,8 @@ const Application = () => {
                 <label className="form--label">Name</label>
                 <input
                   className="form--input"
-                  onChange={handleChange("name")}
-                  value={name}
+                  onChange={handleChange("Name")}
+                  value={Name}
                   type="text"
                 />
               </div>

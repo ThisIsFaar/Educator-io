@@ -379,7 +379,7 @@ exports.getAllRecords = (req, res) => {
   user
     .find({
       authority: "false",
-      applicationVerificationStatus: "1",
+      applicationVerificationStatus: "2",
       verified: "true",
     })
     .then(function (users) {
@@ -398,7 +398,7 @@ exports.getRecordForVerify = (req, res) => {
   user
     .find({
       authority: "false",
-      applicationVerificationStatus: "0",
+      applicationVerificationStatus: "1",
     })
     .then(function (users) {
       res.send(users);
@@ -409,7 +409,7 @@ exports.updateUserVerification = (req, res) => {
   console.log(req.user._id);
   User.findByIdAndUpdate(
     { _id: req.user._id },
-    { $set: { applicationVerificationStatus: "1" } },
+    { $set: { applicationVerificationStatus: "2" } },
     (err, user) => {
       if (err) {
         return res.status(400).json({

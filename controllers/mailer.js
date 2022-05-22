@@ -28,7 +28,7 @@ transporter.verify((err, success) => {
 });
 
 exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
-  const URL = "https://educator-io.herokuapp.com/";
+  const URL = "http://localhost:5000/";
   var mailOptions = {};
   if (authority) {
     const otp = `${Math.floor(1000 + Math.random() * 9000)}`;

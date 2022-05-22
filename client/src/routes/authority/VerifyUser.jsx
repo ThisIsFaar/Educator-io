@@ -16,6 +16,7 @@ export default function VerifyUser() {
     verificationRecords().then((data) => {
       if (data.error) {
       } else {
+        console.log('updated');
         setusers(data);
       }
     });

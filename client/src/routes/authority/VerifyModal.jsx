@@ -89,8 +89,10 @@ export default function VerifyModal({ user, modal, setmodal, refresh }) {
             <button
               className="Accept"
               onClick={() => {
-                onAccept();
-                refresh();
+                onAccept()
+                setTimeout(()=>{
+                  refresh()
+                },1000)
               }}
             >
               Accept
@@ -99,7 +101,9 @@ export default function VerifyModal({ user, modal, setmodal, refresh }) {
               className="Reject"
               onClick={() => {
                 onReject();
-                refresh();
+                setTimeout(()=>{
+                  refresh()
+                },1000)
               }}
             >
               Reject

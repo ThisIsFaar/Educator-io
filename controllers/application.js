@@ -99,6 +99,7 @@ exports.updateReq = (req, res )=> {
     postedSchoolName: req.body.postedSchoolName,
     postedDesignationName: req.body.postedDesignationName,
     postedSchoolLocation: req.body.postedSchoolLocation,
+    address: req.body.address,
     message: req.body.message,
   });
 

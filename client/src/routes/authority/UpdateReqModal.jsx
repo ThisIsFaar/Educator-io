@@ -23,8 +23,8 @@ export default function UpdateReqModal({
   if (updateData.dateOfJoining !== "") {
     data.dateOfJoining = updateData.dateOfJoining;
   }
-  if (updateData.postedDesignation !== "") {
-    data.postedDesignation = updateData.postedDesignation;
+  if (updateData.postedDesignationName !== "") {
+    data.postedDesignationName = updateData.postedDesignationName;
   }
   if (updateData.postedSchoolLocation !== "") {
     data.postedSchoolLocation = updateData.postedSchoolLocation;
@@ -151,8 +151,8 @@ export default function UpdateReqModal({
               <div>
                 <span>Posted Designation</span>:{" "}
                 <span>
-                  {updateData.postedDesignation
-                    ? updateData.postedDesignation
+                  {updateData.postedDesignationName
+                    ? updateData.postedDesignationName
                     : "No Updates Required"}
                 </span>
               </div>

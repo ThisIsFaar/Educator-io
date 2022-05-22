@@ -83,7 +83,10 @@ exports.apply = (req, res) => {
 };
 
 const Update = require("../models/update");
+
 exports.updateReq = (req, res )=> {
+
+  console.log(req.body);
 
   Update.deleteMany({userId: req.user._id}).then((done)=>{
     console.log(done);
@@ -97,7 +100,7 @@ exports.updateReq = (req, res )=> {
     phoneNumber: req.body.phoneNumber,
     dateOfJoining: req.body.dateOfJoining,
     postedSchoolName: req.body.postedSchoolName,
-    postedDesignationName: req.body.postedDesignationName,
+    postedDesignationName: req.body.postedDesignation,
     postedSchoolLocation: req.body.postedSchoolLocation,
     address: req.body.address,
     message: req.body.message,

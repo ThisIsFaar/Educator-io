@@ -18,6 +18,7 @@ export const updateRecords = () => {
     .catch((err) => console.log(err));
 };
 export const acceptUpdateReq = (user, token, muser, updateData) => {
+  console.log(updateData);
   return fetch(`${API}/update-req/accept/${user.id}`, {
     method: "POST",
     headers: {

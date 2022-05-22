@@ -2,6 +2,7 @@ import { API } from "../../../backend";
 
 
 export const updateReq = (data) => {
+  console.log(data);
     return fetch(`${API}/update-req/${data.user._id}`, {
       method: "POST",
       headers: {

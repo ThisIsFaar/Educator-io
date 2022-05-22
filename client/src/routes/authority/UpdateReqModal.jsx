@@ -37,6 +37,8 @@ export default function UpdateReqModal({
   }
   data.userId = muser._id;
 
+  console.log(data);
+
   // user.data= data;
   const onAccept = () => {
     acceptUpdateReq(user, token, muser, data)

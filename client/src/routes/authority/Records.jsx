@@ -15,7 +15,7 @@ export default function Records() {
   const [muser, setmusers] = useState({});
   const [search, setsearch] = useState("");
   const keys = ["email", "currentDesignationPost"];
-  console.log(users.filter((user) => user.email.includes("A")));
+
   const loadAllRecords = () => {
     records().then((data) => {
       if (data.error) {
@@ -127,7 +127,11 @@ export default function Records() {
 
                 <tbody class="table--body">
                   {users
-                    .filter((user) => user.email.toLowerCase().includes(search))
+                    .filter((user) =>
+                      keys.some((key) =>
+                        user[key].toLowerCase().includes(search)
+                      )
+                    )
                     .map((user) => {
                       return (
                         <tr class="table--row" key={user._id}>

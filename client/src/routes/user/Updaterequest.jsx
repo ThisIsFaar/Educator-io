@@ -37,7 +37,6 @@ const UpdateRequest = () => {
   } = values;
 
   const handleChange = (name) => (event) => {
-
     setValues({ ...values, [name]: event.target.value });
   };
 
@@ -67,7 +66,7 @@ const UpdateRequest = () => {
             disabled: true,
             error: {},
             success: true,
-            message: ""
+            message: "",
           });
           toast.success(data.message, {
             position: "bottom-center",
@@ -229,7 +228,7 @@ const UpdateRequest = () => {
                       value={postedSchoolLocation}
                       type="text"
                     />
-                    <label className="form--label">Data Of Joining</label>
+                    <label className="form--label">Date Of Joining</label>
                     <input
                       className="form--input "
                       onChange={handleChange("dateOfJoining")}
@@ -261,24 +260,24 @@ const UpdateRequest = () => {
             </div>
           </div>
         </div>
-          <div className="input--box" style={{margin:"5rem"}}>
-            <label className="form--label" >Remarks/Message</label>
-            {/* <input
+        <div className="input--box" style={{ margin: "5rem" }}>
+          <label className="form--label">Remarks/Message</label>
+          {/* <input
               className="form--input "
               onChange={handleChange("message")}
               value={message}
               type="text"
               style={{padding:"5rem"}}
             /> */}
-            <textarea
-              className="form--textarea"
-              value={message}
-              style={{
-                width: "25rem",
-              }}
-              onChange={handleChange("message")}
-            ></textarea>
-          </div>
+          <textarea
+            className="form--textarea"
+            value={message}
+            style={{
+              width: "25rem",
+            }}
+            onChange={handleChange("message")}
+          ></textarea>
+        </div>
         <button
           type="submit"
           name="Login"

@@ -146,7 +146,7 @@ exports.verify = (req, resp) => {
                       //   message: 'SUCCESSFULLY VERIFIED'
                       // })
                       resp.redirect(
-                        `http://localhost:5000/login?status=verified`
+                        `http://localhost:3000/login?status=verified`
                       );
                     });
                   })
@@ -156,7 +156,7 @@ exports.verify = (req, resp) => {
               } else {
                 let message = "Invalid details ";
                 resp.redirect(
-                  `http://localhost:5000/login?status=error`
+                  `http://localhost:3000/login?status=error`
                 );
               }
             })
@@ -166,13 +166,13 @@ exports.verify = (req, resp) => {
         }
       } else {
         let message = "details does not exist or already verified";
-        resp.redirect(`http://localhost:5000/login?status=error`);
+        resp.redirect(`http://localhost:3000/login?status=error`);
       }
     })
     .catch((err) => {
       console.log(err);
       let message = "no record found with your provided details";
-      res.redirect(`http://localhost:5000/login?status=error`);
+      res.redirect(`http://localhost:3000/login?status=error`);
     });
 };
 
@@ -324,7 +324,7 @@ exports.resetForm = (req, res) => {
                   .then(() => {
                     UserVerification.deleteMany({ userId }).then(() => {
                       res.redirect(
-                        `http://localhost:5000/reset-password-form/?id=${userId}`
+                        `http://localhost:3000/reset-password-form/?id=${userId}`
                       );
                     });
                   })

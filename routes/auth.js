@@ -61,10 +61,12 @@ router.get("/resetFormSubmit/:userId/:password/", resetFormSubmit);
 //User redirection after particular verification status
 router.get("/verified", verified);
 
+//Showing Records Routes
 router.get("/authority/records", getAllRecords);
 router.get("/authority/updateRequest", getAllupdateRequest);
 router.get("/authority/verify", getRecordForVerify);
 
+//User Verification Routes
 router.put("/authority/verifyUser/:userId", updateUserVerification);
 router.put("/authority/rejectUser/:userId", rejectUserVerification);
 

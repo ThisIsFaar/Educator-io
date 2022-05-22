@@ -1,5 +1,5 @@
 import React from "react";
-import "./recordModal.css";
+import "./updateModal.css";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ImageHelper from "../user/helper/ImageHelper";
@@ -50,7 +50,7 @@ export default function UpdateReqModal({
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+          });
         } else if (data.status === 400) {
           toast.error(data.message, {
             position: "bottom-center",
@@ -60,7 +60,7 @@ export default function UpdateReqModal({
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+          });
         }
       })
       .catch((err) => console.log(err));
@@ -78,7 +78,7 @@ export default function UpdateReqModal({
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+          });
         } else if (data.status === 400) {
           toast.error(data.message, {
             position: "bottom-center",
@@ -88,14 +88,14 @@ export default function UpdateReqModal({
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+          });
         }
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <div className={"modal " + (modal && "active")}>
+    <div className={"updatemodal " + (modal && "active")}>
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
@@ -107,11 +107,8 @@ export default function UpdateReqModal({
         draggable
         pauseOnHover
       />
-      <div className="wrapper" style={{ width: "30vw" }}>
-        <div
-          className="left-container"
-          style={{ justifyContent: "space-evenly" }}
-        >
+      <div className="update-wrapper" style={{ width: "30vw" }}>
+        <div className="update-left" style={{ justifyContent: "space-evenly" }}>
           <div className="profile-image" style={{ height: "30%" }}>
             <ImageHelper user={muser} />
           </div>
@@ -174,38 +171,11 @@ export default function UpdateReqModal({
               justifyContent: "space-around",
             }}
           >
-            <button
-              onClick={onAccept}
-              style={{
-                padding: "1rem",
-                borderRadius: "1rem",
-                cursor: "pointer",
-                backgroundColor: "red",
-                color: "white",
-              }}
-            >
-              Accept
-            </button>
+            <button onClick={onAccept}>Accept</button>
 
-            <button
-              onClick={onReject}
-              style={{
-                padding: "1rem",
-                borderRadius: "1rem",
-                cursor: "pointer",
-                backgroundColor: "green",
-                color: "white",
-              }}
-            >
-              Reject
-            </button>
+            <button onClick={onReject}>Reject</button>
           </div>
-          <button
-            onClick={() => setmodal(!modal)}
-            style={{ padding: "1rem", borderRadius: "1rem", cursor: "pointer" }}
-          >
-            CLOSE
-          </button>
+          <button onClick={() => setmodal(!modal)}>CLOSE</button>
         </div>
       </div>
     </div>

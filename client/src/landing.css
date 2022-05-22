@@ -1,0 +1,58 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.upper {
+  display: flex;
+  background: #224957;
+  flex: 0.2;
+  flex: 0.15;
+  flex-direction: column;
+  padding: 0rem 0rem 0rem 3rem;
+  justify-content: center;
+}
+
+.upper img {
+  width: 17%;
+}
+
+.lower {
+  display: flex;
+  flex: 0.85;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cedarville Cursive", cursive;
+  font-family: "Montserrat", sans-serif;
+  gap: 1rem;
+}
+
+.lower .main-heading {
+  font-size: 6rem;
+  font-weight: 800;
+}
+
+.lower .info {
+  font-size: 2rem;
+  font-weight: 800;
+}
+.lower button {
+  padding: 2rem;
+  font-size: 2rem;
+  width: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 4px 2px grey;
+}
+.lower svg {
+  animation: arrowblink 1s infinite;
+}
+
+@keyframes arrowblink {
+  100% {
+    opacity: 0;
+  }
+}

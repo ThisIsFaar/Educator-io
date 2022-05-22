@@ -102,7 +102,7 @@ export default function Authlogin() {
             draggable
             pauseOnHover
           />
-          <h1 className="heading" style={{ fontSize: "4rem" }}>
+          <h1 className="heading" style={{ fontSize: "6.4rem" }}>
             Authority
           </h1>
           <div style={{ display: "flex", justifyContent: "space-around" }}>

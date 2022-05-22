@@ -59,7 +59,7 @@ export default function RecordsModal({ user, modal, setmodal }) {
             <div className="p-info">
               <div>
                 <label>Designation: </label>
-                <span>{user.currentDesignationPost}</span>
+                <span>{user.postedDesignationName}</span>
               </div>
               <div>
                 <label>Posted School: </label>

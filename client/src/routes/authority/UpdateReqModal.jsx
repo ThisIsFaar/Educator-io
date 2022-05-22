@@ -109,7 +109,10 @@ export default function UpdateReqModal({
       />
       <div className="update-wrapper" style={{ width: "30vw" }}>
         <div className="update-left" style={{ justifyContent: "space-evenly" }}>
-          <div className="profile-image" style={{ height: "30%" }}>
+          <div
+            className="updateprofile-image"
+            style={{ display: "flex", justifyContent: "center", height: "30%" }}
+          >
             <ImageHelper user={muser} />
           </div>
           <div className="info">

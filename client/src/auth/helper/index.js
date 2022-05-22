@@ -29,7 +29,7 @@ export const verifyOtp = (otp, id) => {
     })
     .catch((err) => console.log(err));
 };
-  
+
 export const login = (user) => {
   return fetch(`${API}/login`, {
     method: "POST",
@@ -90,7 +90,7 @@ export const logout = (next) => {
 };
 
 export const isAuthenticated = () => {
-  if (typeof window == "undefined") {
+  if (typeof window === "undefined") {
     return false;
   }
   if (localStorage.getItem("jwt")) {

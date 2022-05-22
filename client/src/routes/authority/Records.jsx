@@ -14,7 +14,7 @@ export default function Records() {
   const [modal, setmodal] = useState(false);
   const [muser, setmusers] = useState({});
   const [search, setsearch] = useState("");
-  const keys = ["email", "currentDesignationPost"];
+  const keys = ["Name", "email", "postedDesignationName"];
 
   const loadAllRecords = () => {
     records().then((data) => {
@@ -140,7 +140,7 @@ export default function Records() {
                             {user.Name}
                           </td>
                           <td class="tableData td--post">
-                            {user.currentDesignationPost}
+                            {user.postedDesignationName}
                           </td>
                           <td class="tableData td--gender">{user.gender}</td>
                           <td class="tableData td--phone">

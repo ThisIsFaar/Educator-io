@@ -7,21 +7,21 @@ Past hackathon based problem solution.
 Live Hosted At: [Heroku Link](https://educator-io.netlify.app/)
 
 
-[![Untitled.png](https://i.postimg.cc/CR67pH6H/login.png)](https://postimg.cc/CR67pH6H)
+![img](https://i.postimg.cc/q7p5n1sY/login.png "SS")
 
-[![Untitled.png](https://i.postimg.cc/McMD6MCk/OTP.png)](https://postimg.cc/McMD6MCk)
+![img](https://i.postimg.cc/76WsFDF8/mail.png "SS")
 
-[![Untitled.png](https://i.postimg.cc/tZFNP0R2/mail.png)](https://postimg.cc/tZFNP0R2)
+![img](https://i.postimg.cc/MGtrY1tG/OTP.png "SS")
 
-[![Untitled.png](https://i.postimg.cc/mcvStZ4P/records.png)](https://postimg.cc/mcvStZ4P)
+![img](https://i.postimg.cc/j5533Ck4/records.png "SS")
 
-[![Untitled.png](https://i.postimg.cc/Pv4b3mwD/update-Req.png)](https://postimg.cc/Pv4b3mwD)
+![img](https://i.postimg.cc/PNG6qyfS/update-Req.png "SS")
 
-[![Untitled.png](https://i.postimg.cc/LhMrW2P4/update-Request.png)](https://postimg.cc/LhMrW2P4)
+![img](https://i.postimg.cc/QNBhHMx7/update-Request.png "SS")
 
-[![Untitled.png](https://i.postimg.cc/sGy94nvy/User-Dashboard.png)](https://postimg.cc/sGy94nvy)
+![img](https://i.postimg.cc/sxG6yqzB/User-Dashboard.png "SS")
 
-[![Untitled.png](https://i.postimg.cc/t7tLQwd3/User-Profile.png)](https://postimg.cc/t7tLQwd3)
+![img](https://i.postimg.cc/Vs31McdV/User-Profile.png "SS")
 
 
 ## Features/Tech Stack

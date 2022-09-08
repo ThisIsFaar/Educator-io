@@ -1,46 +1,43 @@
-import Sidebar from "./sidebar";
-import "./dashboardStyle.css";
-import "../../normalize.css";
-import Records from "./Records";
-import VerifyUser from "./VerifyUser";
-import UpdateUser from "./UpdateUser";
-import { useState } from "react";
-import "./sidebarStyle.css";
-import "../../normalize.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './dashboardStyle.css';
+import Records from './Records';
+import VerifyUser from './VerifyUser';
+import UpdateUser from './UpdateUser';
+import { useState } from 'react';
+import './sidebarStyle.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUsers,
   faSignOut,
   faIdBadge,
   faCalendarCheck,
-} from "@fortawesome/free-solid-svg-icons";
-import {} from "@fortawesome/free-regular-svg-icons";
-import logo from "../../common/images/Logo.png";
-import { logout } from "../../auth/helper";
-import { useNavigate } from "react-router-dom";
+} from '@fortawesome/free-solid-svg-icons';
+import {} from '@fortawesome/free-regular-svg-icons';
+import logo from '../../common/images/Logo.png';
+import { logout } from '../../auth/helper';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
   let navigate = useNavigate();
 
-  const [page, setpage] = useState("Records");
+  const [page, setpage] = useState('Records');
   return (
     <div className="container">
       <button
         onClick={() => {
           logout();
-          navigate("/login/?status=signout");
+          navigate('/login/?status=signout');
         }}
         style={{
-          position: "absolute",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          right: "1rem",
-          top: "1rem",
-          padding: "2rem",
-          borderRadius: "1rem",
-          backgroundColor: "#224957",
-          cursor: "pointer",
+          position: 'absolute',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          right: '1rem',
+          top: '1rem',
+          padding: '2rem',
+          borderRadius: '1rem',
+          backgroundColor: '#224957',
+          cursor: 'pointer',
         }}
       >
         <FontAwesomeIcon
@@ -51,14 +48,14 @@ export default function UserDashboard() {
         />
       </button>
       <div className="sidebar">
-        <div class="sidebar" id="sideBar">
+        <div className="sidebar" id="sideBar">
           <div className="Logo">
-            <img src={logo} class="logo" />
+            <img src={logo} className="logo" />
           </div>
-          <ul class="sidebar--list">
+          <ul className="sidebar--list">
             <li
-              class={page === "Records" ? "options active" : " options"}
-              onClick={() => setpage("Records")}
+              class={page === 'Records' ? 'options active' : ' options'}
+              onClick={() => setpage('Records')}
               style={{}}
             >
               <FontAwesomeIcon
@@ -67,11 +64,11 @@ export default function UserDashboard() {
                 color="#a4a6b3"
                 size="2x"
               />
-              <span class="list--text">Teachers Records</span>
+              <span className="list--text">Teachers Records</span>
             </li>
             <li
-              class={page === "Verify" ? "options active" : " options"}
-              onClick={() => setpage("Verify")}
+              class={page === 'Verify' ? 'options active' : ' options'}
+              onClick={() => setpage('Verify')}
             >
               <FontAwesomeIcon
                 className="icons"
@@ -79,11 +76,11 @@ export default function UserDashboard() {
                 color="#a4a6b3"
                 size="2x"
               />
-              <span class="list--text">Verify Teacher</span>
+              <span className="list--text">Verify Teacher</span>
             </li>
             <li
-              class={page === "Update" ? "options active" : " options"}
-              onClick={() => setpage("Update")}
+              class={page === 'Update' ? 'options active' : ' options'}
+              onClick={() => setpage('Update')}
             >
               <FontAwesomeIcon
                 className="icons"
@@ -91,7 +88,7 @@ export default function UserDashboard() {
                 color="#a4a6b3"
                 size="2x"
               />
-              <span class="list--text">Update Requests</span>
+              <span className="list--text">Update Requests</span>
             </li>
           </ul>
         </div>
@@ -99,9 +96,9 @@ export default function UserDashboard() {
       <div className="right">
         <div className="heading">Admin DashBoard</div>
         <div className="main">
-          {page === "Records" && <Records />}
-          {page === "Verify" && <VerifyUser />}
-          {page === "Update" && <UpdateUser />}
+          {page === 'Records' && <Records />}
+          {page === 'Verify' && <VerifyUser />}
+          {page === 'Update' && <UpdateUser />}
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
-import { API } from "../../backend";
+import { API } from '../../backend';
 
 export const register = (user) => {
   return fetch(`${API}/register`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(user),
   })
@@ -17,10 +17,10 @@ export const register = (user) => {
 
 export const verifyOtp = (otp, id) => {
   return fetch(`${API}/verifyotp/${id}/${otp}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     // body: JSON.stringify(user),
   })
@@ -32,10 +32,10 @@ export const verifyOtp = (otp, id) => {
 
 export const login = (user) => {
   return fetch(`${API}/login`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(user),
   })
@@ -48,10 +48,10 @@ export const login = (user) => {
 export const reset = (email) => {
   console.log(email);
   return fetch(`${API}/resetPassword/${email}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     // body: JSON.stringify(user),
   })
@@ -63,10 +63,10 @@ export const reset = (email) => {
 
 export const resetPassword = (id, password) => {
   return fetch(`${API}/resetFormSubmit/${id}/${password}/`, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     // body: JSON.stringify(user),
   })
@@ -77,24 +77,24 @@ export const resetPassword = (id, password) => {
 };
 
 export const authenticate = (data, next) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("jwt", JSON.stringify(data));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('jwt', JSON.stringify(data));
     next();
   }
 };
 
 export const logout = (next) => {
-  if (typeof window !== "undefined") {
-    localStorage.removeItem("jwt");
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('jwt');
   }
 };
 
 export const isAuthenticated = () => {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return false;
   }
-  if (localStorage.getItem("jwt")) {
-    return JSON.parse(localStorage.getItem("jwt"));
+  if (localStorage.getItem('jwt')) {
+    return JSON.parse(localStorage.getItem('jwt'));
   } else {
     return false;
   }

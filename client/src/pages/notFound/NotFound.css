@@ -1,0 +1,13 @@
+.notfound-main {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.notfound-main p {
+  font-size: 5rem;
+}
+.notfound-main a {
+  font-size: 2rem;
+}

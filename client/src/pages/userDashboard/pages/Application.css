@@ -1,0 +1,152 @@
+.container--box {
+  background: #fff;
+  width: 78vw;
+  height: 76vh;
+  overflow: auto;
+}
+.formBoxOne,
+.formBoxTwo {
+  display: inline-flex;
+  width: 50%;
+}
+.FormOne,
+.FormTwo,
+.formThree {
+  margin-left: 7rem;
+}
+.input-box {
+  width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.form--label {
+  display: block;
+  width: 80%;
+  margin-left: 5px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+  color: #000;
+}
+.form--input {
+  width: 25rem;
+  height: 3rem;
+  background: var(--color--primary);
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.2px;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+.formBoxThree {
+  display: inline-block;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.submit--btn {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+.form--label {
+  display: block;
+  width: 80%;
+  margin-left: 5px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+  color: #000;
+}
+.form--textarea {
+  width: 56.5rem;
+  height: 10.2rem;
+  background: var(--color--primary);
+  border-radius: 25px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  padding-left: 2rem;
+  padding-top: 2rem;
+}
+
+.btn {
+  width: 20.4rem;
+  height: 4.8rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #3751ff;
+  border-radius: 25px;
+  border-style: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  cursor: pointer;
+}
+@media screen and (max-width: 650px) {
+  .form--textarea {
+    width: 25rem;
+  }
+
+  .form--label {
+    width: 100%;
+  }
+  .formThree {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form--textarea {
+    width: 25rem;
+  }
+  .container--box {
+    width: 100%;
+    border-radius: 0;
+    height: 81vh;
+  }
+  .form--innerBox {
+    display: flex;
+    flex-direction: column;
+  }
+  .formBoxOne,
+  .formBoxTwo {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .form--label {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 571px) and (max-width: 1110px) {
+  .container--box {
+    width: 110%;
+    border-radius: 0;
+    height: 81vh;
+  }
+}
+.form--innerBox {
+  height: auto;
+  width: 100%;
+  display: flex;
+}
+
+.form--innerBoxTwo {
+  height: auto;
+  width: 100%;
+  display: inline-block;
+}
+
+.input-disable:hover {
+  cursor: not-allowed;
+}

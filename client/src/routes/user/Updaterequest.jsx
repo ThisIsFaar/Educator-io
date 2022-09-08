@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { isAuthenticated } from "../../auth/helper";
-import { updateReq } from "./helper/backendreq";
-import ImageHelper from "./helper/ImageHelper";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect } from 'react';
+import { isAuthenticated } from '../../auth/helper';
+import { updateReq } from './helper/backendreq';
+import ImageHelper from './helper/ImageHelper';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UpdateRequest = () => {
   const [phoneUpdate, setphoneUpdate] = useState(true);
@@ -12,13 +12,13 @@ const UpdateRequest = () => {
   const { user, token } = isAuthenticated();
 
   const [values, setValues] = useState({
-    phoneNumber: "",
-    address: "",
-    dateOfJoining: "",
-    postedSchoolName: "",
-    postedDesignation: "",
-    postedSchoolLocation: "",
-    message: "",
+    phoneNumber: '',
+    address: '',
+    dateOfJoining: '',
+    postedSchoolName: '',
+    postedDesignation: '',
+    postedSchoolLocation: '',
+    message: '',
     disabled: false,
     error: {},
     success: false,
@@ -57,19 +57,19 @@ const UpdateRequest = () => {
         console.log(data);
         if (data.status === 200) {
           setValues({
-            phoneNumber: "",
-            dateOfJoining: "",
-            postedSchoolName: "",
-            postedDesignation: "",
-            postedSchoolLocation: "",
-            address: "",
+            phoneNumber: '',
+            dateOfJoining: '',
+            postedSchoolName: '',
+            postedDesignation: '',
+            postedSchoolLocation: '',
+            address: '',
             disabled: true,
             error: {},
             success: true,
-            message: "",
+            message: '',
           });
           toast.success(data.message, {
-            position: "bottom-center",
+            position: 'bottom-center',
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -79,7 +79,7 @@ const UpdateRequest = () => {
           });
         } else if (data.status === 400) {
           toast.error(data.message, {
-            position: "bottom-center",
+            position: 'bottom-center',
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -116,9 +116,9 @@ const UpdateRequest = () => {
                   <div
                     className="update-input-checked"
                     style={{
-                      border: "2px green solid",
-                      padding: "1rem",
-                      borderRadius: "1rem",
+                      border: '2px green solid',
+                      padding: '1rem',
+                      borderRadius: '1rem',
                     }}
                   >
                     <label className="form--label">Phone</label>
@@ -126,11 +126,11 @@ const UpdateRequest = () => {
                       className="form--input"
                       value={phoneNumber}
                       type="text"
-                      onChange={handleChange("phoneNumber")}
+                      onChange={handleChange('phoneNumber')}
                     />
                     <input
                       type="checkbox"
-                      class="form--checkbox"
+                      className="form--checkbox"
                       onClick={() => {
                         setphoneUpdate(false);
                       }}
@@ -139,11 +139,11 @@ const UpdateRequest = () => {
                   </div>
                 </div>
               ) : (
-                <div className="input-box " style={{ display: "flex" }}>
+                <div className="input-box " style={{ display: 'flex' }}>
                   <label className="form--label">Phone</label>
                   <input
                     type="checkbox"
-                    class="form--checkbox"
+                    className="form--checkbox"
                     onClick={() => {
                       setphoneUpdate(true);
                     }}
@@ -157,9 +157,9 @@ const UpdateRequest = () => {
                   <div
                     className="update-input-checked"
                     style={{
-                      border: "2px green solid",
-                      padding: "1rem",
-                      borderRadius: "1rem",
+                      border: '2px green solid',
+                      padding: '1rem',
+                      borderRadius: '1rem',
                     }}
                   >
                     <label className="form--label">Address</label>
@@ -167,13 +167,13 @@ const UpdateRequest = () => {
                       className="form--textarea"
                       value={address}
                       style={{
-                        width: "25rem",
+                        width: '25rem',
                       }}
-                      onChange={handleChange("address")}
+                      onChange={handleChange('address')}
                     ></textarea>
                     <input
                       type="checkbox"
-                      class="form--checkbox"
+                      className="form--checkbox"
                       onClick={() => {
                         setaddressUpdate(false);
                       }}
@@ -182,11 +182,11 @@ const UpdateRequest = () => {
                   </div>
                 </div>
               ) : (
-                <div className="input-box" style={{ display: "flex" }}>
+                <div className="input-box" style={{ display: 'flex' }}>
                   <label className="form--label">Address</label>
                   <input
                     type="checkbox"
-                    class="form--checkbox"
+                    className="form--checkbox"
                     onClick={() => {
                       setaddressUpdate(true);
                     }}
@@ -200,22 +200,22 @@ const UpdateRequest = () => {
                   <div
                     className="update-input-checked"
                     style={{
-                      border: "2px green solid",
-                      padding: "1rem",
-                      borderRadius: "1rem",
+                      border: '2px green solid',
+                      padding: '1rem',
+                      borderRadius: '1rem',
                     }}
                   >
                     <label className="form--label">Posted School Name</label>
                     <input
                       className="form--input "
-                      onChange={handleChange("postedSchoolName")}
+                      onChange={handleChange('postedSchoolName')}
                       value={postedSchoolName}
                       type="text"
                     />
                     <label className="form--label">Posted Designation</label>
                     <input
                       className="form--input "
-                      onChange={handleChange("postedDesignation")}
+                      onChange={handleChange('postedDesignation')}
                       value={postedDesignation}
                       type="text"
                     />
@@ -224,20 +224,20 @@ const UpdateRequest = () => {
                     </label>
                     <input
                       className="form--input "
-                      onChange={handleChange("postedSchoolLocation")}
+                      onChange={handleChange('postedSchoolLocation')}
                       value={postedSchoolLocation}
                       type="text"
                     />
                     <label className="form--label">Date Of Joining</label>
                     <input
                       className="form--input "
-                      onChange={handleChange("dateOfJoining")}
+                      onChange={handleChange('dateOfJoining')}
                       value={dateOfJoining}
                       type="text"
                     />
                     <input
                       type="checkbox"
-                      class="form--checkbox"
+                      className="form--checkbox"
                       onClick={() => {
                         setschoolUpdate(false);
                       }}
@@ -246,11 +246,11 @@ const UpdateRequest = () => {
                   </div>
                 </div>
               ) : (
-                <div className="input-box" style={{ display: "flex" }}>
+                <div className="input-box" style={{ display: 'flex' }}>
                   <label className="form--label">Add School</label>
                   <input
                     type="checkbox"
-                    class="form--checkbox"
+                    className="form--checkbox"
                     onClick={() => {
                       setschoolUpdate(true);
                     }}
@@ -260,7 +260,7 @@ const UpdateRequest = () => {
             </div>
           </div>
         </div>
-        <div className="input--box" style={{ margin: "5rem" }}>
+        <div className="input--box" style={{ margin: '5rem' }}>
           <label className="form--label">Remarks/Message</label>
           {/* <input
               className="form--input "
@@ -273,9 +273,9 @@ const UpdateRequest = () => {
             className="form--textarea"
             value={message}
             style={{
-              width: "25rem",
+              width: '25rem',
             }}
-            onChange={handleChange("message")}
+            onChange={handleChange('message')}
           ></textarea>
         </div>
         <button

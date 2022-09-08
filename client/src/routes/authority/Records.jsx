@@ -1,20 +1,20 @@
 import {
   faArrowUpWideShort,
   faFilter,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
-import { records } from "./helper";
-import "./recordStyle.css";
-import ImageHelper from "../user/helper/ImageHelper";
-import RecordsModal from "./RecordsModal";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect, useState } from 'react';
+import { records } from './helper';
+import './recordStyle.css';
+import ImageHelper from '../user/helper/ImageHelper';
+import RecordsModal from './RecordsModal';
 
 export default function Records() {
   const [users, setusers] = useState([]);
   const [modal, setmodal] = useState(false);
   const [muser, setmusers] = useState({});
-  const [search, setsearch] = useState("");
-  const keys = ["Name", "email", "postedDesignationName"];
+  const [search, setsearch] = useState('');
+  const keys = ['Name', 'email', 'postedDesignationName'];
 
   const loadAllRecords = () => {
     records().then((data) => {
@@ -30,102 +30,113 @@ export default function Records() {
   }, []);
   return (
     <div>
-      <div class="right--outer--layer">
-        <div class="container--box">
-          <div class="upper--bar">
-            <span class="upper--bar--title">Teacher's Records</span>
-            <span class="search--box">
+      <div className="right--outer--layer">
+        <div className="container--box">
+          <div className="upper--bar">
+            <span className="upper--bar--title">Teacher's Records</span>
+            <span className="search--box">
               <input
                 type="text"
-                class="upper--bar--searchBox"
+                className="upper--bar--searchBox"
                 placeholder="Search"
                 onChange={(event) => {
                   setsearch(event.target.value);
                 }}
               />
             </span>
-            {/*<span class="upperbar--sortBy--box">
+            {/*<span className="upperbar--sortBy--box">
               <FontAwesomeIcon icon={faArrowUpWideShort} size="2x" />
-              <select class="upperBar--sortBy">
-                <option class="sortby--options" selected>
+              <select className="upperBar--sortBy">
+                <option className="sortby--options" selected>
                   Sort By
                 </option>
-                <option class="sortby--options" value="1">
+                <option className="sortby--options" value="1">
                   -Text-
                 </option>
-                <option class="sortby--options" value="2">
+                <option className="sortby--options" value="2">
                   -Text2-
                 </option>
-                <option class="sortby--options" value="3">
+                <option className="sortby--options" value="3">
                   -Text3-
                 </option>
               </select>
               </span>*/}
-            <span class="upper--bar--filter">
+            <span className="upper--bar--filter">
               <FontAwesomeIcon icon={faFilter} size="2x" />
-              <button class="upperBar--subtitle" id="toggle">
+              <button className="upperBar--subtitle" id="toggle">
                 Filter
               </button>
             </span>
           </div>
 
-          <div class="filter--box--layerTwo">
-            <div class="filter--box" id="filter--box">
-              <div class="filterbox--innerLayer">
+          <div className="filter--box--layerTwo">
+            <div className="filter--box" id="filter--box">
+              <div className="filterbox--innerLayer">
                 <input
                   type="text"
-                  class="field fld--one"
+                  className="field fld--one"
                   placeholder="Search by name here.."
                 />
-                <select class="field fld--two" id="Customer">
+                <select className="field fld--two" id="Customer">
                   <option selected>Designation</option>
                   <option value="1">HTML</option>
                   <option value="2">CSS</option>
                   <option value="3">JavaScript</option>
                 </select>
-                <label for="joiningDAte" class="filter--label labelOne">
+                <label for="joiningDAte" className="filter--label labelOne">
                   Joining date
                 </label>
-                <input type="date" class="field fld--three" id="joiningDAte" />
-                <label for="FilterDob" class="filter--label labelTwo">
+                <input
+                  type="date"
+                  className="field fld--three"
+                  id="joiningDAte"
+                />
+                <label for="FilterDob" className="filter--label labelTwo">
                   DOB
                 </label>
-                <input type="date" class="field fld--four" id="FilterDob" />
+                <input type="date" className="field fld--four" id="FilterDob" />
               </div>
 
-              <div class="filterbox--innerLayerTwo">
+              <div className="filterbox--innerLayerTwo">
                 <input
                   type="Text"
-                  class="field fld--five"
+                  className="field fld--five"
                   id="FilterSchool"
                   placeholder="Search by school here.."
                 />
-                <label for="FilterRetrYear" class="filter--label labelThree">
+                <label
+                  for="FilterRetrYear"
+                  className="filter--label labelThree"
+                >
                   Retirement year
                 </label>
-                <input type="date" class="field fld--six" id="FilterRetrYear" />
-                <button class="fields--btn" type="submit">
+                <input
+                  type="date"
+                  className="field fld--six"
+                  id="FilterRetrYear"
+                />
+                <button className="fields--btn" type="submit">
                   Apply
                 </button>
               </div>
             </div>
           </div>
 
-          <div class="table">
-            <div class="table--content--box" id="TableBox">
-              <table class="table--content">
-                <thead class="table--header">
-                  <tr class="table--row">
-                    <th class="table--title th--name">Name</th>
-                    <th class="table--title th--post">Post</th>
-                    <th class="table--title th--gender">Gender</th>
-                    <th class="table--title th--phone">Phone</th>
-                    <th class="table--title th--email">Email</th>
-                    <th class="table--title th--detail">Detail</th>
+          <div className="table">
+            <div className="table--content--box" id="TableBox">
+              <table className="table--content">
+                <thead className="table--header">
+                  <tr className="table--row">
+                    <th className="table--title th--name">Name</th>
+                    <th className="table--title th--post">Post</th>
+                    <th className="table--title th--gender">Gender</th>
+                    <th className="table--title th--phone">Phone</th>
+                    <th className="table--title th--email">Email</th>
+                    <th className="table--title th--detail">Detail</th>
                   </tr>
                 </thead>
 
-                <tbody class="table--body">
+                <tbody className="table--body">
                   {users
                     .filter((user) =>
                       keys.some((key) =>
@@ -134,22 +145,24 @@ export default function Records() {
                     )
                     .map((user) => {
                       return (
-                        <tr class="table--row" key={user._id}>
-                          <td class="tableData td--name">
+                        <tr className="table--row" key={user._id}>
+                          <td className="tableData td--name">
                             <ImageHelper user={user} />
                             {user.Name}
                           </td>
-                          <td class="tableData td--post">
+                          <td className="tableData td--post">
                             {user.postedDesignationName}
                           </td>
-                          <td class="tableData td--gender">{user.gender}</td>
-                          <td class="tableData td--phone">
+                          <td className="tableData td--gender">
+                            {user.gender}
+                          </td>
+                          <td className="tableData td--phone">
                             {user.phoneNumber}
                           </td>
-                          <td class="tableData td--email">{user.email}</td>
-                          <td class="tableData td--detail">
+                          <td className="tableData td--email">{user.email}</td>
+                          <td className="tableData td--detail">
                             <button
-                              class="table--btn"
+                              className="table--btn"
                               onClick={() => {
                                 setmodal(true);
                                 setmusers(user);

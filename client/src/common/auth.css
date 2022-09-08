@@ -17,7 +17,7 @@ html {
 
 body {
   background: #e5e5e5;
-  font-family: "Lexend Deca", sans-serif;
+  font-family: 'Lexend Deca', sans-serif;
   margin: 0;
 }
 
@@ -83,7 +83,7 @@ button {
 
 .check--label {
   color: #0085ff;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.4rem;
   user-select: none;
   text-decoration: none;
@@ -111,7 +111,7 @@ button {
 
 .forgot--pass {
   color: #0085ff;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.4rem;
   margin-left: 170px;
   text-decoration: none;
@@ -173,62 +173,4 @@ button {
   display: grid;
   grid-template-rows: 1;
   justify-content: center;
-}
-.custom-shape-divider-bottom-1652652900 {
-  position: absolute;
-  bottom: -10vh;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-
-.custom-shape-divider-bottom-1652652900 svg {
-  position: relative;
-  display: block;
-  width: calc(297% + 1.3px);
-  height: 180px;
-}
-
-.custom-shape-divider-bottom-1652652900 .shape-fill {
-  fill: #296763;
-}
-
-/** For mobile devices **/
-@media (max-width: 767px) {
-  .custom-shape-divider-bottom-1652652900 svg {
-    width: calc(297% + 1.3px);
-    height: 130px;
-  }
-}
-
-.custom-shape-divider-bottom-1652652790 {
-  position: absolute;
-  bottom: -10vh;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-}
-
-.custom-shape-divider-bottom-1652652790 svg {
-  position: relative;
-  display: block;
-  width: calc(297% + 1.3px);
-  height: 180px;
-  transform: rotateY(180deg);
-}
-
-.custom-shape-divider-bottom-1652652790 .shape-fill {
-  fill: #47e093;
-}
-
-/** For mobile devices **/
-@media (max-width: 767px) {
-  .custom-shape-divider-bottom-1652652790 svg {
-    width: calc(297% + 1.3px);
-    height: 130px;
-  }
 }

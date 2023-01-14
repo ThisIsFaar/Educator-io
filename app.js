@@ -10,17 +10,12 @@ const path = require('path');
 
 //DB
 const connectDB = async () => {
-  console.log('1');
   try {
-    console.log('2');
-
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
     });
-
     console.log('MongoDB is Connected...');
   } catch (err) {
-    console.log('3');
     console.error(err.message);
     process.exit(1);
   }

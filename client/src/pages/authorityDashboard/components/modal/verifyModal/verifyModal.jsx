@@ -1,5 +1,5 @@
 import React from 'react';
-import './verifyModal.css';
+// import './verifyModal.css';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageHelper from '../../../../../api/ImageHelper';

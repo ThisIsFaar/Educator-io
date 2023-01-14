@@ -1,24 +1,26 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../../../common/auth.css';
-import { resetPassword } from '../../../auth/helper';
+// import '../common/auth.css';
+import { Link } from 'react-router-dom';
+import { register } from '../auth/helper';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserShield } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
-const queryString = require('query-string');
+import { toastObjDetails } from '../assets/data';
 
 const Joi = require('joi');
 
-export default function ResetPassword() {
-  let navigate = useNavigate();
-
+export default function Register() {
   const [values, setValues] = useState({
+    email: '',
     password: '',
   });
-  const { password } = values;
+  const { email, password } = values;
 
   const schema = Joi.object({
+    email: Joi.string()
+      .email({ tlds: { allow: false } })
+      .required(),
     password: Joi.string().min(6).max(20).required(),
   });
 
@@ -28,41 +30,34 @@ export default function ResetPassword() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const { error } = schema.validate({ password });
+    const { error } = schema.validate({ email, password });
 
     if (error) {
       toast.error(error.message, toastObjDetails);
-      setValues({ ...values, error: error });
+      setValues({ ...values });
     } else {
-      setValues({ password: '', error: {}, success: true });
-
-      resetPassword(id, password)
-        .then((data) => {
-          if (data.status === 400) {
-            toast.error(data.message, toastObjDetails);
-          } else if (data.status === 200) {
-            toast.success(data.message, toastObjDetails);
-            setTimeout(() => {
-              navigate('/login');
-            }, 1500);
-          }
-        })
-        .catch((err) => console.log(err));
+      register({ email, password }).then((data) => {
+        setValues({ email: '', password: '' });
+        if (data.status === 200) {
+          toast.success(data.message, toastObjDetails);
+        } else if (data.status === 400) {
+          toast.error(data.message, toastObjDetails);
+        }
+      });
     }
   };
-  const status = queryString.parse(window.location.search);
-  let { id } = status;
-  console.log(id);
+
   return (
     <div className="container">
       <form className="form">
-        <h1 className="heading">Reset Password</h1>
+        <h1 className="heading">Register</h1>
 
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
           <div
             className="form-login-type"
             style={{
               background: ' linear-gradient(to bottom, #155799, #159957)',
+              padding: '2rem 3rem',
             }}
           >
             <FontAwesomeIcon icon={faUser} size="9x" color="white" />
@@ -79,8 +74,15 @@ export default function ResetPassword() {
           </Link>
         </div>
         <input
+          type="email"
+          onChange={handleChange('email')}
+          placeholder="Email"
+          className="input email"
+          value={email}
+        />
+        <input
           type="password"
-          placeholder="Your New Password"
+          placeholder="Password"
           className="input password"
           onChange={handleChange('password')}
           value={password}

@@ -1,6 +1,6 @@
 import { reset, isAuthenticated } from '../../../auth/helper';
 import { ToastContainer, toast } from 'react-toastify';
-import '../../../common/auth.css';
+// import '../../../common/auth.css';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';

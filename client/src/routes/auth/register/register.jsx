@@ -1,12 +1,12 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../../../common/auth.css';
+// import '../../../common/auth.css';
 import { Link } from 'react-router-dom';
 import { register } from '../../../auth/helper';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserShield } from '@fortawesome/free-solid-svg-icons';
-import { toastObjDetails } from '../../../media/data';
+import { toastObjDetails } from '../../../assets/data';
 
 const Joi = require('joi');
 

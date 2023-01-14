@@ -12,8 +12,8 @@ root.render(
     <BrowserRouter>
       <Navbar />
       <Toast />
-      <App />
-      <Footer />
+      {/* <App /> */}
+      {/* <Footer /> */}
     </BrowserRouter>
   </>
 );

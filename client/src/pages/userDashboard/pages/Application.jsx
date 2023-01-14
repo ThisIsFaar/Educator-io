@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { application } from '../helper';
 import { useState } from 'react';
 import { isAuthenticated } from '../../../auth/helper';
-import { toastObjDetails } from '../../../media/data';
+import { toastObjDetails } from '../../../assets/data';
 
 const Joi = require('joi');
 const { user, token } = isAuthenticated();
@@ -102,6 +102,8 @@ const Application = () => {
       formData.append('postedSchoolLocation', postedSchoolLocation);
       formData.append('address', address);
       formData.append('profilePhoto', profilePhoto);
+      console.log(user._id);
+      console.log('check',user);
       application(user._id, token, formData)
         .then((data) => {
           if (data.status === 200) {

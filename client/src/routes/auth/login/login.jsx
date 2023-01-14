@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
-import { toastObjDetails } from '../../../media/data';
+import { toastObjDetails } from '../../../assets/data';
 const queryString = require('query-string');
 const Joi = require('joi');
 

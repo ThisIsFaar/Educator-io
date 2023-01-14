@@ -1,7 +1,7 @@
 import userImg from '../../../common/images/user.svg';
 import { verifyOtp, isAuthenticated, authenticate } from '../../../auth/helper';
 import { ToastContainer, toast } from 'react-toastify';
-import '../../../common/auth.css';
+// import '../../../common/auth.css';
 import footer from '../../../common/images/footer.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';

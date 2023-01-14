@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserShield } from '@fortawesome/free-solid-svg-icons';
-import { toastObjDetails } from '../../../media/data';
+import { toastObjDetails } from '../../../assets/data';
 
 const queryString = require('query-string');
 const Joi = require('joi');

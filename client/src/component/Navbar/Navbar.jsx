@@ -1,32 +1,39 @@
 import logo from './logo.png';
-import './navbar.css';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logout, isAuthenticated } from '../../api/index';
+import { toastObjDetails } from '../../assets/data';
+import { toast } from 'react-toastify';
 
 function Navbar() {
   let navigate = useNavigate();
 
   return (
-    <div className="root-nav">
-      <img src={logo} width={150} />
-      {isAuthenticated() && (
-        <button
-          onClick={() => {
-            logout();
-            navigate('/login/?status=signout');
-          }}
-        >
-          <FontAwesomeIcon
-            className="icons"
-            icon={faSignOut}
-            color="white"
-            size="2x"
-          />
-        </button>
-      )}
-    </div>
+    <nav class="bg-primary border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
+      <div class="container flex flex-wrap items-center justify-between mx-auto">
+        <Link to="/" className='flex items-center'>
+          <img src={logo} class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+        </Link>
+        {isAuthenticated() && (
+          <button
+            onClick={() => {
+              logout();
+              toast.info('Successully Signout', toastObjDetails);
+              navigate('/login/');
+            }}
+            className="block py-2 pl-3 rounded pr-4 text-white bg-secondary roundeddark:text-white"
+          >
+            <FontAwesomeIcon
+              className="icons"
+              icon={faSignOut}
+              color="#224957"
+              size="2x"
+            />
+          </button>
+        )}
+      </div>
+    </nav>
   );
 }
 

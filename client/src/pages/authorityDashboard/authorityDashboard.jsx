@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Records from './pages/records/Records';
 import VerifyUser from './pages/verifyUser/VerifyUser';
 import UpdateUser from './pages/updateUser/UpdateUser';
-import './authorityDashboard.css';
+// import './authorityDashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { sideBarData } from './data';
 import './components/sideBar/sidebarStyle.css';

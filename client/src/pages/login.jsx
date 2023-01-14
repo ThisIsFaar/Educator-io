@@ -1,11 +1,11 @@
-import { login, authenticate, isAuthenticated } from '../../auth/helper';
+import { login, authenticate, isAuthenticated } from '../auth/helper';
 import { Link, useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
-import { toastObjDetails } from '../../media/data';
+import { toastObjDetails } from '../assets/data';
 const queryString = require('query-string');
 const Joi = require('joi');
 

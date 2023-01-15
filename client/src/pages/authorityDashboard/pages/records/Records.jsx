@@ -2,7 +2,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import './records.css';
-import ImageHelper from '../../../../api/ImageHelper';
+import ImageHelper from '../../../../component/ImageHelper';
 import RecordsModal from '../../components/modal/recordModal/recordsModal';
 import { recordsA } from '../../helper';
 

@@ -2,7 +2,7 @@ import React from 'react';
 // import './verifyModal.css';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ImageHelper from '../../../../../api/ImageHelper';
+import ImageHelper from '../../../../../component/ImageHelper';
 import { verifyUser, rejectUser } from '../../../helper';
 
 export default function VerifyModal({ user, modal, setmodal, refresh }) {

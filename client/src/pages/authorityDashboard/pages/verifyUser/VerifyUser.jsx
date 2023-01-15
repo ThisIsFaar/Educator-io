@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ImageHelper from '../../../../api/ImageHelper';
+import ImageHelper from '../../../../component/ImageHelper';
 import { verificationRecords } from '../../helper';
 import VerifyModal from '../../components/modal/verifyModal/verifyModal';
 

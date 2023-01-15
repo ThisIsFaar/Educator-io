@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import './main.css';
+import './css/main.css';
 import App from './App';
 import Navbar from './component/Navbar';
 import Footer from './component/Footer';

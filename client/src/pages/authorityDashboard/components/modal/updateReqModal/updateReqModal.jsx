@@ -1,6 +1,6 @@
 import React from 'react';
 import './updateReqModal.css';
-import ImageHelper from '../../../../../api/ImageHelper';
+import ImageHelper from '../../../../../component/ImageHelper';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { acceptUpdateReq, rejectUpdateReq } from '../../../helper';

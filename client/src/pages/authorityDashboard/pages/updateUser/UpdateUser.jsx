@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { updateRecords } from '../../helper';
 // import './recordStyle.css';
-import ImageHelper from '../../../../api/ImageHelper';
+import ImageHelper from '../../../../component/ImageHelper';
 // import RecordsModal from '../RecordsModal';
 import UpdateReqModal from '../../components/modal/updateReqModal/updateReqModal';
 

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import { isAuthenticated } from '../../../api/index';
 import { profile } from '../helper';
-import ImageHelper from '../../../api/ImageHelper';
+import ImageHelper from '../../../component/ImageHelper';
 // import './Profile.css';
 
 const Profile = () => {

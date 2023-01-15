@@ -2,7 +2,7 @@ import React from 'react';
 import './recordModal.css';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ImageHelper from '../../../../../api/ImageHelper';
+import ImageHelper from '../../../../../component/ImageHelper';
 
 export default function RecordsModal({ user, modal, setmodal }) {
   return (

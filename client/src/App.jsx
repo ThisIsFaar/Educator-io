@@ -4,7 +4,6 @@ import {
   Outlet,
   Navigate,
 } from 'react-router-dom';
-import './main.css';
 import Register from './pages/register';
 import Login from './pages/login';
 import Reset from './pages/reset';

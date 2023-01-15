@@ -1,4 +1,4 @@
-import { verifyOtp, isAuthenticated, authenticate } from '../auth/helper';
+import { verifyOtp, isAuthenticated, authenticate } from '../api/';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';

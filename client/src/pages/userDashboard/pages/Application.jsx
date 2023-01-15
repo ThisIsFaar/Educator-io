@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { application } from '../helper';
 import { useState } from 'react';
-import { isAuthenticated } from '../../../auth/helper';
+import { isAuthenticated } from '../../../api/';
 import { toastObjDetails } from '../../../utils/data';
 
 const Joi = require('joi');

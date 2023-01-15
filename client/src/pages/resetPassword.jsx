@@ -1,7 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import '../../../common/auth.css';
-import { resetPassword } from '../../../auth/helper';
+import { resetPassword } from '../api';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserShield } from '@fortawesome/free-solid-svg-icons';
@@ -31,7 +30,15 @@ export default function ResetPassword() {
     const { error } = schema.validate({ password });
 
     if (error) {
-      toast.error(error.message, toastObjDetails);
+      toast.error(error.message, {
+        position: 'bottom-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setValues({ ...values, error: error });
     } else {
       setValues({ password: '', error: {}, success: true });
@@ -39,9 +46,25 @@ export default function ResetPassword() {
       resetPassword(id, password)
         .then((data) => {
           if (data.status === 400) {
-            toast.error(data.message, toastObjDetails);
+            toast.error(data.message, {
+              position: 'bottom-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           } else if (data.status === 200) {
-            toast.success(data.message, toastObjDetails);
+            toast.success(data.message, {
+              position: 'bottom-center',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             setTimeout(() => {
               navigate('/login');
             }, 1500);
@@ -56,6 +79,17 @@ export default function ResetPassword() {
   return (
     <div className="mainContainer bg-secondary">
       <form className="my-9 w-screen md:w-[50vw] flex justify-center flex-col items-center">
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <h1 className="heading">Reset Password</h1>
 
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
@@ -98,7 +132,7 @@ export default function ResetPassword() {
           className="btn--login"
           onClick={onSubmit}
         >
-          Register
+          Reset
         </button>
       </form>
     </div>

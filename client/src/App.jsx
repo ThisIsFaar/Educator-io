@@ -9,12 +9,12 @@ import Login from './pages/login';
 import Reset from './pages/reset';
 import AuthLogin from './pages/authLogin';
 import AuthloginOtp from './pages/authLoginOtp';
-import { isAuthenticated } from './auth/helper';
-import ResetPassword from './routes/auth/resetPassword/resetPassword';
+import { isAuthenticated } from './api';
 import Root from './pages/root';
 import NotFound from './pages/NotFound';
 import UserDashboard from './pages/userDashboard/UserDashboard';
 import AuthorityDashboard from './pages/authorityDashboard/authorityDashboard';
+import ResetPassword from './pages/resetPassword';
 
 const App = () => {
   return (

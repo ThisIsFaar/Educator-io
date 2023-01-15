@@ -1,4 +1,4 @@
-import { reset, isAuthenticated } from '../auth/helper';
+import { reset, isAuthenticated } from '../api/';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';

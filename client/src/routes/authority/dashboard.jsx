@@ -3,7 +3,7 @@ import Records from './Records';
 import VerifyUser from './VerifyUser';
 import UpdateUser from './UpdateUser';
 import { useState } from 'react';
-import './sidebarStyle.css';
+// import './sidebarStyle.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUsers,
@@ -21,7 +21,7 @@ export default function UserDashboard() {
 
   const [page, setpage] = useState('Records');
   return (
-    <div className="container">
+    <div className="mainContainer bg-secondary">
       <button
         onClick={() => {
           logout();

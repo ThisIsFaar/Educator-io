@@ -5,7 +5,7 @@ import { isAuthenticated } from "../../auth/helper";
 import { profile } from "./helper";
 import Dp from "../../common/images/sampledp.png";
 import ImageHelper from "./helper/ImageHelper";
-import "./Profile.css";
+// import "./Profile.css";
 
 const Profile = () => {
   const [values, setValues] = useState({

@@ -5,11 +5,11 @@ import UpdateUser from './pages/updateUser/UpdateUser';
 // import './authorityDashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { sideBarData } from './data';
-import './components/sideBar/sidebarStyle.css';
+// import './components/sideBar/sidebarStyle.css';
 export default function AuthorityDashboard() {
   const [page, setpage] = useState('Teachers Records');
   return (
-    <div className="container">
+    <div className="mainContainer bg-secondary">
       <div className="sidebar">
         <ul className="sidebar--list">
           {sideBarData.map((item, key) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import './sidebarStyle.css';
+// import './sidebarStyle.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {

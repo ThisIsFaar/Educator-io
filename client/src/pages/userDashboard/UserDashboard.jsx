@@ -10,7 +10,7 @@ export default function UserDashboard() {
   const [page, setpage] = useState('Application');
 
   return (
-    <div className="container">
+    <div className="mainContainer bg-secondary">
       <div className="sidebar">
         <ul className="sidebar--list">
           {sideBarData.map((item, key) => {

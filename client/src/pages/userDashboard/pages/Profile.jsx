@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { isAuthenticated } from '../../../api/index';
 import { profile } from '../helper';
 import ImageHelper from '../../../api/ImageHelper';
-import './Profile.css';
+// import './Profile.css';
 
 const Profile = () => {
   const [values, setValues] = useState({

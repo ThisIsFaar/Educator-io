@@ -54,24 +54,24 @@ export default function ResetPassword() {
   let { id } = status;
   console.log(id);
   return (
-    <div className="container">
-      <form className="form">
+    <div className="mainContainer bg-secondary">
+      <form className="my-9 w-screen md:w-[50vw] flex justify-center flex-col items-center">
         <h1 className="heading">Reset Password</h1>
 
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
           <div
-            className="form-login-type"
+            className="form-login-type p-4 md:p-4"
             style={{
               background: ' linear-gradient(to bottom, #155799, #159957)',
             }}
           >
-            <FontAwesomeIcon icon={faUser} size="9x" color="white" />
-            <h3 className="heading--secondary">Teachers</h3>
+            <FontAwesomeIcon icon={faUser} className="w-16 h-20 md:w-36 md:h-48"color="white" />
+            <h3 className="text-base text-white">Teachers</h3>
           </div>
 
           <Link to="/auth-login" style={{ textDecoration: 'none' }}>
-            <div className="form-login-type">
-              <FontAwesomeIcon icon={faUserShield} size="9x" color="#224957" />
+            <div className="form-login-type p-4 md:p-4">
+              <FontAwesomeIcon icon={faUserShield} className="w-16 h-20 md:w-36 md:h-48"color="#224957" />
               <h3 className="heading--secondary " style={{ color: '#224957' }}>
                 Admin
               </h3>

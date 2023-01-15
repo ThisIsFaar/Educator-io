@@ -100,8 +100,8 @@ export default function AuthloginOtp() {
 
   return (
     <div>
-      <div className="container">
-        <div className="form">
+      <div className="mainContainer bg-secondary">
+        <div className="my-9 w-screen md:w-[50vw] flex justify-center flex-col items-center">
           <ToastContainer
             position="top-center"
             autoClose={5000}
@@ -118,10 +118,10 @@ export default function AuthloginOtp() {
           </h1>
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <Link to="/login" style={{ textDecoration: 'none' }}>
-              <div className="form-login-type" style={{ padding: '2rem 3rem' }}>
-                <FontAwesomeIcon icon={faUser} size="9x" color="#224957" />
+              <div className="form-login-type p-4 md:p-4" style={{ padding: '2rem 3rem' }}>
+                <FontAwesomeIcon icon={faUser} className="w-16 h-20 md:w-36 md:h-48"color="#224957" />
                 <h3
-                  className="heading--secondary teacher"
+                  className="text-base text-white"
                   style={{ color: '#224957' }}
                 >
                   Teachers
@@ -130,12 +130,12 @@ export default function AuthloginOtp() {
             </Link>
 
             <div
-              className="form-login-type"
+              className="form-login-type p-4 md:p-4"
               style={{
                 background: ' linear-gradient(to bottom, #155799, #159957)',
               }}
             >
-              <FontAwesomeIcon icon={faUserShield} size="9x" color="white" />
+              <FontAwesomeIcon icon={faUserShield} className="w-16 h-20 md:w-36 md:h-48"color="white" />
               <h3 className="heading--secondary admin">Authority</h3>
             </div>
           </div>

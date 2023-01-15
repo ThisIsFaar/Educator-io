@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserShield } from '@fortawesome/free-solid-svg-icons';
-import { toastObjDetails } from '../assets/data';
+import { toastObjDetails } from '../utils/data';
 
 const queryString = require('query-string');
 const Joi = require('joi');
@@ -58,26 +58,25 @@ export default function Reset() {
 
   return (
     <div>
-      <div className="container">
-        <div className="form">
+      <div className="mainContainer bg-secondary">
+        <div className="my-9 w-screen md:w-[50vw] flex justify-center flex-col items-center">
           <h1 className="heading">Reset</h1>
           <div style={{ display: 'flex', justifyContent: 'space-around' }}>
             <div
-              className="form-login-type"
+              className="form-login-type p-4 md:p-4"
               style={{
                 background: ' linear-gradient(to bottom, #155799, #159957)',
-                padding: '2rem 3rem',
               }}
             >
-              <FontAwesomeIcon icon={faUser} size="9x" color="white" />
-              <h3 className="heading--secondary">Teachers</h3>
+              <FontAwesomeIcon icon={faUser} className="w-16 h-20 md:w-36 md:h-48" color="white" />
+              <h3 className="text-base text-white">Teachers</h3>
             </div>
 
             <Link to="/auth-login" style={{ textDecoration: 'none' }}>
-              <div className="form-login-type">
+              <div className="form-login-type p-4 md:p-4">
                 <FontAwesomeIcon
                   icon={faUserShield}
-                  size="9x"
+                  className="w-16 h-20 md:w-36 md:h-48"
                   color="#224957"
                 />
                 <h3

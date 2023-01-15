@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { application } from '../helper';
 import { useState } from 'react';
 import { isAuthenticated } from '../../../auth/helper';
-import { toastObjDetails } from '../../../assets/data';
+import { toastObjDetails } from '../../../utils/data';
 
 const Joi = require('joi');
 const { user, token } = isAuthenticated();

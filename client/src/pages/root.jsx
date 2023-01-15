@@ -1,17 +1,20 @@
 import { Outlet, Link } from 'react-router-dom';
-import './root.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Lottie from "lottie-react";
+import landingHero from "../utils/landingHero.json";
 
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 export default function Root() {
   return (
-    <div className="main-container">
-      <div className="root-main">
-        <div className=" text-7xl md:text-9xl ">EDUCATOR.IO</div>
-        <Link to="/login">  
-          <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Get Started</button>
-        </Link>
+    <div className="flex justify-center items-center flex-col h-[90vh] w-full bg-secondary">
+      <div className='h-[50vh] w-[40vh] md:w-[60vh]'>
+        <Lottie animationData={landingHero} loop={true} />
       </div>
+      <Link to="/login">
+        <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-secondary dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            Get Started
+          </span>
+        </button>
+      </Link>
       <Outlet />
     </div>
   );

@@ -26,9 +26,8 @@ export default function Records() {
     loadAllRecords();
   }, []);
   return (
-    <div>
-      <div className="right--outer--layer">
-        <div className="container--box">
+    <div className="right--outer--layer w-full h-full">
+        <div className="container--box w-full h-full">
           <div className="upper--bar">
             <span className="upper--bar--title">Teacher's Records</span>
             <span className="search--box">
@@ -166,6 +165,5 @@ export default function Records() {
           />
         </div>
       </div>
-    </div>
   );
 }

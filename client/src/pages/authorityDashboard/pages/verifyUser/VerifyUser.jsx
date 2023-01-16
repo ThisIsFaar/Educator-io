@@ -25,8 +25,7 @@ export default function VerifyUser() {
     console.log(reload);
   }, [reload]);
   return (
-    <div>
-      <div className="right--outer--layer">
+    <div className="right--outer--layer w-full h-full overflow-auto">
         <div className="container--box">
           <div className="table">
             <div className="table--content--box" id="TableBox">
@@ -85,6 +84,5 @@ export default function VerifyUser() {
           />
         </div>
       </div>
-    </div>
   );
 }

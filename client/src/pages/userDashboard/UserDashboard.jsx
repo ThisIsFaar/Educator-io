@@ -4,46 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars, faXmark
 } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
 import { sideBarData } from './data';
 import Application from './pages/Application';
 import Profile from './pages//Profile';
 import UpdateRequest from './pages/Updaterequest';
-import classNames from 'classnames';
 
 export default function UserDashboard() {
   const [page, setpage] = useState('Application');
   const [menuToggle, SetMenuToggle] = useState(false);
   return (
-    // <div className="mainContainer bg-secondary">
-    //   <div className="sidebar">
-    //     <ul className="sidebar--list">
-    //       {sideBarData.map((item, key) => {
-    //         return (
-    //           <li
-    //             key={key}
-    //             class={page === item.title ? 'options active' : ' options'}
-    //             onClick={() => setpage(item.title)}
-    //           >
-    //             <FontAwesomeIcon
-    //               className="icons"
-    //               icon={item.icon}
-    //               color="#a4a6b3"
-    //               size="2x"
-    //             />
-    //             <span className="list--text">{item.title}</span>
-    //           </li>
-    //         );
-    //       })}
-    //     </ul>
-    //   </div>
-    //   <div className="right">
-    //     {page === 'Application' && <Application />}
-    //     {page === 'User Profile' && <Profile />}
-    //     {page === 'Update Request' && <UpdateRequest />}
-    //   </div>
-    // </div>
-
-
     <div className="flex flex-no-wrap">
       {/* Sidebar starts */}
       {/* Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] */}

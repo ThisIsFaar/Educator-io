@@ -25,9 +25,8 @@ export default function UpdateUser() {
   }, []);
 
   return (
-    <div>
-      <div className="right--outer--layer">
-        <div className="container--box">
+    <div className="right--outer--layer w-full h-full">
+        <div className="container--box  w-full h-full">
           <div className="table">
             <div className="table--content--box" id="TableBox">
               <table className="table--content">
@@ -81,6 +80,5 @@ export default function UpdateUser() {
           />
         </div>
       </div>
-    </div>
   );
 }

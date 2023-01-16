@@ -92,8 +92,7 @@ const UpdateRequest = () => {
   };
 
   return (
-    <div>
-      <form encType="multipart/form-data" className="container--box">
+    <form encType="multipart/form-data" className="container--box w-full h-full">
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -286,7 +285,6 @@ const UpdateRequest = () => {
           Request for Update
         </button>
       </form>
-    </div>
   );
 };
 

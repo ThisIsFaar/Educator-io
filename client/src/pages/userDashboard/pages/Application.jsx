@@ -136,7 +136,7 @@ const Application = () => {
   };
   const form = () => {
     return (
-      <form encType="multipart/form-data" className="container--box">
+      <form encType="multipart/form-data" className="container--box w-full h-full">
         <div className="form--innerBox">
           <div className="formBoxOne">
             <div className="FormOne">

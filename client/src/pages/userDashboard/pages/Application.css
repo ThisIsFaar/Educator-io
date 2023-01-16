@@ -1,7 +1,6 @@
 .container--box {
   background: #fff;
   width: 78vw;
-  height: 76vh;
   overflow: auto;
 }
 .formBoxOne,
@@ -112,7 +111,6 @@
   .container--box {
     width: 100%;
     border-radius: 0;
-    height: 81vh;
   }
   .form--innerBox {
     display: flex;
@@ -132,7 +130,6 @@
   .container--box {
     width: 110%;
     border-radius: 0;
-    height: 81vh;
   }
 }
 .form--innerBox {

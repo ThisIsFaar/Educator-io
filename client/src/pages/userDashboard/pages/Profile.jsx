@@ -68,7 +68,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="wrapper">
+    <div className="wrapper w-full h-full overflow-auto">
       <div className="left-container">
         <div className="profile-image">
           <ImageHelper user={user} />

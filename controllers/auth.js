@@ -1,15 +1,15 @@
-const User = require("../models/user");
-const UserVerification = require("../models/userVerification");
-const { validationResult } = require("express-validator");
-var jwt = require("jsonwebtoken");
-var expressJwt = require("express-jwt");
-require("dotenv").config();
-const bcrypt = require("bcrypt");
-const { sendVerificationEmail } = require("./mailer");
-const crypto = require("crypto");
-const { v4: uuidv4 } = require("uuid");
-const user = require("../models/user");
-const update = require("../models/update");
+const User = require('../models/user');
+const UserVerification = require('../models/userVerification');
+const { validationResult } = require('express-validator');
+var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
+require('dotenv').config();
+const bcrypt = require('bcrypt');
+const { sendVerificationEmail } = require('./mailer');
+const crypto = require('crypto');
+const { v4: uuidv4 } = require('uuid');
+const user = require('../models/user');
+const update = require('../models/update');
 
 exports.register = (req, res) => {
   const errors = validationResult(req);
@@ -26,7 +26,7 @@ exports.register = (req, res) => {
   user.save((err, user) => {
     if (err) {
       return res.status(400).json({
-        message: "User Already Exist",
+        message: 'User Already Exist',
         status: 400,
       });
     }
@@ -37,7 +37,7 @@ exports.register = (req, res) => {
       email: user.email,
       encry_password: user.encry_password,
       status: 200,
-      message: "Successfully Sent Verification Email",
+      message: 'Successfully Sent Verification Email',
     });
   });
 };
@@ -56,21 +56,21 @@ exports.login = (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        message: "User With This Email Does Not Exists",
+        message: 'User With This Email Does Not Exists',
         status: 400,
       });
     }
 
     if (!user.verified) {
       res.status(401).json({
-        error: "User Email Is Not Verified",
+        error: 'User Email Is Not Verified',
         status: 400,
       });
     }
 
     if (!user.authenticate(password)) {
       res.status(401).json({
-        message: "Email, Password Does Not Matched",
+        message: 'Email, Password Does Not Matched',
         status: 400,
       });
     } else {
@@ -83,7 +83,7 @@ exports.login = (req, res) => {
         const token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
         //put token in cookie
-        res.cookie("token", token, { expire: new Date() + 9999 });
+        res.cookie('token', token, { expire: new Date() + 9999 });
 
         //send response to front end
 
@@ -99,9 +99,9 @@ exports.login = (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie('token');
   res.json({
-    message: "User Logout Succesfully",
+    message: 'User Logout Succesfully',
   });
 };
 
@@ -119,16 +119,16 @@ exports.verify = (req, resp) => {
             .then((res) => {
               User.deleteOne({ _id: user_id })
                 .then(() => {
-                  let message = "Link has expired please sign again";
+                  let message = 'Link has expired please sign again';
                   res.redirect(`/api/verified/error=true&message=${message}`);
                 })
                 .catch((err) => {
-                  let message = "clearing user with expired string failed";
+                  let message = 'clearing user with expired string failed';
                   res.redirect(`/api/verified/error=true&message=${message}`);
                 });
             })
             .catch((err) => {
-              let message = "err occur while deleteding reocrd";
+              let message = 'err occur while deleteding reocrd';
               res.redirect(`/api/verified/error=true&message=${message}`);
             });
         } else {
@@ -154,10 +154,8 @@ exports.verify = (req, resp) => {
                     console.log(err);
                   });
               } else {
-                let message = "Invalid details ";
-                resp.redirect(
-                  `http://localhost:3000/login?status=error`
-                );
+                let message = 'Invalid details ';
+                resp.redirect(`http://localhost:3000/login?status=error`);
               }
             })
             .catch((err) => {
@@ -165,13 +163,13 @@ exports.verify = (req, resp) => {
             });
         }
       } else {
-        let message = "details does not exist or already verified";
+        let message = 'details does not exist or already verified';
         resp.redirect(`http://localhost:3000/login?status=error`);
       }
     })
     .catch((err) => {
       console.log(err);
-      let message = "no record found with your provided details";
+      let message = 'no record found with your provided details';
       res.redirect(`http://localhost:3000/login?status=error`);
     });
 };
@@ -183,15 +181,15 @@ exports.verifyOtp = (req, res) => {
       if (user) {
         const { otpExpiry } = user;
         const hashotp = user.otp;
-        if (hashotp == "0") {
+        if (hashotp == '0') {
           res.json({
-            message: "Otp Invalid Or Already Used",
+            message: 'Otp Invalid Or Already Used',
             status: 400,
           });
         }
         if (otpExpiry < Date.now()) {
           res.json({
-            message: "OTP Is Expired, Login Again",
+            message: 'OTP Is Expired, Login Again',
             status: 400,
           });
         } else {
@@ -201,14 +199,14 @@ exports.verifyOtp = (req, res) => {
             if (status) {
               //turning otp to 0
               User.findOne({ _id: user.id }).then((updateOtpToNull) => {
-                updateOtpToNull.otp = "0";
+                updateOtpToNull.otp = '0';
                 updateOtpToNull.save();
               });
               //create token
               const token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
               //put token in cookie
-              res.cookie("token", token, { expire: new Date() + 9999 });
+              res.cookie('token', token, { expire: new Date() + 9999 });
 
               //send response to front end
 
@@ -220,7 +218,7 @@ exports.verifyOtp = (req, res) => {
               });
             } else {
               res.json({
-                message: "Invalid OTP",
+                message: 'Invalid OTP',
                 status: 400,
               });
             }
@@ -230,7 +228,7 @@ exports.verifyOtp = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      let message = "no record found with your provided details";
+      let message = 'no record found with your provided details';
       // res.redirect(`/api/verified/error=true&message=${message}`);
       res.json({
         msg: message,
@@ -240,22 +238,22 @@ exports.verifyOtp = (req, res) => {
 
 exports.verified = (req, res) => {
   res.send({
-    status: "success",
-    mesg: "done",
+    status: 'success',
+    mesg: 'done',
     paramDetails: req.params,
   });
 };
 
 exports.isLogin = expressJwt({
   secret: process.env.SECRET,
-  requestProperty: "auth",
+  requestProperty: 'auth',
 });
 
 exports.isAuthenticated = (req, res, next) => {
   let checker = req.user && req.auth && req.user._id == req.auth._id;
   if (!checker) {
     return res.status(403).json({
-      error: "Access denied",
+      error: 'Access denied',
     });
   }
   next();
@@ -264,7 +262,7 @@ exports.isAuthenticated = (req, res, next) => {
 exports.isAuthority = (req, res, next) => {
   if (!req.user.authority) {
     return res.status(403).json({
-      error: "your are not authority",
+      error: 'your are not authority',
     });
   }
   next();
@@ -276,12 +274,12 @@ exports.resetPassword = (req, res) => {
     if (user && user.verified) {
       sendVerificationEmail(user, res);
       res.json({
-        message: "Reset Password Mail sent succesfully",
+        message: 'Reset Password Mail sent succesfully',
         status: 200,
       });
     } else {
       res.json({
-        message: "no user found with with email",
+        message: 'no user found with with email',
         status: 400,
       });
     }
@@ -301,16 +299,16 @@ exports.resetForm = (req, res) => {
             .then(() => {
               User.deleteMany({ _id: user_id })
                 .then(() => {
-                  let message = "Link has expired please sign again";
+                  let message = 'Link has expired please sign again';
                   res.redirect(`/api/verified/error=true&message=${message}`);
                 })
                 .catch((err) => {
-                  let message = "clearing user with expired string failed";
+                  let message = 'clearing user with expired string failed';
                   res.redirect(`/api/verified/error=true&message=${message}`);
                 });
             })
             .catch((err) => {
-              let message = "err occur while deleteding reocrd";
+              let message = 'err occur while deleteding reocrd';
               res.redirect(`/api/verified/error=true&message=${message}`);
             });
         } else {
@@ -333,7 +331,7 @@ exports.resetForm = (req, res) => {
                   });
               } else {
                 User.deleteMany({ _id: user_id });
-                let message = "Invalid details ";
+                let message = 'Invalid details ';
                 res.redirect(`/api/verified/error=true&message=${message}`);
               }
             })
@@ -342,13 +340,13 @@ exports.resetForm = (req, res) => {
             });
         }
       } else {
-        let message = "details does not exist or already verified";
+        let message = 'details does not exist or already verified';
         res.redirect(`/api/verified/error=true&message=${message}`);
       }
     })
     .catch((err) => {
       console.log(err);
-      let message = "no record found with your provided details";
+      let message = 'no record found with your provided details';
       res.redirect(`/api/verified/error=true&message=${message}`);
     });
 };
@@ -362,7 +360,7 @@ exports.resetFormSubmit = (req, res) => {
       .save()
       .then(() => {
         res.json({
-          message: "Your Password Succesfully Updated",
+          message: 'Your Password Succesfully Updated',
           status: 200,
         });
       })
@@ -378,27 +376,25 @@ exports.resetFormSubmit = (req, res) => {
 exports.getAllRecords = (req, res) => {
   user
     .find({
-      authority: "false",
-      applicationVerificationStatus: "2",
-      verified: "true",
+      authority: 'false',
+      applicationVerificationStatus: '2',
+      verified: 'true',
     })
     .then(function (users) {
       res.send(users);
     });
 };
 exports.getAllupdateRequest = (req, res) => {
-  update
-    .find({ verifyStatus: false })
-    .then(function (users) {
-      res.send(users);
-    });
+  update.find({ verifyStatus: false }).then(function (users) {
+    res.send(users);
+  });
 };
 
 exports.getRecordForVerify = (req, res) => {
   user
     .find({
-      authority: "false",
-      applicationVerificationStatus: "1",
+      authority: 'false',
+      applicationVerificationStatus: '1',
     })
     .then(function (users) {
       res.send(users);
@@ -409,11 +405,11 @@ exports.updateUserVerification = (req, res) => {
   console.log(req.user._id);
   User.findByIdAndUpdate(
     { _id: req.user._id },
-    { $set: { applicationVerificationStatus: "2" } },
+    { $set: { applicationVerificationStatus: '2' } },
     (err, user) => {
       if (err) {
         return res.status(400).json({
-          error: "you r not auth. to update",
+          error: 'you r not auth. to update',
         });
       }
       res.json(user);
@@ -424,11 +420,11 @@ exports.rejectUserVerification = (req, res) => {
   console.log(req.user._id);
   User.findByIdAndUpdate(
     { _id: req.user._id },
-    { $set: { applicationVerificationStatus: "4" } },
+    { $set: { applicationVerificationStatus: '4' } },
     (err, user) => {
       if (err) {
         return res.status(400).json({
-          error: "you r not auth. to update",
+          error: 'you r not auth. to update',
         });
       }
       res.json(user);
@@ -439,7 +435,7 @@ exports.getUserById = (req, res, next, id) => {
   User.findById(id).exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "No user found",
+        error: 'No user found',
       });
     }
     req.user = user;

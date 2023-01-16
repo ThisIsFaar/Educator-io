@@ -28,7 +28,7 @@ const App = () => {
       <Route path="reset-password-form" element={<ResetPassword />} />
       <Route path="*" element={<NotFound />} />
       <Route path="/user/dashboard" element={<PrivateOutlet />}>
-        <Route path="" element={<UserDashboard />} />r4t
+        <Route path="" element={<UserDashboard />} />
       </Route>
       <Route path="/authority/dashboard" element={<AuthorityOutlet />}>
         <Route path="" element={<AuthorityDashboard />} />

@@ -1,6 +1,6 @@
 .container--box {
   background: #fff;
-  width: 78vw;
+  /* width: 78vw; */
   overflow: auto;
 }
 .formBoxOne,

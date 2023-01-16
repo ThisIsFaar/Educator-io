@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { isAuthenticated } from '../../../api';
-import { updateReq } from '../helper/backendreq';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { isAuthenticated } from "../../../api";
+import { updateReq } from "../helper/backendreq";
+import "react-toastify/dist/ReactToastify.css";
 
 const UpdateRequest = () => {
-  const [phoneUpdate, setphoneUpdate] = useState(true);
-  const [addressUpdate, setaddressUpdate] = useState(true);
-  const [schoolUpdate, setschoolUpdate] = useState(true);
   const { user, token } = isAuthenticated();
 
   const [values, setValues] = useState({
-    phoneNumber: '',
-    address: '',
-    dateOfJoining: '',
-    postedSchoolName: '',
-    postedDesignation: '',
-    postedSchoolLocation: '',
-    message: '',
+    phoneNumber: "",
+    address: "",
+    dateOfJoining: "",
+    postedSchoolName: "",
+    postedDesignation: "",
+    postedSchoolLocation: "",
+    message: "",
     disabled: false,
     error: {},
     success: false,
   });
   const {
-    error,
     phoneNumber,
     address,
     dateOfJoining,
@@ -31,8 +27,6 @@ const UpdateRequest = () => {
     postedDesignation,
     postedSchoolLocation,
     message,
-    profilePhoto,
-    disabled,
   } = values;
 
   const handleChange = (name) => (event) => {
@@ -56,19 +50,19 @@ const UpdateRequest = () => {
         console.log(data);
         if (data.status === 200) {
           setValues({
-            phoneNumber: '',
-            dateOfJoining: '',
-            postedSchoolName: '',
-            postedDesignation: '',
-            postedSchoolLocation: '',
-            address: '',
+            phoneNumber: "",
+            dateOfJoining: "",
+            postedSchoolName: "",
+            postedDesignation: "",
+            postedSchoolLocation: "",
+            address: "",
             disabled: true,
             error: {},
             success: true,
-            message: '',
+            message: "",
           });
           toast.success(data.message, {
-            position: 'bottom-center',
+            position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -78,7 +72,7 @@ const UpdateRequest = () => {
           });
         } else if (data.status === 400) {
           toast.error(data.message, {
-            position: 'bottom-center',
+            position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -92,7 +86,11 @@ const UpdateRequest = () => {
   };
 
   return (
-    <form encType="multipart/form-data" className="container--box w-full h-full">
+    <>
+      <form
+        encType="multipart/form-data"
+        className="container--box w-full h-full"
+      >
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -104,187 +102,122 @@ const UpdateRequest = () => {
           draggable
           pauseOnHover
         />
-        <div className="form--innerBox">
-          <div className="formBoxOne">
-            <div className="FormOne">
-              {/* Phone Update Section */}
 
-              {phoneUpdate ? (
-                <div className="input-box">
-                  <div
-                    className="update-input-checked"
-                    style={{
-                      border: '2px green solid',
-                      padding: '1rem',
-                      borderRadius: '1rem',
-                    }}
-                  >
-                    <label className="form--label">Phone</label>
-                    <input
-                      className="form--input"
-                      value={phoneNumber}
-                      type="text"
-                      onChange={handleChange('phoneNumber')}
-                    />
-                    <input
-                      type="checkbox"
-                      className="form--checkbox"
-                      onClick={() => {
-                        setphoneUpdate(false);
-                      }}
-                      checked
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="input-box " style={{ display: 'flex' }}>
-                  <label className="form--label">Phone</label>
-                  <input
-                    type="checkbox"
-                    className="form--checkbox"
-                    onClick={() => {
-                      setphoneUpdate(true);
-                    }}
-                  />
-                </div>
-              )}
-
-              {/* Address Update Section */}
-              {addressUpdate ? (
-                <div className="input-box">
-                  <div
-                    className="update-input-checked"
-                    style={{
-                      border: '2px green solid',
-                      padding: '1rem',
-                      borderRadius: '1rem',
-                    }}
-                  >
-                    <label className="form--label">Address</label>
-                    <textarea
-                      className="form--textarea"
-                      value={address}
-                      style={{
-                        width: '25rem',
-                      }}
-                      onChange={handleChange('address')}
-                    ></textarea>
-                    <input
-                      type="checkbox"
-                      className="form--checkbox"
-                      onClick={() => {
-                        setaddressUpdate(false);
-                      }}
-                      checked
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="input-box" style={{ display: 'flex' }}>
-                  <label className="form--label">Address</label>
-                  <input
-                    type="checkbox"
-                    className="form--checkbox"
-                    onClick={() => {
-                      setaddressUpdate(true);
-                    }}
-                  />
-                </div>
-              )}
-
-              {/* School Update */}
-              {schoolUpdate ? (
-                <div className="input-box">
-                  <div
-                    className="update-input-checked"
-                    style={{
-                      border: '2px green solid',
-                      padding: '1rem',
-                      borderRadius: '1rem',
-                    }}
-                  >
-                    <label className="form--label">Posted School Name</label>
-                    <input
-                      className="form--input "
-                      onChange={handleChange('postedSchoolName')}
-                      value={postedSchoolName}
-                      type="text"
-                    />
-                    <label className="form--label">Posted Designation</label>
-                    <input
-                      className="form--input "
-                      onChange={handleChange('postedDesignation')}
-                      value={postedDesignation}
-                      type="text"
-                    />
-                    <label className="form--label">
-                      Posted School Location
-                    </label>
-                    <input
-                      className="form--input "
-                      onChange={handleChange('postedSchoolLocation')}
-                      value={postedSchoolLocation}
-                      type="text"
-                    />
-                    <label className="form--label">Date Of Joining</label>
-                    <input
-                      className="form--input "
-                      onChange={handleChange('dateOfJoining')}
-                      value={dateOfJoining}
-                      type="text"
-                    />
-                    <input
-                      type="checkbox"
-                      className="form--checkbox"
-                      onClick={() => {
-                        setschoolUpdate(false);
-                      }}
-                      checked
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="input-box" style={{ display: 'flex' }}>
-                  <label className="form--label">Add School</label>
-                  <input
-                    type="checkbox"
-                    className="form--checkbox"
-                    onClick={() => {
-                      setschoolUpdate(true);
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+        <div className="mb-6">
+          <label
+            htmlFor="large-input"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Phone Number
+          </label>
+          <input
+            type="text"
+            id="large-input"
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={phoneNumber}
+            onChange={handleChange("phoneNumber")}
+          />
         </div>
-        <div className="input--box" style={{ margin: '5rem' }}>
-          <label className="form--label">Remarks/Message</label>
-          {/* <input
-              className="form--input "
-              onChange={handleChange("message")}
-              value={message}
-              type="text"
-              style={{padding:"5rem"}}
-            /> */}
+        <div className="mb-6">
+          <label
+            htmlFor="message"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Address
+          </label>
           <textarea
-            className="form--textarea"
-            value={message}
-            style={{
-              width: '25rem',
-            }}
-            onChange={handleChange('message')}
-          ></textarea>
+            id="message"
+            rows="4"
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter you new address..."
+            onChange={handleChange("address")}
+          />
         </div>
-        <button
+        <div className="mb-6">
+          <label
+            htmlFor="large-input"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Posted School Name
+          </label>
+          <input
+            type="text"
+            id="large-input"
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={handleChange("postedSchoolName")}
+            value={postedSchoolName}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            htmlFor="large-input"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Posted Designation
+          </label>
+          <input
+            type="text"
+            id="large-input"
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={handleChange("postedDesignation")}
+            value={postedDesignation}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            htmlFor="large-input"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Posted School Location
+          </label>
+          <input
+            type="text"
+            id="large-input"
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={handleChange("postedSchoolLocation")}
+            value={postedSchoolLocation}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            htmlFor="large-input"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Date of Joining
+          </label>
+          <input
+            type="text"
+            id="large-input"
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-200 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={handleChange("dateOfJoining")}
+            value={dateOfJoining}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            htmlFor="message"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Remarks / Message
+          </label>
+          <textarea
+            id="message"
+            value={message}
+            rows="4"
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter you new address..."
+            onChange={handleChange("message")}
+          />
+        </div>
+        <input
           type="submit"
-          name="Login"
-          className="btn--login"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          value="Request for Update"
           onClick={onSubmit}
-        >
-          Request for Update
-        </button>
+          name="Login"
+        />
       </form>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import ImageHelper from '../../../../component/ImageHelper';
-import { verificationRecords } from '../../helper';
-import VerifyModal from '../../components/modal/verifyModal/verifyModal';
+import React, { useEffect, useState } from "react";
+import ImageHelper from "../../../../component/ImageHelper";
+import { verificationRecords } from "../../helper";
+import VerifyModal from "../../components/modal/verifyModal/verifyModal";
 
 export default function VerifyUser() {
   const [users, setusers] = useState([]);
@@ -15,7 +15,7 @@ export default function VerifyUser() {
     verificationRecords().then((data) => {
       if (data.error) {
       } else {
-        console.log('updated');
+        console.log("updated");
         setusers(data);
       }
     });
@@ -26,63 +26,66 @@ export default function VerifyUser() {
   }, [reload]);
   return (
     <div className="right--outer--layer w-full h-full overflow-auto">
-        <div className="container--box">
-          <div className="table">
-            <div className="table--content--box" id="TableBox">
-              <table className="table--content">
-                <thead className="table--header">
-                  <tr className="table--row">
-                    <th className="table--title th--name">Name</th>
-                    <th className="table--title th--phone">Phone</th>
-                    <th className="table--title th--email">Email</th>
-                    <th className="table--title th--detail">Detail</th>
-                  </tr>
-                </thead>
-
-                <tbody className="table--body">
-                  {users.map((user, i) => {
-                    return (
-                      <tr className="table--row">
-                        <td className="tableData td--name">
-                          <ImageHelper user={user} />
-                          {user.Name}
-                        </td>
-                        <td className="tableData td--post">
-                          {user.postedDesignationName}
-                        </td>
-                        <td className="tableData td--gender">{user.gender}</td>
-                        <td className="tableData td--phone">
-                          {user.phoneNumber}
-                        </td>
-                        <td className="tableData td--email">{user.email}</td>
-                        <td className="tableData td--detail">
-                          {' '}
-                          <button
-                            className="table--btn"
-                            onClick={() => {
-                              setmodal(true);
-                              setmusers(user);
-                            }}
-                            style={{ width: '13.6rem' }}
-                          >
-                            Detail And Verify
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <VerifyModal
-            onClose={() => setmodal(false)}
-            user={muser}
-            modal={modal}
-            setmodal={setmodal}
-            refresh={refresh}
-          />
+      <div className="container--box">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">
+                  Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Designation
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Phone
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Detail
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <th
+                    scope="row"
+                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    <ImageHelper user={user} />
+                    {user.Name}
+                  </th>
+                  <td class="px-6 py-4">{user.postedDesignationName}</td>
+                  <td class="px-6 py-4">{user.phoneNumber}</td>
+                  <td class="px-6 py-4">{user.email}</td>
+                  <td class="px-6 py-4">
+                    <button
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      onClick={() => {
+                        setmodal(true);
+                        setmusers(user);
+                      }}
+                    >
+                      Detail and Verify
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+
+        <VerifyModal
+          onClose={() => setmodal(false)}
+          user={muser}
+          modal={modal}
+          setmodal={setmodal}
+          refresh={refresh}
+        />
       </div>
+    </div>
   );
 }

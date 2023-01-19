@@ -1,9 +1,6 @@
-import React from 'react';
+import React from "react";
 // import './verifyModal.css';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ImageHelper from '../../../../../component/ImageHelper';
-import { verifyUser, rejectUser } from '../../../helper';
+import { verifyUser, rejectUser } from "../../../helper";
 
 export default function VerifyModal({ user, modal, setmodal, refresh }) {
   const onAccept = () => {
@@ -19,95 +16,185 @@ export default function VerifyModal({ user, modal, setmodal, refresh }) {
   };
 
   return (
-    <div className={'verifymodal ' + (modal && 'active')}>
-      <div className="Verifywrapper" onClick={() => setmodal(!modal)}>
-        <div className="Verify-left">
-          <div className="profile-image">
-            <ImageHelper user={user} />
-          </div>
-          <div className="info">
-            <p className="name">{user.Name}</p>
+    <div className={"verifymodal " + (modal ? "active" : "hidden")}>
+      <div
+        id="staticModal"
+        data-modal-backdrop="static"
+        tabindex="-1"
+        aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 w-full flex justify-center items-center p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+      >
+        <div class="relative w-full h-full max-w-2xl md:h-auto">
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="flex overflow-auto items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Verify Details
+              </h3>
+              <button
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="staticModal"
+                onClick={() => setmodal(!modal)}
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </div>
 
-            <p className="email">
-              <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon> &nbsp;
-              {user.email}
-            </p>
-            <div className="phone">
-              <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>&nbsp;
-              {user.phoneNumber}
+            <div class="relative overflow-x-auto">
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Name
+                    </th>
+                    <td class="px-6 py-4">{user.Name}</td>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Email
+                    </th>
+                    <td class="px-6 py-4">{user.email}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Phone Number
+                    </th>
+                    <td class="px-6 py-4">{user.phoneNumber}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Date Of Birth
+                    </th>
+                    <td class="px-6 py-4">{user.DOB}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Gender
+                    </th>
+                    <td class="px-6 py-4">{user.gender}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Mother's Name
+                    </th>
+                    <td class="px-6 py-4">{user.motherName}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Father's Name
+                    </th>
+                    <td class="px-6 py-4">{user.fatherName}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Address
+                    </th>
+                    <td class="px-6 py-4">{user.address}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Designation
+                    </th>
+                    <td class="px-6 py-4">{user.currentDesignationPost}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Posted School
+                    </th>
+                    <td class="px-6 py-4">{user.postedSchoolName}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Posted School Location
+                    </th>
+                    <td class="px-6 py-4">{user.postedSchoolLocation}</td>
+                  </tr>
+                  <tr class="bg-white dark:bg-gray-800">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Date Of Joining
+                    </th>
+                    <td class="px-6 py-4">{user.dateOfJoining}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div>
-        </div>
-        <div className="Verify-right">
-          <div className="personal">
-            <div className="head">Personal</div>
-            <div className="p-info">
-              <div>
-                <label>Date Of Birth: </label>
-                <span>{user.DOB}</span>
-              </div>
-              <div>
-                <label>Gender: </label>
-                <span>{user.gender}</span>
-              </div>
-              <div>
-                <label>Mother's Name: </label>
-                <span>{user.motherName}</span>
-              </div>
-              <div>
-                <label>Father's Name: </label>
-                <span>{user.fatherName}</span>
-              </div>
-              <div>
-                <label>Address: </label>
-                <span>{user.address}</span>
-              </div>
+
+            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button
+                data-modal-hide="staticModal"
+                type="button"
+                onClick={() => {
+                  onAccept();
+                  setTimeout(() => {
+                    refresh();
+                  }, 1000);
+                }}
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                I accept
+              </button>
+
+              <button
+                data-modal-hide="staticModal"
+                type="button"
+                onClick={() => {
+                  onReject();
+                  setTimeout(() => {
+                    refresh();
+                  }, 1000);
+                }}
+                class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+              >
+                Decline
+              </button>
             </div>
-          </div>
-          <div className="school">
-            <div className="head">School</div>
-            <div className="p-info">
-              <div>
-                <label>Designation: </label>
-                <span>{user.currentDesignationPost}</span>
-              </div>
-              <div>
-                <label>Posted School: </label>
-                <span>{user.postedSchoolName}</span>
-              </div>
-              <div>
-                <label>Posted School Location: </label>
-                <span>{user.postedSchoolLocation}</span>
-              </div>
-              <div>
-                <label>Date Of Joining: </label>
-                <span>{user.dateOfJoining}</span>
-              </div>
-            </div>
-          </div>
-          <div className="buttons">
-            <button
-              className="Accept"
-              onClick={() => {
-                onAccept();
-                setTimeout(() => {
-                  refresh();
-                }, 1000);
-              }}
-            >
-              Accept
-            </button>
-            <button
-              className="Reject"
-              onClick={() => {
-                onReject();
-                setTimeout(() => {
-                  refresh();
-                }, 1000);
-              }}
-            >
-              Reject
-            </button>
           </div>
         </div>
       </div>

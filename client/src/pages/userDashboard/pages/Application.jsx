@@ -137,20 +137,20 @@ const Application = () => {
     <>
       <form
         encType="multipart/form-data"
-        className="container--box w-full h-full overflow-auto"
+        className="container--box w-full h-full overflow-auto p-4 bg-white rounded-xl"
       >
-        <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
             <label
               for="first_name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Name
             </label>
             <input
               type="text"
               id="first_name"
-              class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="John"
               required
               onChange={handleChange("Name")}
@@ -159,13 +159,13 @@ const Application = () => {
           </div>
           <div>
             <label
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               for="default_size"
             >
               Choose A Profile Photo
             </label>
             <input
-              class="block w-full mb-5 text-sm text-gray-900 cursor-pointer dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full mb-5 text-sm text-gray-900 cursor-pointer dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
               id="default_size"
               type="file"
               required
@@ -177,14 +177,14 @@ const Application = () => {
           <div>
             <label
               for="phone"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Phone number
             </label>
             <input
               type="tel"
               id="phone"
-              class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="123-45-678"
               pattern="[789][0-9]{9}"
               onChange={handleChange("phoneNumber")}
@@ -195,14 +195,14 @@ const Application = () => {
           <div>
             <label
               for="gender"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Gender
             </label>
             <input
               type="text"
               id="gender"
-              class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Male"
               onChange={handleChange("gender")}
               value={gender}
@@ -212,14 +212,14 @@ const Application = () => {
           <div>
             <label
               for="father's_name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Father's Name
             </label>
             <input
               type="url"
               id="father's_name"
-              class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Mr. XYZ"
               required
               onChange={handleChange("fatherName")}
@@ -229,14 +229,14 @@ const Application = () => {
           <div>
             <label
               for="mother's_name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Mother's Name
             </label>
             <input
               type="text"
               id="mother's_name"
-              class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Mrs. ABC"
               required
               onChange={handleChange("motherName")}
@@ -246,14 +246,14 @@ const Application = () => {
           <div>
             <label
               for="date_of_birth"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Date of Birth
             </label>
             <input
               type="date"
               id="date_of_birth"
-              class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               onChange={handleChange("dateOfBirth")}
               value={dateOfBirth}
               required
@@ -263,31 +263,31 @@ const Application = () => {
           <div>
             <label
               for="date_of_joining"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Date of Joining
             </label>
             <input
               type="date"
               id="date_of_joining"
-              class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               onChange={handleChange("dateOfJoining")}
               value={dateOfJoining}
               required
             />
           </div>
         </div>
-        <div class="mb-6">
+        <div className="mb-6">
           <label
             for="spouse"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Spouse
           </label>
           <input
             type="text"
             id="spouse"
-            class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Enter your spouse name"
             onChange={handleChange("spouse")}
             value={spouse}
@@ -295,64 +295,64 @@ const Application = () => {
           />
         </div>
 
-        <div class="mb-6">
+        <div className="mb-6">
           <label
             for="posted_school_name"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Posted School Name
           </label>
           <input
             type="text"
             id="posted_school_name"
-            class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={handleChange("postedSchoolName")}
             value={postedSchoolName}
             required
           />
         </div>
-        <div class="mb-6">
+        <div className="mb-6">
           <label
             for="posted_destination"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Posted Destination
           </label>
           <input
             type="text"
             id="posted_destination"
-            class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={handleChange("postedDesignation")}
             value={postedDesignation}
             required
           />
         </div>
-        <div class="mb-6">
+        <div className="mb-6">
           <label
             for="posted_school_location"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Posted School Location
           </label>
           <input
             type="text"
             id="posted_school_location"
-            class="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={handleChange("postedSchoolLocation")}
             value={postedSchoolLocation}
             required
           />
         </div>
-        <div class="mb-6">
+        <div className="mb-6">
           <label
             for="message"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Address
           </label>
           <textarea
             id="message"
-            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Enter your Address"
             onChange={handleChange("address")}
             value={address}

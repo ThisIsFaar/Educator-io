@@ -27,43 +27,43 @@ export default function VerifyUser() {
   return (
     <div className="right--outer--layer w-full h-full overflow-auto">
       <div className="container--box">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Name
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Designation
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Phone
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Email
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Detail
                 </th>
               </tr>
             </thead>
             <tbody>
               {users.map((user) => (
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <th
                     scope="row"
-                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     <ImageHelper user={user} />
                     {user.Name}
                   </th>
-                  <td class="px-6 py-4">{user.postedDesignationName}</td>
-                  <td class="px-6 py-4">{user.phoneNumber}</td>
-                  <td class="px-6 py-4">{user.email}</td>
-                  <td class="px-6 py-4">
+                  <td className="px-6 py-4">{user.postedDesignationName}</td>
+                  <td className="px-6 py-4">{user.phoneNumber}</td>
+                  <td className="px-6 py-4">{user.email}</td>
+                  <td className="px-6 py-4">
                     <button
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       onClick={() => {
                         setmodal(true);
                         setmusers(user);

@@ -10,10 +10,10 @@ function Navbar() {
   let navigate = useNavigate();
 
   return (
-    <nav class="bg-primary border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
-      <div class="container flex flex-wrap items-center justify-between mx-auto">
+    <nav className="bg-primary border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
+      <div className="container flex flex-wrap items-center justify-between mx-auto">
         <Link to="/" className='flex items-center'>
-          <img src={logo} class="h-9" alt="Educator.io Logo" />
+          <img src={logo} className="h-9" alt="Educator.io Logo" />
         </Link>
         {isAuthenticated() && (
           <button

@@ -132,23 +132,91 @@ const Profile = () => {
     //   </div>
     // </div>
 
-    <main class="profile-page overflow-auto">
-      <section class="relative block h-500-px">
-        <div class="absolute top-0 w-full h-full bg-center bg-cover" style={
-          {
-            backgroundImage: "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80')"
-          }
-        }>
-          <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
+    // <main className=' overflow-auto  '>
+    //   <pre>{JSON.stringify(values, undefined, 2)}</pre>
+    // </main>
+    <div className="bg-white relative shadow rounded-lg w-full md:w-2/3 mx-auto p-4 h-full flex flex-col justify-evenly">
+        <div className="flex justify-center">
+          {/* <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110" /> */}
+          <ImageHelper user={user} />
         </div>
-        <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px" style={{transform: "translateZ(0px)"}}>
-          <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-            <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
-          </svg>
+
+        <div className="my-4 overflow-auto">
+          <h1 className="font-bold text-center text-3xl text-gray-900">{name}</h1>
+          <p className="text-center text-sm text-gray-400 font-medium">{postedDesignationName}</p>
+
+          <div className="w-full">
+            <div class="w-full h-64">
+              <div class="bg-white shadow-sm rounded-sm p-4">
+                <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                  <span clas="text-green-500">
+                    <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </span>
+                  <span class="tracking-wide">Details</span>
+                </div>
+                <div class="text-gray-700 ">
+                  <div class="grid lg:grid-cols-2 text-sm">
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Email</div>
+                      <div class="px-4 py-2">{email}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Phone</div>
+                      <div class="px-4 py-2">{phoneNumber}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Gender</div>
+                      <div class="px-4 py-2">{gender}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Father Name</div>
+                      <div class="px-4 py-2">{fatherName}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Mother Name</div>
+                      <div class="px-4 py-2">{motherName}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Spouse</div>
+                      <div class="px-4 py-2">{spouse}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">DOB</div>
+                      <div class="px-4 py-2">
+                        <a class="text-blue-800">{dateOfBirth}</a>
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Date Of Joining</div>
+                      <div class="px-4 py-2">{dateOfJoining}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Posted School Name</div>
+                      <div class="px-4 py-2">{postedSchoolName}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Posted Designation Name</div>
+                      <div class="px-4 py-2">{postedDesignationName}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Posted School Location</div>
+                      <div class="px-4 py-2">{postedSchoolLocation}</div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                      <div class="px-4 py-2 font-semibold">Address</div>
+                      <div class="px-4 py-2">{address}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-      
-    </main>
+      </div>
   );
 };
 

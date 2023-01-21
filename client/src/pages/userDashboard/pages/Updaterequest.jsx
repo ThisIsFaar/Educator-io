@@ -89,7 +89,7 @@ const UpdateRequest = () => {
     <>
       <form
         encType="multipart/form-data"
-        className="container--box w-full h-full overflow-auto"
+        className="container--box w-full h-full overflow-auto p-4 bg-white rounded-xl"
       >
         <ToastContainer
           position="top-center"

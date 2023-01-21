@@ -24,39 +24,39 @@ export default function UpdateUser() {
 
   return (
     <div className="w-full h-full overflow-auto">
-      <div class="relative overflow-auto">
-        <table class="w-full text-sm text-left overflow-auto text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <div className="relative overflow-auto">
+        <table className="w-full text-sm text-left overflow-auto text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Name
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Email
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Remark
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Detail
               </th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th
                   scope="row"
-                  class="px-6 py-4 flex items-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="px-6 py-4 flex items-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   <ImageHelper user={user.user} />
                   {user.user.Name}
                 </th>
-                <td class="px-6 py-4">{user.user.email}</td>
-                <td class="px-6 py-4">{user.message}</td>
-                <td class="px-6 py-4">
+                <td className="px-6 py-4">{user.user.email}</td>
+                <td className="px-6 py-4">{user.message}</td>
+                <td className="px-6 py-4">
                   <button
-                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     onClick={() => {
                       setmodal(true);
                       setmusers(user.user);

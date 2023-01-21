@@ -25,7 +25,7 @@ export default function AuthorityDashboard() {
               return (
                 <li
                   key={key}
-                  class="flex w-full justify-between text-secondary hover:text-white cursor-pointer items-center mb-6"
+                  className="flex w-full justify-between text-secondary hover:text-white cursor-pointer items-center mb-6"
                   onClick={() => setpage(item.title)}
                 >
                   <div className="flex justify-center items-center">
@@ -67,7 +67,7 @@ export default function AuthorityDashboard() {
               return (
                 <li
                   key={key}
-                  class="flex w-full justify-between text-secondary hover:text-white cursor-pointer items-center mb-6"
+                  className="flex w-full justify-between text-secondary hover:text-white cursor-pointer items-center mb-6"
                   onClick={() => { setpage(item.title); SetMenuToggle(!menuToggle) }}
                 >
                   <div className="flex justify-center items-center">
@@ -87,9 +87,9 @@ export default function AuthorityDashboard() {
       </div>
       {/* Sidebar ends */}
       {/* Remove class [ h-64 ] when adding a card block */}
-      <div className="container mx-auto py-10 md:w-4/5 w-11/12 px-6 h-screen">
+      <div className="container md:mx-auto w-full py-10 md:w-4/5 px-3 md:px-6 h-screen">
         {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-        <div className="w-full h-full rounded border-dashed border-2 border-gray-300">{/* Place your content here */}
+        <div className="w-full h-full">{/* Place your content here */}
         {page === 'Teachers Records' && <Records />}
            {page === 'Verify Teacher' && <VerifyUser />}
            {page === 'Update Request' && <UpdateUser />}

@@ -24,7 +24,7 @@ export default function VerifyModal({ user, modal, setmodal, refresh }) {
         aria-hidden="true"
         className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center items-center p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full bg-[#000000ad] h-full"
       >
-        <div className="relative w-full h-full max-w-2xl md:h-auto">
+        <div className="relative w-full max-w-2xl h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex overflow-auto items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">

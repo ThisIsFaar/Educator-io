@@ -28,6 +28,9 @@ export default function UpdateUser() {
         <table className="w-full text-sm text-left overflow-auto text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
+            <th scope="col" className="px-6 py-3">
+                Photo
+              </th>
               <th scope="col" className="px-6 py-3">
                 Name
               </th>
@@ -50,8 +53,8 @@ export default function UpdateUser() {
                   className="px-6 py-4 flex items-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   <ImageHelper user={user.user} />
-                  {user.user.Name}
                 </th>
+                <td className="px-6 py-4">{user.user.Name}</td>
                 <td className="px-6 py-4">{user.user.email}</td>
                 <td className="px-6 py-4">{user.message}</td>
                 <td className="px-6 py-4">

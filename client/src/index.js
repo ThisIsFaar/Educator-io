@@ -5,6 +5,8 @@ import Navbar from './component/Navbar';
 import Footer from './component/Footer';
 import Toast from './component/Toast/Toast';
 import { BrowserRouter } from 'react-router-dom';
+import * as ServiceWorkerRegistration from './serviceWorkerRegistration.ts'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,3 +19,5 @@ root.render(
     </BrowserRouter>
   </>
 );
+
+ServiceWorkerRegistration.register();

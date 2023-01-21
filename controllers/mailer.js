@@ -28,7 +28,7 @@ transporter.verify((err, success) => {
 });
 
 exports.sendVerificationEmail = ({ _id, email, authority, verified }, res) => {
-  const URL = 'http://localhost:5000/';
+  const URL = process.env.BASE_URL;
   var mailOptions = {};
   if (authority) {
     const otp = `${Math.floor(1000 + Math.random() * 9000)}`;

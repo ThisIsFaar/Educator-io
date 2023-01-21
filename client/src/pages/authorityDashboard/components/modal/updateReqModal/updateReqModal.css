@@ -14,7 +14,7 @@
 .active {
   opacity: 1;
   pointer-events: visible;
-  z-index: 2;
+  
 }
 .update-wrapper {
   display: flex;

@@ -16,13 +16,13 @@ export default function VerifyModal({ user, modal, setmodal, refresh }) {
   };
 
   return (
-    <div className={"verifymodal " + (modal ? "active" : "hidden")}>
+    <div className={"verifymodal z-[42] " + (modal ? "active" : "hidden")}>
       <div
         id="staticModal"
         data-modal-backdrop="static"
         tabindex="-1"
         aria-hidden="true"
-        className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center items-center p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+        className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center items-center p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full bg-[#000000ad] h-full"
       >
         <div className="relative w-full h-full max-w-2xl md:h-auto">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">

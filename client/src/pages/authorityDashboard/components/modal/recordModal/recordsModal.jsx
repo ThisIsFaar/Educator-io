@@ -5,7 +5,7 @@ import ImageHelper from "../../../../../component/ImageHelper";
 export default function RecordsModal({ user, modal, setmodal }) {
   return (
     <div
-      className={"Recordsmodal " + (modal ? "active" : "hidden")}
+      className={"Recordsmodal  z-[42] " + (modal ? "active" : "hidden")}
       onClick={() => setmodal(!modal)}
     >
       <div
@@ -13,8 +13,9 @@ export default function RecordsModal({ user, modal, setmodal }) {
         data-modal-backdrop="static"
         tabIndex="-1"
         aria-hidden="true"
-        className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center items-center p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
+        className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center items-center p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full bg-[#000000ad] h-full"
       >
+        
         <div className="relative w-full h-full max-w-2xl md:h-">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex overflow-auto items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
@@ -46,8 +47,8 @@ export default function RecordsModal({ user, modal, setmodal }) {
                 <div className="relative overflow-x-auto">
                   <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <tbody>
-                      <tr className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                        <td>
+                      <tr className="flex items-center md:px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white p-0">
+                        <td className="">
                           <ImageHelper user={user} />
                         </td>
                         <td className="pl-3">

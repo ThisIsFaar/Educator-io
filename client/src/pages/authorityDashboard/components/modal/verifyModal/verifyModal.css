@@ -14,7 +14,7 @@
 
 .active {
   pointer-events: visible;
-  z-index: 2;
+  
   opacity: 1;
   background-color: #ffffff;
 }

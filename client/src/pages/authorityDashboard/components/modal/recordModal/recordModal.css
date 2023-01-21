@@ -15,7 +15,7 @@
 .active {
   opacity: 1;
   pointer-events: visible;
-  z-index: 2;
+  
 }
 .Recordswrapper {
   display: flex;

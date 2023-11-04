@@ -7,7 +7,7 @@ Every year through the government exams plenty of teachers are hired and posted 
 Digitizing Manual Record of Teachers with a Portal App.
 
 
-Live Hosted At: [Heroku Link](https://educator-io.herokuapp.com/)
+Live Hosted At: [educator-io.netlify.app](https://educator-io.netlify.app/)
 
 
 ![img](https://i.postimg.cc/q7p5n1sY/login.png "SS")
